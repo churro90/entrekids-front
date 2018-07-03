@@ -1,0 +1,81 @@
+/* .footer {
+    margin-top: 25px;
+    width: auto;
+    height: 120px;
+    background:linear-gradient(135deg,#0143a3,#0273d4);
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+   text-align: center;
+} */
+/* 
+li {
+    font-size: 12px;
+    color: floralwhite;
+    list-style-type: none;
+}
+
+a > li:hover {
+    color: rgb(102, 255, 0);
+}
+
+.rrss {
+    padding: 3% 0;
+}
+
+.twitter{
+    background-color:#55acee;
+    color:#fff;
+}
+
+.instagram {
+    color:#fff;
+    background-color:#3f729b;    
+}
+ */
+
+ .footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 300px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: rgb(119,119,120);
+    padding: 25px;
+  }
+  li {
+    font-size: 10px;
+    color: floralwhite;
+    list-style-type: none;
+    height: 20px;
+}
+
+h5{
+    font-family: 'Avenir Next Demi Bold' !important;
+    color: rgb(255,255,255);
+    padding-left: 40px;
+}
+
+.li-footer {
+    font-family: 'Avenir Next Light';
+    font-size: 15px;
+}
+
+.linea{
+    background-color: floralwhite;
+}
+
+.texto-footer{
+    font-family: 'BrandonText-Regular';
+    font-size: 12px;
+    height: 10px;
+    color: white;
+}
+
+
+.redes-sociales{
+    padding-left: 40px;
+}

@@ -1,0 +1,463 @@
+
+body{
+    background-color: #E9F0F2;
+}
+
+.cover{
+    background: url('/assets/images/ek-cover.jpg') no-repeat;
+    background-size: cover;
+        height:585px;
+}
+/* .imagen-fondo{
+    background: url('/assets/images/ek-cover.jpg') no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:700px;
+    width: auto;
+    z-index: 1000;
+} */
+
+
+.slider {
+    width: 100%;
+    height: 625px;
+    opacity: 0.7;
+}
+
+
+a {
+    font-size: 12px;
+}
+
+.carousel-caption{
+    bottom: 150px !important;
+}
+
+.boton-slider{
+    background-color: rgb(244,174,184);
+    border: solid 0px;
+}
+
+.boton-slider:hover{
+    background-color: rgb(233,98,108);
+}
+
+.bg-prices {
+	height: 60px;
+	width: 100%;
+    background-color: #1EB2E8;
+    position:absolute;
+    left: 0;
+}
+
+.proximamente-en-app {
+	height: 25px;
+	color: #FFFFFF;
+	font-family: 'Avenir Next';
+	font-size: 18px;
+	font-weight: 900;
+	letter-spacing: 1.8px;
+	line-height: 25px;
+    text-transform:uppercase;
+    padding: 0.45% 33.19% 0.43% 33.26%;
+    z-index: 2;
+}
+
+.centered {
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.descubre {
+	height: 36px;
+	width: 830px;
+	color: #FFFFFF;
+	font-family: 'Lato';
+	font-size: 30px;
+	font-weight: 900;
+	letter-spacing: 3px;
+	line-height: 36px;
+	text-align: center;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
+    text-transform: uppercase;
+}
+
+.bajada{
+    position: absolute;
+    top: 243px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.miles-de-actividades{    
+        height: 54px;
+        width: 659px;
+        color: #FFFFFF;
+        font-family: Lato;
+        font-size: 22px;
+        letter-spacing: 0.8px;
+        line-height: 27px;
+        text-align: center;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    
+}
+
+.boton-cover{
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.actividades{
+        height: 40px;
+        width: 170px;
+        border-radius: 4px;
+        background-color: #F56A80;
+        box-shadow: 1.5px 1.5px 5px  rgba(0,0,0,0.5);
+        border:none;
+}
+
+.franja{
+    min-height:500px;  
+    height: auto;
+    background-color: #E9F0F2;
+    margin-top: 60px;
+    
+   /*  height: 295px;
+    width:100%;
+    left: 0;
+    position: absolute;
+    z-index: 10000; */
+}
+.como-funciona {
+	height: 36px;
+	width: 330px;
+	color: #0F4163;
+	font-family: Lato;
+	font-size: 30px;
+	font-weight: bold;
+	letter-spacing: 3px;
+	line-height: 36px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+.propuesta-de-valor{
+    padding-top: 70px;
+  
+}
+.titulo-imagen {
+	height: 24px;
+	width: auto;
+	color: #F56A80;
+	font-family: 'Lato';
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	line-height: 24px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 23.59px;
+}
+
+.texto-imagen {
+	height: 112px;
+	width: 195px;
+	color: #000000;
+	font-family: 'Avenir Book';
+	font-size: 15px;
+	font-weight: 300;
+	letter-spacing: 0.6px;
+	line-height: 20px;
+    text-align: center;
+    margin: 15px auto 0 auto;
+}
+
+.imagen-prensa{
+    width: 150px;
+    max-height: 75px;  
+}
+.proveedores {
+	max-height: 756px;
+	width: 100%;
+	background-color: #FFFFFF;
+}
+
+.titulo-proveedores{    
+        height: 36px;
+        width: 761px;
+        color: #1EB2E8;
+        font-family: 'Lato';
+        font-size: 30px;
+        font-weight: bold;
+        letter-spacing: 3px;
+        line-height: 36px;
+        text-align: center;
+        text-transform: uppercase;
+    
+}
+.logo-proveedor{
+    height: 112px;
+    width: 112px;
+    margin: 20px 20px;
+}
+
+.detalle {
+	height: 19px;
+    display: table;
+    padding-left: 60%;
+	color: #181818;
+	font-family: 'Avenir Book';
+	font-size: 15px;
+	font-weight: 500;
+	letter-spacing: 0.5px;
+	line-height: 20px;
+    text-transform: uppercase;
+}
+.texto-detalle{   
+        height: 58px;
+        width: 215px;
+        color: #373737;
+        font-family: 'Avenir Light';
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 20px;
+        text-align: right;
+    
+}
+
+.puntos-ek{   
+        min-height: 547px;
+        background-color: #E9F0F2;
+}
+
+.titulo-puntos-ek{
+  
+        height: 36px;
+        color: #0F4163;
+        font-family: 'Lato';
+        font-size: 30px;
+        font-weight: bold;
+        letter-spacing: 3px;
+        line-height: 36px;
+        text-align: center;
+        text-transform: uppercase;
+    
+}
+
+.titulo-imagen-puntos-ek{
+	height: 20px;
+	color: #0F4163;
+	font-family: 'Avenir Medium';
+	font-size: 18px;
+	font-weight: 500;
+	letter-spacing: 0.4px;
+    line-height: 25px;
+    text-transform: uppercase;
+}
+.texto-imagen-puntos-ek{
+        height: 48px;
+        margin-top: 17px;
+        display:table;
+        color: #373737;
+        font-family: 'Avenir Light';
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 20px;
+        text-align: center;
+    
+}
+.registrate{
+    font-size: 15px;
+    color: #373737; 
+    text-decoration: underline;
+}
+.registrate:hover{
+    color: lightblue;
+}
+
+.inicia-sesion{
+    width: 100%;
+    border-radius: 4px;	
+    background-color: #FFFFFF;	
+    box-shadow: 0 1px 3px  rgba(0,0,0,0.21);
+    font-family: 'Avenir Next';
+    font-size: 16px;	
+    line-height: 22px;
+}
+.sin-cuenta{
+	height: 20px;
+    color: #373737;
+	font-family: 'Avenir Light';
+	font-size: 15px;
+	font-weight: 300;
+	line-height: 20px;
+	text-align: center;    
+}
+
+.descubre-actividades{
+    min-height: 650px;
+}
+.nuestras-actividades{
+    min-height: 776px;
+    width: 100%;
+	background-color: #F4F4F4;
+}
+.card-title{
+    color: #0F4163;	
+    font-family: 'Avenir Medium';	
+    font-size: 18px;	
+    font-weight: 500;	
+    line-height: 25px;
+    text-transform: uppercase;
+}
+.card-text{
+    color: #373737;	
+    font-family: 'Avenir Light';	
+    font-size: 15px;	
+    font-weight: 300;	
+    line-height: 22px;
+}
+
+//RESPONSIVENESS
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) { 
+    .miles-de-actividades{   
+        
+        width: 100%;
+       font-size: 10px;
+      
+    
+}
+    .descubre{
+        width:100%;
+        font-size: 18px;
+    }
+    .bajada{
+        top:275px;
+    }
+    .boton-cover{
+        top: 300px;
+    }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { 
+    .miles-de-actividades{   
+        
+        width: 60%;
+       font-size: 18px;
+      
+    
+}
+    .descubre{
+        width:60%;
+        font-size: 26px;
+    }
+    .bajada{
+        top:290px;
+    }
+    .boton-cover {
+        top:345px;
+    } 
+ }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    .miles-de-actividades{   
+        
+        width: 80%;
+       font-size: 20px;
+      
+    
+}
+    .bajada{
+        top: 275px;
+    }
+    .descubre{
+        width:80%;
+        font-size: 28px;
+    }
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    .descubre {
+        height: 36px;
+        width: 830px;
+        color: #FFFFFF;
+        font-family: 'Lato';
+        font-size: 30px;
+        font-weight: 900;
+        letter-spacing: 3px;
+        line-height: 36px;
+        text-align: center;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
+        text-transform: uppercase;
+    }
+    
+    .bajada{
+        position: absolute;
+        top: 243px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .miles-de-actividades{    
+            height: 54px;
+            width: 659px;
+            color: #FFFFFF;
+            font-family: Lato;
+            font-size: 22px;
+            letter-spacing: 0.8px;
+            line-height: 27px;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        
+    }
+    
+    .boton-cover{
+        position: absolute;
+        top: 404px;
+        left: 42%;
+        transform: translate(-50%, -50%);
+        width: 245px;
+        font-family: "Avenir Next";	
+        font-size: 14.7px;	
+        font-weight: 600;	
+        letter-spacing: 2px;	
+        line-height: 20px;	
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .busca-actividades{
+        position: absolute;
+        top: 404px;
+        left: 60%;
+        transform: translate(-50%, -50%);
+        width: 245px;
+        height: 41px;
+        font-family: "Avenir Next";	
+        font-size: 14.7px;	
+        font-weight: 600;	
+        letter-spacing: 2px;	
+        line-height: 20px;	
+        text-align: center;
+        text-transform: uppercase;
+        border-radius: 4.2px;	background-color: #19C6B7;	box-shadow: 1px 2px 5px rgba(0,0,0,0.43);
+        border: none;
+    }
+  }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+    
+ }

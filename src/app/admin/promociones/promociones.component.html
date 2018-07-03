@@ -1,0 +1,90 @@
+<div class="row promociones">
+  <div class="col-12">
+<div class="panel panel-info">
+  <div class="panel-heading">
+   
+    <h3 class="panel-title">Creacion nueva promocion</h3>
+  </div>
+  <div class="panel-body">
+  
+  <div class="row registrarse">       
+
+    <div class="col-md-6" style="border-left:1px solid #ccc;height:160px">
+      <form class="form-horizontal" (submit)="onPromotionSubmit()">
+        <div class="form-group">
+          <label for="tipo">Tipo de promoción</label>
+          <select [(ngModel)]="tipo" name="tipo" class="form-control" id="tipo">
+            <option value=""></option>
+            <option value="dsd">Dcto sobre dcto</option>
+            <option value="dm">Dcto mayor</option>
+            <option value="da">Dcto adicional</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="qty">Descuento (en %)</label>
+          <input type="number" class="form-control" [(ngModel)]="qty" name="qty" id="qty" placeholder="0">
+        </div>
+        <div class="form-group">
+          <label for="regla">Regla</label>
+          <select [(ngModel)]="regla" name="regla" class="form-control">
+            <option value=""></option>
+            <option value="Edad">Edad</option>
+            <option value="Genero">Genero</option>
+            <option value="Ubicacion">Ubicacion</option>
+          </select>
+        </div>
+        <div class="form-row" *ngIf="regla=='Edad'">
+          <div class="form-group col-md-6">
+            <label for="cotaMinima">Cota minima (en años)</label>
+            <input type="number" [(ngModel)]="cotaMinima" name="cotaMinima" id="cotaMinima" placeholder="0">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="cotaMaxima">Cota máxima (en años)</label>
+            <input type="number" [(ngModel)]="cotaMaxima" name="cotaMaxima" id="cotaMaxima" placeholder="5">
+          </div>
+        </div>
+  
+          <div class="form-group" *ngIf="regla=='Ubicacion'">
+             <label for="comuna">Selecciona comuna</label>
+              <select [(ngModel)]="comuna" class="form-control" name="comuna" id="comuna">
+                <option value=""></option>
+                <option *ngFor="let comuna of comunas" value={{comuna}}>{{comuna}}</option>
+              </select>
+        
+          </div>
+     
+        <div class="form-row" *ngIf="regla=='Genero'">
+          <div class="form-group col-md-4">
+            <label for="masculino">Masculino</label>
+            <input type="radio" [(ngModel)]="genero" name="genero" id="masculino" value="masculino">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="femenino">Femenino</label>
+            <input type="radio" [(ngModel)]="genero" name="genero" id="femenino" value="femenino">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="ambos">Ambos</label>
+            <input type="radio" [(ngModel)]="genero" name="genero" id="ambos" value="ambos">
+          </div>
+          </div>
+          <div class="form-group">
+              <label for="fechaExpiracion">Fecha inicio</label>
+              <input class="form-control" placeholder="Cualquier fecha"
+              name="dp1" [(ngModel)]="fechaInicio" ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()">
+          </div>
+          <div class="form-group">
+              <label for="fechaExpiracion">Fecha expiracion</label>
+              <input class="form-control" placeholder="Cualquier fecha"
+              name="dp2" [(ngModel)]="fechaExpiracion" ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()">
+          </div>
+        <input type="submit" class="btn btn-primary btn-block" value="Crear promoción">
+        <flash-messages></flash-messages>
+      </form>
+</div>
+
+</div>
+    
+  </div>
+</div>
+</div>
+</div>

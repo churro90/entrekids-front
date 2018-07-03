@@ -1,0 +1,73 @@
+<div class="wrapper">
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Entrekids</a>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap" (click)="onLogoutClick()">
+          <a class="nav-link"><i class="fas fa-power-off"></i> Cerrar sesión</a>
+        </li>
+      </ul>
+  </nav>
+</div>
+
+  <div class="container-fluid">
+      <div class="row">
+          <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+              <div class="sidebar-sticky">
+                  <ul class="nav flex-column">
+                      <li class="nav-item">
+                          <a class="nav-link" routerLink="/proveedores/perfil">
+                            <i class="icono fas fa-tachometer-alt"></i> Resumen
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link"  [routerLinkActive]="['active']" routerLink="/proveedores/perfil/nueva-publicacion">
+                            <i class="icono fas fa-plus-circle"></i> Nueva publicación
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link"  [routerLinkActive]="['active']" routerLink="/proveedores/perfil/mis-publicaciones">
+                            <i class="icono far fa-calendar-check"></i>  Mis Publicaciones
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link"  [routerLinkActive]="['active']" href="#">
+                            <i class="icono far fa-credit-card"></i> Transacciones
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link">
+                            <i class="icono fas fa-chart-line"></i> Mercado
+                          </a>
+                      </li>
+                  </ul>
+                  <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                      <span>Perfil</span>
+                  </h6>
+                  <ul class="nav flex-column mb-2">
+                      <li class="nav-item">
+                          <a class="nav-link"  [routerLinkActive]="['active']" href="#">
+                            <i class="icono far fa-user"></i> Información
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" [routerLinkActive]="['active']"  href="#">
+                            <i class="icono fas fa-users"></i> Perfiles
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" [routerLinkActive]="['active']" href="#">
+                            <i class="icono far fa-handshake"></i> Staff
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" [routerLinkActive]="['active']" href="#">
+                            <i class="icono fab fa-whmcs"></i> Configuración
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+         <!--      <i class="fas fa-angle-double-left cerrar-nav"></i> -->
+          </nav>
+      </div>
+
+  </div>

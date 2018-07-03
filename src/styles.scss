@@ -1,0 +1,232 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import "~nouislider/distribute/nouislider.css";
+ @import '~css-star-rating/scss/star-rating'; 
+
+@font-face {
+  font-family: 'Avenir Next';
+  src: url('/assets/fonts/AvenirNext-Regular.ttf');
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('/assets/fonts/Lato-Regular.ttf');
+}
+@font-face {
+  font-family: 'Avenir Next Demi Bold';
+  src: url('/assets/fonts/AvenirNext-DemiBold.ttf');
+}
+@font-face {
+  font-family: 'Avenir Next Medium';
+  src: url('/assets/fonts/AvenirNext-Medium.ttf');
+}
+@font-face {
+  font-family: 'Avenir Next Light';
+  src: url('/assets/fonts/AvenirNext-UltraLight.ttf');
+}
+@font-face {
+  font-family: 'Avenir Book';
+  src: url('/assets/fonts/Avenir-Book.ttf');
+}
+@font-face {
+  font-family: 'Avenir Light';
+  src: url('/assets/fonts/Avenir-Light.ttf');
+}
+@font-face {
+  font-family: 'Avenir Medium';
+  src: url('/assets/fonts/Avenir-Medium.ttf');
+}
+@font-face {
+  font-family: 'BrandonText-Bold';
+  src: url('/assets/fonts/HVD Fonts - BrandonText-Bold.otf');
+}
+@font-face {
+  font-family: 'BrandonText-Regular';
+  src: url('/assets/fonts/HVD Fonts - BrandonText-Regular.otf');
+}
+@font-face {
+  font-family: 'MyriadPro-Regular';
+  src: url('/assets/fonts/MyriadPro-Regular.otf');
+}
+@font-face {
+  font-family: 'Nexa Light';
+  src: url('/assets/fonts/Nexa Light.otf');
+}
+
+
+body{
+  width: 100%;
+  padding: 0;
+  overflow-x: hidden; 
+}
+
+
+
+
+
+
+
+.container {
+	display: flex;
+}
+.alerta-registro{
+  background-color: rgb(245, 201, 201);
+  position: absolute;
+  margin: 10px 0;
+  width: auto;
+  height: auto;
+  overflow: hidden;  
+  z-index: 9999;
+  opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: .5s;
+}
+
+.alerta-login {
+  background-color: rgb(245, 201, 201);
+  position: relative;
+  margin: 10px 0;
+  width: 470px;
+  height: 50px;
+  overflow: hidden;
+  z-index: 9999;
+  opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: .5s;
+}
+.alerta-cambio-contrasena {
+  background-color: rgb(245, 201, 201);
+  position: relative;
+  width: auto;
+  height: 30px;
+  overflow: hidden;
+  z-index: 9999;
+  opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: .5s;
+}
+.cambio-contrasena-exitoso {
+  background-color: rgb(201, 245, 203);
+  position: relative;
+  width: auto;
+  height: 30px;
+  overflow: hidden;
+  z-index: 9999;
+  opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: .5s;
+}
+
+
+/* $lt-gray: #ddd;
+$background-dark: rgba(55, 0, 184, 0.726);
+$background-light: rgb(67, 20, 197);
+$background-pale: #D1C4E9;
+$primary-color-dark:   rgba(55, 0, 184, 0.726);
+$primary-color:        rgba(60, 12, 173, 0.548);
+$primary-color-light:  rgb(67, 20, 197);
+$primary-color-text:   #FFFFFF;
+$accent-color:         #FFC107;
+$primary-text-color:   #212121;
+$secondary-text-color: #757575;
+$divider-color:        #BDBDBD; */
+
+@mixin zero-margin($pad-up-down, $pad-left-right) {
+    margin: 0px auto;
+    padding: $pad-up-down $pad-left-right;
+}
+/* 
+.background-primary {
+    background-color: $background-dark!important;
+  }
+.background-accent {
+    background-color: $accent-color!important;
+  } */
+.text-floral-white {
+    color: floralwhite!important;
+}
+
+.flex-spacer {
+  flex: 1 1 auto;
+}
+
+.is-active {
+  color:#00b4f0 !important;
+}
+
+
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+// CLASE PARA EL IMAGE UPLOAD
+
+.customClass {
+  background-color: rgb(133, 186, 255);
+  border-radius: 5px;
+  margin:5px;
+  width: 500px;
+}
+
+.customClass .img-ul-upload {
+  background-color: rgb(56, 92, 255) !important;
+}
+
+.customClass .img-ul-clear {
+  background-color: rgb(133, 133, 133) !important;
+}
+
+.customClass .img-ul-drag-box-msg {
+  color: rgb(139, 139, 139) !important;
+}
+
+.customClass .img-ul-container {
+  background-color: rgb(248, 248, 248) !important;
+}
+
+
+.noUi-tooltip{
+  background-color: rgb(57,92,120);
+  color: white;
+  padding: 10px 10px;
+  border-radius: 0;
+}
+
+.noUi-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: rgb(57,92,120) transparent transparent transparent;
+}
+
+div:focus{
+  outline: none;
+}
+
+.full-width{
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}

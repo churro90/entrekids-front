@@ -1,0 +1,87 @@
+<!-- <div class="container-fluid" *ngIf="!authProvider.loggedIn() && router.url != '/proveedores/login'">
+  <div class="row footer">
+    <div class="col-sm-4 align-self-center">
+      <ul>
+        <a href="#"><li class="li-footer">Equipo</li></a>
+        <a href="#"><li class="li-footer">FAQ</li></a>
+        <a href="#"><li class="li-footer">Giftcard</li></a>
+        <a href="#"><li class="li-footer">Contacto</li></a>
+       <a href="#"><li class="li-footer">Terminos y condiciones</li></a>
+       <a href="#"><li class="li-footer">Privacidad</li></a>
+      </ul>
+    </div>
+    <div class="col-sm-4">
+      <ul>
+        <li><i class="fas fa-map-marker-alt"></i> Dirección 123, Las Condes</li>
+        <li><i class="fas fa-phone"></i> +562-8932222</li>
+        <br>
+        <li><i class="far fa-registered"></i> Todos los derechos reservados, 2018</li>
+      </ul>
+    </div>
+    <div class="col-sm-4 rrss">
+         <span><button class="btn btn-primary"><i class="fab fa-facebook-f fa-2x"></i></button></span>
+         <span><button class="btn twitter"><i class="fab fa-twitter fa-2x"></i></button></span>
+         <span><button class="btn instagram"><i class="fab fa-instagram fa-2x"></i></button></span>
+
+    </div>
+  </div>
+</div>
+ -->
+
+ <footer class="footer" *ngIf="!authProvider.loggedIn() && router.url != '/proveedores/login'">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3">
+        <h5>Compañia</h5>
+      </div>
+      <div class="col-sm-3">
+        <h5>Proveedores</h5>
+      </div>
+      <div class="col-sm-3">
+        <h5>Contacto</h5>
+      </div>
+      <div class="col-sm-3">
+        <h5>Síguenos</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3 align-self-center">
+        <ul>
+          <a href="#"><li class="li-footer">Equipo</li></a>
+          <a href="#"><li class="li-footer">FAQ</li></a>
+          <a href="#"><li class="li-footer">Giftcard</li></a>
+          <a href="#"><li class="li-footer">Contacto</li></a>
+         <a href="#"><li class="li-footer">Terminos y condiciones</li></a>
+         <a href="#"><li class="li-footer">Privacidad</li></a>
+        </ul>
+      </div>
+      <div class="col-sm-3">
+          <ul>
+              <li class="li-footer"><a>Unete al equipo</a></li>
+              <li class="li-footer">Beneficios</li>
+          </ul>
+      </div>
+      <div class="col-sm-3">
+          <ul>
+              <li class="li-footer"><i class="fas fa-map-marker-alt"></i> Dirección 123, Las Condes</li>
+              <li class="li-footer"><i class="fas fa-phone"></i> +562-8932222</li>
+            
+           </ul>
+  
+      </div>
+      <div class="col-sm-3 redes-sociales">
+          <i class="fab fa-facebook-f fa-2x" style="color: rgb(231,231,230);" data-fa-transform="shrink-5" data-fa-mask="fas fa-circle"></i>
+          <i class="fab fa-twitter fa-2x" style="color: rgb(231,231,230);" data-fa-transform="shrink-5" data-fa-mask="fas fa-circle"></i>
+          <i class="fab fa-instagram fa-2x" style="color: rgb(231,231,230);" data-fa-transform="shrink-5" data-fa-mask="fas fa-circle"></i>
+  
+      </div>
+    </div> 
+      <hr class="linea">
+    <div class="row">
+      <div class="col-sm-8 offset-4">
+          <p class="texto-footer">2018 ENTREKIDS <i class="far fa-registered"></i> TODOS LOS DERECHOS RESERVADOS</p>
+      </div>
+    
+    </div>
+  </div>
+</footer>

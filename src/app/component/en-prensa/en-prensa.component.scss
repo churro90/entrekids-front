@@ -1,0 +1,21 @@
+.prensa {
+   background-color: rgb(231,231,230);
+}
+
+.imagen-prensa{
+    width: 150px;
+    max-height: 75px;  
+}
+
+img {
+    opacity: 0.2;
+}
+img:hover {
+    opacity: 0.65;
+}
+
+h2 {
+    color: rgb(119,119,120);
+    font-family: 'BrandonText-Bold';
+    text-transform: uppercase;
+}

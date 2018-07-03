@@ -19,13 +19,22 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.scss",
+        "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "../node_modules/nouislider/distribute/nouislider.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.js",
+        "../node_modules/popper.js/dist/popper.js",
+        "../node_modules/nouislider/distribute/nouislider.js"       
+                
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
+        "prod": "environments/environment.prod.ts",
+        "qa": "environments/environment.qa.ts"
       }
     }
   ],
@@ -54,7 +63,8 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
-    "component": {}
+    "styleExt": "scss",
+    "component": {
+    }
   }
 }

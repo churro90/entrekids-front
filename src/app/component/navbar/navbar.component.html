@@ -1,0 +1,206 @@
+
+
+<!-- <nav class="navbar navbar-light fixed-top" style="background:linear-gradient(135deg,#fafafa,#f7fbff);" *ngIf="!isUserLoggedIn && router.url != '/proveedores/perfil'">
+  <a class="navbar-brand" routerLink="/"><img width="25%" height="100%" class="align-top" src="/../assets/images/logo.png"></a>
+  
+  <span class="flex-spacer"></span>
+  <span class="accion" [routerLinkActive]="['is-active']"><a routerLink="/proveedores">Proveedores</a></span>
+  <span class="accion" [routerLinkActive]="['is-active']"><a routerLink="/nosotros">Equipo</a></span>
+  <span class="accion" [routerLinkActive]="['is-active']"><a routerLink="/contacto">Contacto</a></span>
+  <span class="credenciales"><button class="btn btn-outline-info redondo" [routerLinkActive]="['active-login']" routerLink="/login"><a ><i class="fas fa-sign-in-alt"></i> Ingresa</a></button></span>
+  <span class="credenciales"><button class="btn btn-outline-info redondo" [routerLinkActive]="['active-login']" routerLink="/registrarse"><a><i class="fas fa-user-plus"></i> Registrate</a></button></span>
+ </nav> -->
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <a class="navbar-brand" style="width:161px;" routerLink="/"><img style="height: 31px;	width: 161px;" src="/../assets/images/entrekids-celeste.svg"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <!--     <ul class="navbar-nav">
+          <li class="nav-item" [routerLinkActive]="['is-active']" >
+            <a class="nav-link accion" routerLink="/resultados">Actividades</a>
+          </li>
+        </ul> -->
+       
+        <div class="collapse navbar-collapse" style="margin-right: 12.5%;" id="navbarSupportedContent">
+            <span class="flex-spacer"></span>
+          
+            <button *ngIf="!authService.loggedIn()" class="btn btn-outline-secondary ml-2 mr-2 ingreso" (click)="abrir(login)">INGRESO</button>
+            <button *ngIf="!authService.loggedIn()" class="btn btn-primary ml-2 mr-2 registro" (click)="open(content)"> REGISTRO</button>
+            <div *ngIf="authService.loggedIn()" class="creditos"><span class="fas fa-dollar-sign mt-2 ml-2"></span><p class="balance">{{usuario?.balance}}</p></div>
+            <div ngbDropdown *ngIf="authService.loggedIn()" class="notificaciones mt-2">
+              <div ngbDropdownToggle>
+                  <span class="cantidad">(0)</span>
+              </div>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                  <button class="dropdown-item">Notificacion 1</button>
+                  <button class="dropdown-item">Notificacion 2</button>
+              </div>
+            </div>  
+             
+              <div ngbDropdown *ngIf="authService.loggedIn()"class="notificaciones mt-2">
+               <div ngbDropdownToggle>                  
+                  <span class="nombre">{{usuario?.nombre}}</span>
+                  <i class="fas fa-angle-down"></i>
+
+               </div>           
+                
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button (click)="perfil()" class="dropdown-item">Perfil</button>
+                    <button class="dropdown-item">Cuenta</button>
+                    <button class="dropdown-item">Ajustes</button>
+                    <button (click)="cerrarSesion()" class="dropdown-item">Salir</button>
+                  </div>
+              </div>
+        </div>
+      </nav>
+      <span class="bg-promo-top">       
+      </span>
+      <ng-template #content let-c="close" let-d="dismiss">
+         <div class="row">
+           <div class="col-sm-12">
+            <button type="button" style="border: 1px solid gray; border-radius: 50%; margin: 10px 10px; padding: 0 4px 4px 4px;" class="close" aria-label="Close">
+              <span aria-hidden="true"  (click)="d('Cross click')">&times;</span>
+            </button>
+           </div>
+         </div>            
+          <div class="row mt-4 text-center">
+           <div class="col-sm-12 col-md-8 offset-md-2">
+            <h2>Crea tu cuenta Entrekids</h2>
+           </div>     
+         </div>
+         <div class="contenedor-hr">
+          <hr class="hr-text" data-content="O">
+         </div>
+        
+         <form (submit)="onRegisterSubmit()"> 
+             <div class="modal-body">            
+               <div class="form-group row mb-2 justify-content-center">
+                   
+                   <div class="col-md-6">
+                     <input id="nombre" [(ngModel)]="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control">
+                   </div>
+               </div>
+               <div class="form-group row mb-2 justify-content-center">
+                   
+                   <div class="col-md-6">
+                     <input id="apellido" [(ngModel)]="apellido" name="apellido" type="text" placeholder="Apellido" class="form-control">
+                   </div>
+               </div>
+               <div class="form-group row mb-2 justify-content-center">
+                   
+                   <div class="col-md-6">
+                     <input id="username" [(ngModel)]="username" name="username" type="email" placeholder="Email" class="form-control">
+                   </div>
+               </div>
+               <div class="form-group row mb-2 justify-content-center">
+                   
+                   <div class="col-md-6">
+                     <input id="contrasena" [(ngModel)]="contrasena" name="contrasena" type="password" placeholder="Contraseña" class="form-control">
+                   </div>
+               </div>
+               <div class="form-group row mb-2 justify-content-center">
+                   
+                   <div class="col-md-6">
+                     <input id="contrasena2" [(ngModel)]="contrasena2" name="contrasena2" type="password" placeholder="Confirma tu contraseña" class="form-control">
+                   </div>
+               </div>
+               <div class="form-group row mb-2 justify-content-center">
+                   
+                   <div class="col-md-6">
+                     <input id="codigo_promo" [(ngModel)]="codigo_promo" name="codigo_promo" type="text" placeholder="Código promocional" class="form-control">
+                   </div>
+               </div>
+               <div class="form-group row mt-4 justify-content-center">
+                 <div class="col-md-6">
+                    <input type="submit" class="btn btn-primary btn-block" style="font-size: 12px; height: 35px;" value="ÚNETE">
+                 </div>
+               
+               </div>
+               <div class="row text-center justify-content-center">
+                 <div class="col-md-6" style="display: inline-block;">
+                    <p>Al registrarte, estás aceptanto nuestras políticas de privacidad y 
+                      términos y condiciones</p>
+                 </div>
+               
+               </div>
+            
+               <div class="row text-center justify-content-center">
+                  <div class="col-md-12">
+                      <flash-messages style="font-size: 12px; font-family: 'Avenir Next';"></flash-messages>
+                  </div>
+                </div>
+           
+         </div>
+        </form> 
+      
+       
+        
+        </ng-template>
+        <ng-template #login let-c="close" let-d="dismiss">
+            <div class="row">
+              <div class="col-sm-12">
+               <button type="button" style="border: 1px solid gray; border-radius: 50%; margin: 10px 10px; padding: 0 4px 4px 4px;" class="close" aria-label="Close">
+                 <span aria-hidden="true"  (click)="d('Cross click')">&times;</span>
+               </button>
+              </div>
+            </div>            
+             <div class="row mt-4 text-center">
+              <div class="col-sm-12 col-md-12">
+               <h2>Ingresa a entrekids</h2>
+              </div>     
+            </div>
+            <div class="contenedor-hr">
+             <hr class="hr-text" data-content="O">
+            </div>
+           
+            <form (submit)="onLoginSubmit()"> 
+                <div class="modal-body">            
+                  <div class="form-group row mb-2 justify-content-center">
+                      
+                      <div class="col-md-8">
+                        <input id="usernamelogin" [(ngModel)]="usernamelogin" name="usernamelogin" type="text" placeholder="Email" class="form-control">
+                      </div>
+                  </div>
+                  <div class="form-group row mb-2 justify-content-center">
+                      
+                      <div class="col-md-8">
+                        <input id="contrasenalogin" [(ngModel)]="contrasenalogin" name="contrasenalogin" type="password" placeholder="Contraseña" class="form-control">
+                      </div>
+                  </div>   
+                  <div class="row custom-control custom-checkbox mb-2">
+                      <div class="col-md-6 offset-md-2">              
+                          <input id="recuerdame" type="checkbox" [(ngModel)]="recuerdame"  name="recuerdame" value="recuerdame" class="custom-control-input">
+                          <label class="custom-control-label ml-2" for="recuerdame">Recordarme</label>                                            
+                      </div>
+                    </div>
+                 
+                  <div class="form-group row mt-4 justify-content-center">
+                    <div class="col-md-8">
+                       <input type="submit" class="btn btn-primary btn-block" style="font-size: 12px; height: 35px;" value="INGRESA">
+                    </div>
+                  
+                  </div>
+               
+             
+                  <div class="row text-center justify-content-center">
+                    <div class="col-md-6" style="display: inline-block;">
+                       <p>Olvidaste tu contraseña?</p>
+                    </div>
+                  
+                  </div>
+               
+                  <div class="row text-center justify-content-center">
+                     <div class="col-md-12">
+                         <flash-messages style="font-size: 12px; font-family: 'Avenir Next';"></flash-messages>
+                     </div>
+                   </div>
+              
+            </div>
+           </form> 
+         
+          
+           
+           </ng-template>
+
+ 

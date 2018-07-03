@@ -1,0 +1,122 @@
+
+        <div class="card border" style="width:90%; margin-left: 20px !important;">
+            <div class="row no-gutters text-center">
+              <a class="col-sm-6 col-xs-6 actividades-calendario" (click)="vistaCalendario()">
+                <strong>CALENDARIO</strong>
+              </a>
+              <a class="col-sm-6 col-xs-6 actividades-lista">
+                 <strong>LISTA</strong>
+              </a>
+            </div>
+            <div class="row">
+                <div class="col-md-3 pr-0 pt-2 pl-4">
+                  <h3 style="font-size: 12px;">Reiniciar filtros</h3>
+                </div>
+                <div class="col-md-1 pl-0">
+                   <button (click)="reiniciarFiltros()" class="btn btn-outline-danger filtros mt-2 ml-3"></button>
+                </div>
+               
+               
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-sm-10 slidecontainer">
+               <!--   <input type="range" min="1" max="100" value="20" class="slider" id="myRange">
+                 <input type="range" min="1" max="100" value="80" class="slider" id="myRange"> -->
+                 <nouislider #nouislider [config]="sliderConfig" [(ngModel)]="rangoPrecios"></nouislider>
+               </div>
+          
+             
+            </div>
+               <ul class="list-group list-group-flush">
+                 <div class="row">
+                   <div class="col-sm-8">
+                 <li class="list-group-item col-sm-10">UBICACION</li>
+                   </div>
+                   <div class="col-sm-1 mt-2 flecha-filtro" *ngIf="ubicacionAux" (click)="toggleUbicacion()">
+                       <i class="fas fa-angle-down fa-2x"  data-fa-mask="fas fa-circle" style="background: rgb(244,174,184); color:rgb(233,98,108); border-radius: 50%;"></i>                      
+                   </div>
+                   <div class="col-sm-1 mt-2 flecha-filtro"  *ngIf="!ubicacionAux" (click)="toggleUbicacion()">
+                       <i class="fas fa-angle-up fa-2x" data-fa-mask="fas fa-circle" style="background: rgb(244,174,184); color:rgb(233,98,108); border-radius: 50%;"></i>                      
+                   </div>
+                 </div>
+                 <div class="row" *ngIf="showUbicacion">
+                   <div class="col-sm-10 mb-2 ml-3">
+                     <select class="form-control" size="5" [(ngModel)]="comuna">
+                       <option value="todas" selected>Todas las comunas</option>
+                       <option *ngFor="let comuna of comunas" value={{comuna}}>{{comuna}}</option>
+                     </select>
+                   
+                   </div>  
+                 </div>
+                 <hr>
+                 <div class="row">
+                   <div class="col-sm-8">
+                 <li class="list-group-item col-sm-10">EDAD</li>
+                   </div>                  
+                   <div class="col-sm-1 mt-2 flecha-filtro" *ngIf="edadAux" (click)="toggleEdad()">
+                       <i class="fas fa-angle-down fa-2x"  data-fa-mask="fas fa-circle" style="background: rgb(244,174,184); color:rgb(233,98,108); border-radius: 50%;"></i>                      
+                   </div>
+                   <div class="col-sm-1 mt-2 flecha-filtro"  *ngIf="!edadAux" (click)="toggleEdad()">
+                       <i class="fas fa-angle-up fa-2x" data-fa-mask="fas fa-circle" style="background: rgb(244,174,184); color:rgb(233,98,108); border-radius: 50%;"></i>                      
+                   </div>
+                 </div>
+                   <div class="row justify-content-center" *ngIf="showEdad">
+                       <div class="col-sm-10 slidecontainer">
+                           <!--   <input type="range" min="1" max="100" value="20" class="slider" id="myRange">
+                             <input type="range" min="1" max="100" value="80" class="slider" id="myRange"> -->
+                             <nouislider #nouislider2 [config]="sliderConfig2" [(ngModel)]="rangoEdad"></nouislider>
+                           </div>
+
+                     <!--    <div class="col-md-4 ml-3">
+                        <input type="number" [(ngModel)]="edadMinima" name="edadMinima" class="form-control" id="edadMinima" placeholder="1 año">                        
+                        <label for="edadMinima">Edad mínima</label>                      
+                     </div>  
+                     <div class="col-md-4">
+                         <input type="number" [(ngModel)]="edadMaxima" name="edadMaxima" class="form-control" id="edadMaxima" placeholder="3 años">
+                         <label for="edadMaxima">Edad máxima</label>                    
+                     </div>   -->
+                   </div>
+                 <hr>
+                 <div class="row">
+                   <div class="col-sm-8">
+                 <li class="list-group-item col-sm-10">CATEGORIA</li>
+                   </div>
+                   <div class="col-sm-1 mt-2 flecha-filtro" *ngIf="categoriaAux" (click)="toggleCategoria()">
+                       <i class="fas fa-angle-down fa-2x"  data-fa-mask="fas fa-circle" style="background: rgb(244,174,184); color:rgb(233,98,108); border-radius: 50%;"></i>                      
+                   </div>
+                   <div class="col-sm-1 mt-2 flecha-filtro"  *ngIf="!categoriaAux" (click)="toggleCategoria()">
+                       <i class="fas fa-angle-up fa-2x" data-fa-mask="fas fa-circle" style="background: rgb(244,174,184); color:rgb(233,98,108); border-radius: 50%;"></i>                      
+                   </div>
+                 </div>
+                   <div class="row" *ngIf="showCategoria">
+                     <div class="col-sm-10 mb-2 ml-3">
+                         <select class="form-control" [(ngModel)]="categoria">
+                             <option value="todas" selected>Todas las categorias</option>
+                             <option *ngFor="let categoria of categorias" value={{categoria}}>{{categoria}}</option>
+                           </select>
+                     </div>  
+                   </div>
+                 <hr>
+                 <div class="row">
+                   <div class="col-sm-8">
+                 <li class="list-group-item col-sm-10" (click)="f.toggle()"  >FECHA</li>
+                   </div>
+                   <div class="col-sm-1 mt-2 flecha-filtro" (click)="d2.toggle()" *ngIf="fechaAux"> <!-- " (click)="toggleFecha()" -->
+                       <i class="fas fa-calendar-alt fa-2x" style="background: rgb(244,174,184); color:rgb(233,98,108); border-radius: 50%;"></i> 
+                    <!--    <input class="form-control" placeholder="Cualquier fecha"
+                       name="f" [(ngModel)]="fechaInicio" ngbDatepicker #f="ngbDatepicker" >    -->                                                                                                                      
+                   </div>                  
+                 </div>
+                 <div class="row justify-content-center">
+                     <div class="col-sm-10">
+                         <input class="form-control" type="hidden" style="position:fixed; z-index:0;"
+                         name="d2" [(ngModel)]="fecha" ngbDatepicker #d2="ngbDatepicker">   
+                     </div>
+                   </div>
+                       
+                 
+                                
+              
+               </ul>
+             </div>
+          

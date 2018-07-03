@@ -1,0 +1,37 @@
+.caracteres{
+    font-style: italic;
+    font-size: 12px;
+    color: rgb(133, 133, 238);
+}
+
+.campos{
+    font-style: italic;
+    color: rgb(212, 98, 63);
+}
+
+.naranjo{
+    color: orange;
+}
+
+.nostyle {
+    background: transparent;
+    border: none !important;
+    
+}
+
+.actividad{
+    background-color: rgb(214, 214, 214)
+}
+
+.hint{
+    position:absolute;
+    left: 75%;
+    top: 30%;
+}
+
+#map{
+    z-index: 10;
+    height: 400px;
+    margin: 10px 0;
+    
+}

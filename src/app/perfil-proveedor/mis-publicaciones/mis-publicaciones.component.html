@@ -1,0 +1,141 @@
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+   
+      <h1>Mis publicaciones</h1>
+    
+                
+    </div>
+  
+  
+</main>
+ <div *ngIf="calendarOptions" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+    <ng-fullcalendar #ucCalendar [options]="calendarOptions" [(eventsModel)]="events"
+      (eventClick)="open(content, $event.detail)"></ng-fullcalendar>
+ </div>
+ <ng-template #content let-c="close" let-d="dismiss">
+  <form (submit)="onSubmit()">
+    <div class="modal-header">
+      <h4 class="modal-title">Editar actividad</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">   
+      <div class="form-group row">
+        <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+        <div class="col-sm-10">
+          <input type="text" id="nombre" [(ngModel)]="nombre" name="nombre" class="form-control" value={{title}}> 
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="id" class="col-sm-2 col-form-label">ID Actividad</label>
+        <div class="col-sm-10">
+          <input type="text" id="id" readonly [(ngModel)]="id" name="id" class="form-control-plaintext" value={{id}}> 
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="descripcion" class="col-sm-2 col-form-label">Descripcion</label>
+        <div class="col-sm-10">
+            <textarea [(ngModel)]="descripcion" name="descripcion" 
+          rows="4" cols="50" maxlength="250" class="form-control" 
+          id="descripcion" (keyup)="contarCaracteres($event)"
+          placeholder={{descripcion}}>
+        </textarea>
+        <p class="caracteres">{{caracteres}} caracteres restantes</p>   
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="direccion" class="col-sm-2 col-form-label">Direccion</label>
+        <div class="col-sm-10">
+          <input type="text" id="direccion" readonly class="form-control-plaintext" value={{direccion}}> 
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="numeroDireccion" class="col-sm-2 col-form-label">Nº</label>
+        <div class="col-sm-10">
+          <input type="text" id="numeroDireccion" readonly class="form-control-plaintext" value={{numeroDireccion}}> 
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="stock" class="col-sm-2 col-form-label">Stock disponible</label>
+        <div class="col-sm-10">
+          <input type="number" id="stock" [(ngModel)]="stock" name="stock" class="form-control" value={{stock}}> 
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="precio" class="col-sm-2 col-form-label">Precio</label>
+        <div class="col-sm-10">
+          <input type="number" id="precio" readonly class="form-control-plaintext" value={{plista}}> 
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="dcto" class="col-sm-2 col-form-label">Descuento</label>
+        <div class="col-sm-10">
+          <input type="number" id="dcto" [(ngModel)]="dcto" name="dcto" class="form-control" value={{dcto}}> 
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="categoria" class="col-sm-2 col-form-label">Categoria</label>
+        <div class="col-sm-10">
+           <select [(ngModel)]="categoria" name="categoria" class="form-control">
+             <option value={{categoria}}>{{categoria}}</option>
+           </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="tipo" class="col-sm-2 col-form-label">Tipo</label>
+        <div class="col-sm-10">
+           <select [(ngModel)]="tipo" name="tipo" class="form-control">
+             <option value={{tipo}}>{{tipo}}</option>
+           </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="modalidad" class="col-sm-2 col-form-label">Modalidad</label>
+        <div class="col-sm-10">
+           <select [(ngModel)]="modalidad" name="modalidad" class="form-control">
+             <option value={{modalidad}}>{{modalidad}}</option>
+           </select>
+        </div>
+      </div>
+      <div class="form-group row">
+          <label for="edadMinima" class="col-sm-2 col-form-label">Edad mínima</label>
+          <div class="col-sm-10">
+            <input type="number" id="edadMinima" [(ngModel)]="edadMinima" name="edadMinima" class="form-control" value={{edadMinima}}> 
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="edadMaxima" class="col-sm-2 col-form-label">Edad máxima</label>
+          <div class="col-sm-10">
+            <input type="number" id="edadMaxima" [(ngModel)]="edadMaxima" name="edadMaxima" class="form-control" value={{edadMaxima}}> 
+          </div>
+      </div>
+      <div class="form-group row">
+        <label for="sexo" class="col-sm-2 col-form-label">Sexo</label>
+        <div class="col-sm-10">
+          <select [(ngModel)]="sexo" name="sexo" class="form-control">
+            <option value={{sexo}}>{{sexo}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+       <div class="col-sm-8">
+          <div class="form-check form-check-inline">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" name="todas" [(ngModel)]="todas" id="todas" class="custom-control-input">
+                <label class="custom-control-label" for="todas">Cambiar para todas las actividades similares</label>
+              </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <input type="submit" class="btn btn-outline-success" value="Editar">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
+      <flash-messages></flash-messages>
+    </div>
+</form>
+</ng-template>
+
+    

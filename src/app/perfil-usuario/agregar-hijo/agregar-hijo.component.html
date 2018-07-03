@@ -1,0 +1,45 @@
+<div class="agregar-hijo">
+      <div class="card" style="width: 30rem;">
+          
+        <div class="card-body">
+         
+            <div class="col-sm-12">
+              <form (submit)="agregarHijo()">                             
+                <span>
+                   <h1 style="display: inline-block;">Agregar hijo</h1>
+                  <span (click)="cerrarModal()" style="float: right;" class="btn btn-primary"><i class="far fa-times-circle"></i></span>
+                </span>
+            
+                  <div class="form-group row mt-3">
+                    <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
+                      <div class="col-sm-9">
+                        <input class="form-control ml-2" [(ngModel)]="nombre" name="nombre" id="nombre" type="text">
+                      </div>
+                  </div>
+                  <div class="form-group row mt-3">
+                    <label for="celular" class="col-sm-3 col-form-label">Fecha de nacimiento</label>
+                      <div class="col-sm-9">
+                        <input class="form-control ml-2" [(ngModel)]="fdenacimiento" name="fdenacimiento" id="fdenacimiento" type="text">
+                      </div>
+                  </div>
+                  <div class="form-group row mt-3">
+                    <label for="celular" class="col-sm-3 col-form-label">Sexo</label>
+                      <div class="col-sm-9">
+                        <input type="radio" value="M" name="gender" [(ngModel)]="sexo" required> Masculino
+                        <input type="radio" value="F" name="gender" [(ngModel)]="sexo" required> Femenino
+                      </div>
+                  </div>
+                  <div class="form-group row mt-3">             
+                      <div class="col-sm-12">
+                        
+                        <input type="submit" class="btn btn-primary btn-block" value="Agregar">
+                        <flash-messages></flash-messages>
+                      </div>
+                  </div>
+                
+                </form>
+            </div>
+        </div>
+      </div>
+    
+      </div>  

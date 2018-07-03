@@ -1,0 +1,33 @@
+.buscador {
+    position: absolute;
+    right: 15%;
+    bottom: 270px;
+    left: 15%;
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    text-align: center;
+}
+.frase-buscador {
+    position: absolute;
+    right: 15%;
+    left: 15%;
+    bottom: 350px;
+    color: rgb(255, 250, 250);
+}
+
+.icono {
+    background: rgba(5, 5, 5, 0.301);
+    opacity: 0.8;
+    border-radius: 7%;
+}
+
+.form-control {
+    border-radius: 3.7% !important;
+}
+
+button {
+    background: rgba(5, 5, 5, 0.301);
+    opacity: 0.8;
+}

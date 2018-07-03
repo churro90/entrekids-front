@@ -1,0 +1,50 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div *ngIf="!authService.loggedIn()"> 
+     <div class="modal-header">
+       <h4 class="modal-title">Inicia sesión</h4>
+       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+         <span aria-hidden="true">&times;</span>
+       </button>
+     </div>
+     <form (submit)="onSubmit()"> 
+         <div class="modal-body">            
+           <div class="form-group row">
+               <label for="username" class="col-sm-2 col-form-label">Email</label>
+               <div class="col-sm-10">
+                 <input id="username" [(ngModel)]="username" name="username" type="text" class="form-control">
+               </div>
+           </div>
+           <div class="form-group row">
+               <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
+               <div class="col-sm-10">
+                 <input id="password" [(ngModel)]="password" name="password" type="password" class="form-control">
+               </div>
+           </div>
+           <div class="form-group row">
+             <div class="checkbox col-sm-3 offset-2">
+                 <label>
+                   <input type="checkbox" [(ngModel)]="recuerdame" name="recuerdame" value="recuerdame"> Recordarme
+                 </label>
+               </div>
+           </div>
+           <div class="form-group row ml-3">
+               <p>No tienes cuenta aún? Registrate</p>
+           </div>
+           <flash-messages></flash-messages>
+       
+     </div>
+         <div class="modal-footer">
+         <input type="submit" class="btn btn-outline-success" value="Iniciar sesion">
+         <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
+         </div>
+     </form> 
+   
+    </div>
+    <div *ngIf="authService.loggedIn()">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                LOGEADO
+            </h4>
+        </div>
+    </div>
+</ng-template>

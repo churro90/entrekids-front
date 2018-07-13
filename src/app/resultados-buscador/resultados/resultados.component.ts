@@ -1,6 +1,7 @@
-import { Component, OnInit, OnChanges, DoCheck, Input, Output, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnChanges, DoCheck, Input, Output, ChangeDetectorRef, Renderer2 } from '@angular/core';
 import { NavbarVisibleService } from '../../services/navbar-visible.service';
 import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
+import { NouiFormatter } from 'ng2-nouislider';
 import { ActividadesService } from '../../services/actividades.service';
 import { CurrencyPipe } from '@angular/common';
 
@@ -24,13 +25,23 @@ export class ResultadosComponent implements OnInit, DoCheck {
  fecha5: Date; 
  fecha6: Date; 
  fecha7: Date; 
+ fecha8: Date; 
  @Input() semana: Array<Date>;
 
+ h1: any;
+
+ //FILTROS
+ ubicacionAux: boolean;
+ edadAux: boolean;
+ categoriasAux: boolean;
+ preciosAux: boolean;
+ proveedoresAux: boolean; 
+ selected: any;
+
  precios: any[];
- comunas: any[] = [false,false,false,false,false,false,false,
-                   false, false, false, false, false, false,false,false,
-                   false,false,false,false,false,false,false,false,false
-                   ,false,false,false,false,false,false,false,false]; 
+ comunas: any[] = []; 
+
+
 comunasAux = [
   "Cerrillos","Cerro Navia","Conchalí" ,"El Bosque","Estación Central","Huechuraba","Independencia",
   "La Cisterna","La Florida","La Pintana","La Granja","La Reina","Las Condes","Lo Barnechea","Lo Espejo",
@@ -42,6 +53,7 @@ comuna: any;
 edad: any[];
 fechaFiltro: Date;
 oldFechaFiltro: Date = new Date(0);
+rangoHorario: any[];
  cambioPrecios(event){
   this.precios = event;
  }
@@ -83,7 +95,8 @@ oldFechaFiltro: Date = new Date(0);
               private actividadesService: ActividadesService,
               private router: Router,
               private route: ActivatedRoute,
-              private ref: ChangeDetectorRef
+              private ref: ChangeDetectorRef,
+              private render: Renderer2
               ) {  this.fechaB = this.route.snapshot.params['fecha']; 
                  }
 
@@ -101,7 +114,17 @@ oldFechaFiltro: Date = new Date(0);
         this.vista="mapa";
       }
     }
-  
+    sliderConfig: any = {
+      behaviour: 'drag',
+      connect: true,
+      start: [0,34],
+      step: 1,
+      range: {
+        min: 0,
+        max: 34
+      }
+      
+    }  
 
     seleccionFecha(index: number) {
       setTimeout(()=> {
@@ -159,7 +182,13 @@ oldFechaFiltro: Date = new Date(0);
 
   ngOnInit() {
     this.edad =[0,100];
-
+    this.rangoHorario = [0,34];
+    //FILTROS ESCONDIDOS
+    this.ubicacionAux = false;
+    this.edadAux = false;
+    this.categoriasAux = false;
+    this.preciosAux = false;
+    this.proveedoresAux = false;
     //FECHAS INICIALES
  
   this.fecha1  =  new Date();
@@ -168,14 +197,14 @@ oldFechaFiltro: Date = new Date(0);
   this.fecha4  =  new Date(this.fecha1.getTime() + this.dia*3);
   this.fecha5  =  new Date(this.fecha1.getTime() + this.dia*4);
   this.fecha6  =  new Date(this.fecha1.getTime() + this.dia*5);
-  this.fecha7  =  new Date(this.fecha1.getTime() + this.dia*6); 
+  this.fecha7  =  new Date(this.fecha1.getTime() + this.dia*6);   
   this.semana =  [this.fecha1, this.fecha2, this.fecha3, this.fecha4, this.fecha5, this.fecha6, this.fecha7];
 
 
     this.actividadesService.obtenerActividades().subscribe(data => {
      
       this.actividades = data.actividades;
-   
+      console.log(data.actividades[0].fechaInicio)
 
        this.actividades.forEach((actividad) => {
         if(actividad.promociones != undefined){
@@ -215,7 +244,7 @@ oldFechaFiltro: Date = new Date(0);
 
   }
   ngDoCheck(){
-    
+    this.h1 = this.transformarRangoHorario(this.rangoHorario)
  
   }
   ngOnChanges(){
@@ -233,6 +262,98 @@ oldFechaFiltro: Date = new Date(0);
     this.semana =  [this.fecha1, this.fecha2, this.fecha3, this.fecha4, this.fecha5, this.fecha6, this.fecha7];
   }
 
+  transformarRangoHorario(rangoHorario: Array<Number>){
+    let rhAux = [];
+    switch(rangoHorario[0]){
+      case 0: rhAux[0]='6:00 AM'; break;
+      case 1: rhAux[0]='6:30 AM'; break;
+      case 2: rhAux[0]='7:00 AM'; break;
+      case 3: rhAux[0]='7:30 AM'; break;
+      case 4: rhAux[0]='8:00 AM'; break;
+      case 5: rhAux[0]='8:30 AM'; break;
+      case 6: rhAux[0]='9:00 AM'; break;
+      case 7: rhAux[0]='9:30 AM'; break;
+      case 8: rhAux[0]='10:00 AM'; break;
+      case 9: rhAux[0]='10:30 AM'; break;
+      case 10: rhAux[0]='11:00 AM'; break;
+      case 11: rhAux[0]='11:30 AM'; break;
+      case 12: rhAux[0]='12:00 PM'; break;
+      case 13: rhAux[0]='12:30 PM'; break;
+      case 14: rhAux[0]='1:00 PM'; break;
+      case 15: rhAux[0]='1:30 PM'; break;
+      case 16: rhAux[0]='2:00 PM'; break;
+      case 17: rhAux[0]='2:30 PM'; break;
+      case 18: rhAux[0]='3:00 PM'; break;
+      case 19: rhAux[0]='3:30 PM'; break;
+      case 20: rhAux[0]='4:00 PM'; break;
+      case 21: rhAux[0]='4:30 PM'; break;
+      case 22: rhAux[0]='5:00 PM'; break;
+      case 23: rhAux[0]='5:30 PM'; break;
+      case 24: rhAux[0]='6:00 PM'; break;
+      case 25: rhAux[0]='6:30 PM'; break;
+      case 26: rhAux[0]='7:00 PM'; break;
+      case 27: rhAux[0]='7:30 PM'; break;
+      case 28: rhAux[0]='8:00 PM'; break;
+      case 29: rhAux[0]='8:30 PM'; break;
+      case 30: rhAux[0]='9:00 PM'; break;
+      case 31: rhAux[0]='9:30 PM'; break;
+      case 32: rhAux[0]='10:00 PM'; break;
+      case 33: rhAux[0]='10:30 PM'; break;
+      case 34: rhAux[0]='11:00 PM'; break;
+      
+    }
+    switch(rangoHorario[1]){
+      case 0: rhAux[1]='6:00 AM'; break;
+      case 1: rhAux[1]='6:30 AM'; break;
+      case 2: rhAux[1]='7:00 AM'; break;
+      case 3: rhAux[1]='7:30 AM'; break;
+      case 4: rhAux[1]='8:00 AM'; break;
+      case 5: rhAux[1]='8:30 AM'; break;
+      case 6: rhAux[1]='9:00 AM'; break;
+      case 7: rhAux[1]='9:30 AM'; break;
+      case 8: rhAux[1]='10:00 AM'; break;
+      case 9: rhAux[1]='10:30 AM'; break;
+      case 10: rhAux[1]='11:00 AM'; break;
+      case 11: rhAux[1]='11:30 AM'; break;
+      case 12: rhAux[1]='12:00 PM'; break;
+      case 13: rhAux[1]='12:30 PM'; break;
+      case 14: rhAux[1]='1:00 PM'; break;
+      case 15: rhAux[1]='1:30 PM'; break;
+      case 16: rhAux[1]='2:00 PM'; break;
+      case 17: rhAux[1]='2:30 PM'; break;
+      case 18: rhAux[1]='3:00 PM'; break;
+      case 19: rhAux[1]='3:30 PM'; break;
+      case 20: rhAux[1]='4:00 PM'; break;
+      case 21: rhAux[1]='4:30 PM'; break;
+      case 22: rhAux[1]='5:00 PM'; break;
+      case 23: rhAux[1]='5:30 PM'; break;
+      case 24: rhAux[1]='6:00 PM'; break;
+      case 25: rhAux[1]='6:30 PM'; break;
+      case 26: rhAux[1]='7:00 PM'; break;
+      case 27: rhAux[1]='7:30 PM'; break;
+      case 28: rhAux[1]='8:00 PM'; break;
+      case 29: rhAux[1]='8:30 PM'; break;
+      case 30: rhAux[1]='9:00 PM'; break;
+      case 31: rhAux[1]='9:30 PM'; break;
+      case 32: rhAux[1]='10:00 PM'; break;
+      case 33: rhAux[1]='10:30 PM'; break;
+      case 34: rhAux[1]='11:00 PM'; break;
+ 
+  }
+  return rhAux;
+  }
+  seleccionComuna(i , event){
+  
+    if(!event.target.classList.contains('filtro-activo')){
+      this.render.addClass(event.target,'filtro-activo');
+      this.comunas[i] = this.comunasAux[i];    
+    } else {
+      this.render.removeClass(event.target,'filtro-activo');
+      this.comunas[i] = "";
+      
+    }
+    
+  }
 }
 
 

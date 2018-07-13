@@ -27,7 +27,7 @@
           
             <button *ngIf="!authService.loggedIn()" class="btn btn-outline-secondary ml-2 mr-2 ingreso" (click)="abrir(login)">INGRESO</button>
             <button *ngIf="!authService.loggedIn()" class="btn btn-primary ml-2 mr-2 registro" (click)="open(content)"> REGISTRO</button>
-            <div *ngIf="authService.loggedIn()" class="creditos"><span class="fas fa-dollar-sign mt-2 ml-2"></span><p class="balance">{{usuario?.balance}}</p></div>
+            <div *ngIf="authService.loggedIn()" class="creditos"><span class="fas fa-dollar-sign mt-2 ml-2"></span><span class="balance">{{authService.balance}}</span></div>
             <div ngbDropdown *ngIf="authService.loggedIn()" class="notificaciones mt-2">
               <div ngbDropdownToggle>
                   <span class="cantidad">(0)</span>
@@ -40,15 +40,15 @@
              
               <div ngbDropdown *ngIf="authService.loggedIn()"class="notificaciones mt-2">
                <div ngbDropdownToggle>                  
-                  <span class="nombre">{{usuario?.nombre}}</span>
+                  <span class="nombre">{{authService.nombre}}</span>
                   <i class="fas fa-angle-down"></i>
 
                </div>           
                 
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button (click)="perfil()" class="dropdown-item">Perfil</button>
-                    <button class="dropdown-item">Cuenta</button>
-                    <button class="dropdown-item">Ajustes</button>
+                    <button (click)="ajustes()" class="dropdown-item">Ajustes</button>                    
+                    <button (click)="compras()" class="dropdown-item">Mis compras</button>
+                   <!--  <button (click)="perfil()" class="dropdown-item">Comunidades</button> -->
                     <button (click)="cerrarSesion()" class="dropdown-item">Salir</button>
                   </div>
               </div>
@@ -68,6 +68,9 @@
            <div class="col-sm-12 col-md-8 offset-md-2">
             <h2>Crea tu cuenta Entrekids</h2>
            </div>     
+           <div class="col-md-8 offset-md-2">
+              <button (click)="loginFB()" class="sb sb-facebook">Registrate con Facebook</button>
+           </div>
          </div>
          <div class="contenedor-hr">
           <hr class="hr-text" data-content="O">

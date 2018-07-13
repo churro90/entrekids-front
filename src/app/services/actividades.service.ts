@@ -9,6 +9,7 @@ export class ActividadesService {
 
 
 private _url:string =  environment.serverUrl + '/actividades';
+authToken: any;
 
   constructor(private http: Http) { }
 
@@ -21,7 +22,7 @@ private _url:string =  environment.serverUrl + '/actividades';
 
 
   obtenerActividades(){
-    let headers = new Headers();
+    let headers = new Headers();   
     headers.append('Content-Type', 'application/json');
     return this.http.get(this._url , {headers: headers})
    .map(res => res.json());    
@@ -35,10 +36,16 @@ private _url:string =  environment.serverUrl + '/actividades';
       
   }
 
-  obtenerDisponibilidadActividades(nombre){
+  obtenerDisponibilidadActividades(id){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get(this._url + '/disponibilidad/' + nombre, {headers: headers})
+    return this.http.get(this._url + '/disponibilidad/' + id, {headers: headers})
+    .map(res => res.json());  
+  }
+  obtenerDisponibilidadActividadesPopulares(id){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(this._url + '/disponibilidad-populares/' + id, {headers: headers})
     .map(res => res.json());  
   }
 
@@ -56,6 +63,13 @@ private _url:string =  environment.serverUrl + '/actividades';
     .map(res => res.json());
   }
 
+  eliminarFavoritos(info){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this._url + '/eliminar-de-favoritos', info, {headers: headers})
+    .map(res => res.json());
+  }
+
   esFavorito(username,actividad){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -63,5 +77,17 @@ private _url:string =  environment.serverUrl + '/actividades';
     .map(res => res.json());
   }
 
- 
+  obtenerActividadesFavoritas(){
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(this._url + '/actividades-favoritas', {headers: headers})
+    .map(res => res.json());
+  }
+
+  loadToken(){
+    const token = localStorage.getItem('id_token');
+    this.authToken = token;
+  }
 }

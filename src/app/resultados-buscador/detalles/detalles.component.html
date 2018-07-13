@@ -1,306 +1,364 @@
-
-<div class="detalles container-fluid">
-   
-  <div class="row header align-items-center">     
-      <div class="col-md-6"><h2 class="nombre-actividad">{{actividad?.nombre}}</h2></div>
-      <div class="col-md-3 offset-md-3" *ngIf="!esFavorito"><button (click)="agregarFavoritos(content)" class="btn btn-outline-light favoritos mt-1"><i class="far fa-heart"></i> Agregar a favoritos</button></div>
-      <div class="col-md-3 offset-md-3" *ngIf="esFavorito"><button (click)="removerFavoritos(content)" class="btn btn-light favoritos mt-1"><i class="far fa-heart"></i> Actividad favorita</button></div>
-    </div>
-    
-    <div class="row justify-content-center">
-      <div class="col-lg-4">
-          <div class="card actividad-descripcion">
-             <div class="main-img">
-                    <img id="current" src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" />
-             </div>
-            <div class="imgs">
-                    <!-- <img src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" />
-                    <img src="http://www.preferente.com/wp-content/uploads/2018/04/Lionel-Messi-687879.jpg" />
-                    <img src="https://cdne.diariocorreo.pe/thumbs/uploads/img/2017/12/13/lionel-messi-espera-que-el-futbol-le-pague-con-el--791827-jpg_800x0.jpg" />
-                    <img src="http://nexofm.com.ar/download/multimedia.normal.b072a6671bffe467.313436373030313734325f3430343831375f313436373032343233375f6e6f745f6e6f726d616c2e6a7067.jpg" /> -->
-                   
-             </div>
-           
-                     
+<div class="container-fluid detalles">
+    <div class="container contenedor-detalles">
+        <div class="col-md-12">
+            <div class="row titulo-actividad">
+                <div class="col-md-9">
+                        <h2 class="nombre-actividad">{{actividad?.nombre}}</h2>
+                </div>
                 
-              <div class="card-body descripcion" >
-                <p class="card-text" style="font-size:12px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus, sequi. Possimus perferendis mollitia ducimus sapiente expedita, cumque optio aliquid eum blanditiis, deleniti error recusandae necessitatibus veniam esse delectus ab alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti nostrum doloremque deserunt ab exercitationem, magni architecto sed maxime quaerat, dolore accusamus fuga ipsa ipsum modi voluptatibus, eaque in? Voluptatem, nobis. amus fuga ipsa ipsum modi voluptatibus, eaque in? Voluptatem, nobis.que in? Voluptatem, nobis. que in? Voluptatem, nobis. a i</p>
-              </div>
-              
+                <div class="col-md-3" style="padding-top: 10px;" *ngIf="!esFavorito"><button (click)="agregarFavoritos(content)" class="btn btn-outline-light favoritos mt-1"><i class="far fa-heart"></i> Agregar a favoritos</button></div>
+                <div class="col-md-3" style="padding-top: 10px;" *ngIf="esFavorito"><button (click)="eliminarFavoritos()" class="btn btn-light favoritos mt-1"><i class="far fa-heart"></i> Actividad favorita</button></div>
             </div>
-            <div class="card mt-2 politicas" style="width:100%; height: auto;">
-                <div class="card-body pt-2">                             
-               <h6>Política de cancelación:</h6>
-               <p style="font-size: 10px;">
-                   La cancelación de una actividad reservada se debe efectuar con un mínimo de 24 horas de anticipación.
-               </p>
+            <div class="row informacion-actividad">
+                <div class="col-md-6">
+                    <img width="100%" src="https://curico.cl/sitio/wp-content/uploads/2016/11/tenis-kids.jpg">
+                </div>
+                <div class="col-md-3">
+                    <h2 class="fecha-actividad mb-0">
+                        {{actividad?.fechaInicio | date:'EEEE, MMMM d, y':'':'es-CL'}}
+                        <br>
+                        {{actividad?.fechaInicio | date:'shortTime'}} - {{actividad?.fechaTermino | date:'shortTime'}}
+                    </h2>
+                    <p class="precio-entrekids">
+                        Precio Entrekids: {{actividad?.plista - actividad?.dcto | currency:'':'':'1.0-0':'es-CL'}}
+                    </p>
+                    <p class="informacion mb-0">
+                        Edad: {{actividad?.edadMinima}} - {{actividad?.edadMaxima}} años
+                    </p>
+                    <p class="precio-normal mb-0">
+                        Precio normal: {{actividad?.plista | currency:'':'':'1.0-0':'es-CL'}}
+                    </p>
+                    <p class="informacion mb-0">
+                        Ahorras {{1 - ((actividad?.plista - actividad?.dcto)/actividad?.plista) | percent}}
+                    </p>
+                    <p class="informacion mb-0">
+                        Categoria(s): {{actividad?.categoria}}
+                    </p>
+                    <div class="categorias" style="margin-top: 8px;">
+                        <div class="icono">
+                            
+                        </div>
+                        <div class="icono">
+
+                        </div>
+                    </div>
+                    <button class="btn btn-primary inscribirse" (click)="inscribirse(content)">Inscribirse</button>
+                    <p class="cupos">{{actividad?.stock}} cupos disponibles</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="horarios-proximos">
+                        <h2 class="proximas-fechas mb-0">
+                            Próximas fechas
+                        </h2>
+                        <hr class="separador">
+                        <div class="horario" *ngFor="let horario of disponibilidad | slice:0:5">
+                           <div class="con-descuento" *ngIf="horario?.dcto > 0">
+                            <span style="display: inline-block">
+                                    <h2 (click)="irHorario(horario._id)" class="fecha-texto mb-0">{{horario?.fechaInicio | date:'EEEE, d/M':'':'es-CL'}}</h2>
+                                    <p class="fecha-horario">{{horario?.fechaInicio | date:'shortTime'}} - {{horario?.fechaTermino | date:'shortTime'}}</p>
+                            </span>
+                            <span style="display: inline-block; float:right;">
+                                    <p class="dcto mb-0" style="display: inline-block; padding-left: 2px;">{{1 - ((horario?.plista - horario?.dcto)/horario?.plista) | percent}}</p>
+                                    <p class="dcto mb-0" style="padding-right:3px;"> dcto.</p>
+                            </span>
+                      
+                            
+                           </div>
+                           <div class="sin-descuento" *ngIf="horario?.dcto == 0">
+                            <h2 class="fecha-texto mb-0">{{horario?.fechaInicio | date:'EEEE, d/M':'':'es-CL'}}</h2>
+                            <p class="fecha-horario">{{horario?.fechaInicio | date:'shortTime'}} - {{horario?.fechaTermino | date:'shortTime'}}</p>
+                           </div>
+                        </div>
+                        <div class="horario" *ngIf="disponibilidad?.length <=  1">
+                            No hay más horarios disponibles
+                        </div>                    
+                    </div>
+                </div>            
+            </div>
+            <hr>
+            <div class="row descripcion-actividad">
+                <div class="col-md-9">
+                        <p class="descripcion">
+                                {{actividad?.descripcion}}
+                            </p>
+                </div>
+               
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <h2 class="detalles-adicionales">Detalles adicionales</h2>
+                </div>
+                <div class="col-md-6">
+                   <p class="texto-detalles-adicionales">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                         Ut pretium pretium tempor. Ut eget imperdiet neque. 
+                         In volutpat ante semper diam molestie, et aliquam erat laoreet. 
+                         Sed sit amet arcu aliquet, molestie justo at, auctor nunc. Phasellus ligula ipsum, volutpat eget semper id.
+                   </p>
                 </div>
             </div>
-          
-      </div>
-      <div class="col-lg-4">
-        <div class="card detalle-actividades" style="width: 100%; height: 100%;">
-          <div class="card-body">
-              <strong i18n class="d-inline-block mb-0 text-primary">{{actividad?.fechaInicio | date:'fullDate':'':'es-CL'}}</strong>
-              <strong class="d-block mb-0 text-primary">{{actividad?.fechaInicio | date:'shortTime'}}</strong>
-              <div class="mb-0"><i class="far fa-money-bill-alt"></i>{{actividad?.plista - actividad?.dcto | currency:'':'':'1.0-0':'es-CL'}}</div>
-              <p class="card-text mb-0" style="font-size:13px">Edades: {{actividad?.edadMinima}} - {{actividad?.edadMaxima}}</p>
-              <p class="card-text mb-0" style="font-size:13px">Precio de lista: {{actividad?.plista |  currency:'':'':'1.0-0':'es-CL'}}</p>
-              <p class="card-text mb-0"style="font-size:13px" >Ahorras {{1 - ((actividad?.plista - actividad?.dcto)/actividad?.plista) | percent}}</p>
-              <p class="card-text mb-0"style="font-size:13px" >Categoria: {{actividad?.categoria}}</p>
-              <p class="card-text mb-0"style="font-size:13px" >Tipo: {{actividad?.tipo}}</p>
-              <p class="card-text mb-0"style="font-size:13px" >Modalidad: {{actividad?.modalidad}}</p>
-              <button class="btn btn-primary" style="width:50%;" (click)="open(content)">Reservar</button> 
-         
-              <h6 class="mt-5">HORARIOS PROXIMOS</h6>
-              <div class="horarios mt-4" *ngIf="disponibilidad?.length > 1">
-                <span *ngFor="let horario of disponibilidad | horariosFilter: actividad?.fechaInicio | slice:0:5">   
-                    <strong class="d-inline-block mb-0 text-primary">{{horario?.fechaInicio | date:'fullDate':'':'es-CL'}}</strong><BR>
-                    <strong class="card-text">{{horario?.fechaInicio | date:'shortTime':'':'es-CL'}} - {{horario?.fechaTermino | date:'shortTime':'':'es-CL'}}</strong>
-                    <div class="badge"><span>{{1 - ((horario?.plista - horario?.dcto)/horario?.plista) | percent}}</span></div>
-                    <!--               <strong class="card-text" style="float:right;"> {{1 - ((horario?.plista - horario?.dcto)/horario?.plista) | percent}}</strong> -->
-                    <br>
-                   
-                </span>
-              </div>
-              <div class="horarios mt-4" *ngIf="disponibilidad?.length === 1">
-                  <strong class="d-inline-block mb-0 text-primary">No hay más horarios disponibles</strong>
-              </div>
-          </div>
-        </div>
-      </div>
-   
-      <div #gmap id="map" class="col-lg-3"> 
-          <iframe></iframe>         
-       </div>
-    </div>
-
-    <div class="row justify-content-center review-actividades mt-2">
-        <div class="col-sm-11">
-                <div class="card">
-                    <div class="card-header">
-                    <h4 style="display: inline-block">{{actividad?.reviews.length}} reviews</h4>
-                    <div style="display: inline-block; margin-left: 1rem;">                       
-                            
-                            <div style="margin-right: 0.6rem; display:inline-block;">
-                                <star-rating class="stars" [starType]="'svg'" [readOnly]="true" [rating]="5"></star-rating>                                
-                            </div>
-                            <p style="display: inline-block;">{{promedio}} promedio</p>
-                    </div>
-                    </div>
-                    <div class="card-body" >
-                     <h4>Reviews de la actividad</h4>
-                    
-                        <blockquote class="blockquote mb-0 mt-4" *ngFor="let review of actividad?.reviews">
-                                <hr class="hr-reviews">
-                                <div style="margin-right: 0.6rem; display:inline-block;">
-                             <h5 style="font-size: 12px;">{{review?.comentario}}</h5> 
-                             
-                            </div>
-                            <star-rating class="stars" [starType]="'svg'" [readOnly]="true" [rating]="review?.rating" style="float: left;"></star-rating>
-                              <footer class="blockquote-footer">Review por <cite title="Source Title">{{review?.usuario}}</cite>  {{review?.createdAt |date:'LLL d, y':'':'es-CL' | titlecase}}</footer>
-                              
-                              
-                        </blockquote> 
-                           
-                          </div>
-                       
+            <div class="row">
+                <div class="col-md-3">
+                        <h2 class="detalles-adicionales">Politica de cancelación</h2>
+                </div>
+                <div class="col-md-6">
+                    <p class="texto-detalles-adicionales">1 hora por adelantado</p>
+                </div>               
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                        <h2 class="detalles-adicionales">Cuidador requerido</h2>
+                </div>
+                <div class="col-md-6">
+                    <p class="texto-detalles-adicionales">Si</p>
+                </div>               
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-3">
+                    <h2 class="comentarios">
+                        99 comentarios
+                    </h2>
+                </div>
+                <div class="col-md-1">
+                        <star-rating [rating]="3.5" [readOnly]="true" [showHalfStars]="true" [step]="0.5" staticColor="ok"    [starType]="'svg'"></star-rating>  
+                </div>
+                <div class="col-md-5">
+                    <p class="calificacion">
+                        3.5 Bueno
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="row contenedor-comentario">
+                <div class="col-12 col-md-9">
+                    <h3 class="nombre-comentario">Martin C.</h3>
+                    <star-rating [rating]="3.5" [readOnly]="true" [showHalfStars]="true" [step]="0.5" staticColor="ok"    [starType]="'svg'" style="display: inline-block;"></star-rating>  
+                    <p class="fecha-comentario">22 de mayo, 2018</p>
                 </div> 
-        </div>
-      
-   
-      
-    </div>
-<!-- <div class="row mt-3">
-    <div class="col-sm-10 offset-1">
-        <div class="card">
-            <div class="card-header">
-              Reviews de la actividad
+                <div class="col-12 col-md-9">
+                    <p class="comentario">Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bi.</p>
+                </div>  
+             
             </div>
-           
-          </div>
+            <div class="row contenedor-comentario" style="margin-top:28px;">
+                <div class="col-12 col-md-9">
+                    <h3 class="nombre-comentario">Martin C.</h3>
+                    <star-rating [rating]="3.5" [readOnly]="true" [showHalfStars]="true" [step]="0.5" staticColor="ok"    [starType]="'svg'" style="display: inline-block;"></star-rating>  
+                    <p class="fecha-comentario">22 de mayo, 2018</p>
+                </div> 
+                <div class="col-12 col-md-9">
+                    <p class="comentario">Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bi.</p>
+                </div>  
+          
+            </div>
+        </div>
     </div>
- 
-  </div> -->
-        <div class="row info-proveedor mt-3 justify-content-center">
-            <div class="col-sm-11">            
-                        <div class="card" style="width: 100%; height:100%;">
-                                <div class="card-header">
-                                    Información del proveedor
-                                 </div>
-                        <div class="card-body">     
-                            <div class="row">                             
-                                <div class="col-sm-2">
-                                <p class="card-text">Proveedor</p>
-                                </div>
-                                <div class="col-sm-5">
-                                <p class="card-text">{{actividad?.proveedor?.nombre}} </p>                                
-                               <!--  <p class="card-text">{{actividad?.proveedor?.direccion}} </p>                                
-                                <p class="card-text">{{actividad?.proveedor?.info.numero}}</p>    
-                                <p class="card-text">{{actividad?.proveedor?.info.pweb}}</p>    
-                                <p class="card-text">{{actividad?.proveedor?.username}}</p>   -->  
-                                                          
-                                </div>
-                            </div>
-                         
+    <div class="container detalles-proveedor" style="padding-top: 28px;">     
+        <div class="col-md-12">
+            <div class="row">
+                    <div class="col-md-2">
+                            <h2 class="detalles-adicionales">Proveedor</h2>
                         </div>
-                            
-                      
-                         
-                    </div>
-                </div>    
-                
-        </div>
-  
-</div>   
-<ng-template #content let-c="close" let-d="dismiss">
-        <div *ngIf="!authService.loggedIn()">                
-          <div class="modal-header">
-           <h4 class="modal-title">Inicia sesión</h4>
-           <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-             <span aria-hidden="true">&times;</span>
-           </button>
-         </div>
-         <form (submit)="onSubmit()"> 
-             <div class="modal-body">            
-               <div class="form-group row">
-                   <label for="username" class="col-sm-2 col-form-label">Email</label>
-                   <div class="col-sm-10">
-                     <input id="username" [(ngModel)]="username" name="username" type="text" class="form-control">
-                   </div>
-               </div>
-               <div class="form-group row">
-                   <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
-                   <div class="col-sm-10">
-                     <input id="password" [(ngModel)]="password" name="password" type="password" class="form-control">
-                   </div>
-               </div>
-               <div class="form-group row">
-                 <div class="checkbox col-sm-3 offset-2">
-                     <label>
-                       <input type="checkbox" [(ngModel)]="recuerdame" name="recuerdame" value="recuerdame"> Recordarme
-                     </label>
-                   </div>
-               </div>
-               <div class="form-group row ml-3">
-                   <p>No tienes cuenta aún? Registrate</p>
-               </div>
-               <flash-messages></flash-messages>
-           
-         </div>
-             <div class="modal-footer">
-             <input type="submit" class="btn btn-outline-success" value="Iniciar sesion">
-             <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
-             </div>
-         </form> 
-       
-        </div>
-        <div *ngIf="authService.loggedIn()">
-            <div class="modal-header">
-                <h4 class="modal-title">
-                    Checkout
-                    
-                </h4>
-                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                     <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-              <div class="row">
-                  <div class="col-sm-4">
-                     <h1>Resumen</h1>
-                     <div class="card" style="width: 15rem;">
-                             <img class="card-img-top" src="https://i.ytimg.com/vi/UbdJF4PDcXU/maxresdefault.jpg" alt="Card image cap">
-                             <div class="card-body">
-                               <h5 class="card-title">{{actividad?.nombre}}</h5>
-                               <p class="card-text">{{actividad?.descripcion}}</p>
-                             </div>
-                             <ul class="list-group list-group-flush">
-                               <li class="list-group-item">{{actividad?.fechaInicio | date:'fullDate':'':'es-CL'}}</li>
-                               <li class="list-group-item">{{actividad?.fechaInicio | date:'shortTime'}}</li>
-                               <li class="list-group-item">{{actividad?.direccion}} Nº {{actividad?.numeroDireccion}}</li>
-                             </ul>
+                        <div class="col-md-4">
+                            <h2 class="nombre-proveedor">{{actividad?.proveedor.nombre}}</h2>
+                            <span class="rating-proveedor">
+                                    <star-rating [rating]="3.5" [readOnly]="true" [showHalfStars]="true" [step]="0.5" staticColor="ok"    [starType]="'svg'" style="display: inline-block;"></star-rating>  
+                                    <p class="comentarios-proveedor">99 Comentarios por 1 actividad</p>
+                            </span>
+                            <p class="direccion-proveedor">
+                                    Av. Lorem Ipsum 99, La Florida, RM.
+                                    +562 2 334 4555                        
+                            </p>
+                        </div>
+                        <div class="col-md-3 offset-md-3">
+                           <div class="logo">
+                               LOGO PROVEEDOR
                            </div>
-                  </div>
-                  <div class="col-sm-8">
-                         <form (submit)="pagar()" class="mt-2">                                
-                     
-                             <div class="form-group row mb-0">
-                                 <p>Método de pago</p>
-                             </div>
-                             <div class="from-group row">                                                                   
-                                     <div class="custom-control custom-radio custom-control-inline">
-                                         <input type="radio" id="webpay" [(ngModel)]="metodoDePago" value="webpay"  name="metodoDePago" class="custom-control-input">
-                                         <label class="custom-control-label" for="webpay"><img class="checkbox-img" src="http://www.hotelpuclaro.cl/wp-content/uploads/2017/02/foto-webpay.png"></label>
-                                     </div>
-                                       <div class="custom-control custom-radio custom-control-inline">
-                                         <input type="radio" id="oneclick" [(ngModel)]="metodoDePago" value="oneclick"  name="metodoDePago" class="custom-control-input">
-                                         <label class="custom-control-label" for="oneclick"><img class="checkbox-img" src="https://www.brouter.cl/wp-content/uploads/2017/10/logoTransbank-a4c33676e7de7801109b0ffa8ceb7b75.png"></label>
-                                       </div>
-                                       <div class="custom-control custom-radio custom-control-inline">
-                                         <input type="radio" id="balance" [(ngModel)]="metodoDePago" value="balance"  name="metodoDePago" class="custom-control-input">
-                                         <label class="custom-control-label" for="balance">Balance EK</label>
-                                       </div>
-                                 
-                             </div>
-                             <div class="form-group row" *ngIf="metodoDePago === 'oneclick'">
-                                 <span *ngIf="usuario.metodosDePago.length > 0"> 
-                                     <label for="tarjeta">Selecciona tarjeta</label>
-                                     <select [(ngModel)]="tarjeta" name="tarjeta" class="form-control">
-                                         <option value=""></option>
-                                         <option *ngFor="let tarjeta of usuario.metodosDePago" value={{tarjeta.numerosTarjeta}}>
-                                          Tarjeta {{tarjeta.marcaTarjeta}} terminada en {{tarjeta.numerosTarjeta}}
-                                         </option>
-                                     </select>
-                                 </span>
-                                 <span class="mt-2" *ngIf="usuario.metodosDePago.length === 0">
-                                         <div class="alert alert-danger" role="alert">
-                                                No tienes ninguna tarjeta verificada! Por favor anda a tu perfil y agrega una tarjeta para utilizar OneClick
-                                               </div>
-                                 </span>
-                             </div>
-                             <div class="form-group row">
-                                 <label for="cantidad" class="col-form-label col-sm-2">Cantidad</label>
-                                <div class="col-sm-3">
-                                 <input type="number" [(ngModel)]="cantidad" name="cantidad" min="1" step="1" class="form-control">
-                                </div>
-                                <div class="col-sm-5 mt-2">
-                                    <p>Monto a pagar: ${{(actividad?.plista - actividad?.dcto)*cantidad}}</p>
-                                </div>
-                             </div>
-                             <h4>Opcional</h4>
-                             <div class="form-group row" *ngIf="cantidad === 1 && usuario?.hijos.length > 0">
-                                 <label for="hijo" class="col-form-label col-sm-4">Selecciona hijo</label>
-                                 <div class="col-sm-8">
-                                     <select [(ngModel)]="hijo" name="hijo" id="" class="form-control">
-                                         <option value=""></option>
-                                         <option *ngFor="let hijo of usuario?.hijos">{{hijo?.nombre}}</option>
-                                     </select>
-                                 </div>
-                             </div>
-                            
-                             <div class="form-group row">
-                                 <label for="persona" class="col-form-label col-sm-4">Persona para retiro</label>
-                                 <div class="col-sm-8">
-                                     <select [(ngModel)]="persona" name="persona" id="" class="form-control">
-                                         <option value=""></option>
-                                         <option *ngFor="let persona of usuario.personasRetiro">{{persona?.nombre}}</option>
-                                     </select>
-                                 </div>
-                             </div>
-                             <div class="col-sm-8">
-                             <input type="submit" class="btn btn-success" value="Finalizar compra">
-                             <button (click)="c('Close click')" class="btn btn-outline-dark">Cancelar</button>
-                             </div>
-                         </form>
-                         <div class="col-sm-12 mt-3">
-                             <p>Aún no estás segur@? Agrega la actividad a favoritos y visualizala desde tu perfil</p>
-                             <button class="btn btn-light"><i class="far fa-heart"></i> Agregar!</button>
-                         </div>
-                         <flash-messages></flash-messages>
-                  </div>
-              </div>
-              
+                        </div>
+                  
             </div>
-        </div>
-   </ng-template>
+            <hr>
+            <div class="row">
+                <div class="col-md-2">
+                    <h2 class="detalles-adicionales">Acerca de</h2>
+                </div>
+                <div class="col-md-10">
+                    <p class="acerca-de">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium pretium tempor. Ut eget imperdiet neque. 
+                            In volutpat ante semper diam molestie, et aliquam erat laoreet. Sed sit amet arcu aliquet, molestie justo at, auctor nunc. 
+                            Phasellus ligula ipsum, volutpat eget semper id, viverra eget nibh. Suspendisse luctus mattis cursus. 
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-2">
+                    <h2 class="detalles-adicionales">Tip entrekids</h2>
+                </div>
+                <div class="col-md-10">
+                        <p class="tip-entrekids">
+                                Sed sit amet arcu aliquet, molestie justo at, auctor nunc.
+                                 Phasellus ligula ipsum, volutpat eget semper id, viverra eget nibh. Suspendisse luctus mattis cursus. 
+                        </p>
+                    </div>
+            </div>
+        </div>   
+            
+    </div>
+    <div class="container detalles-proveedor" style="padding-top: 28px;">     
+            <div #gmap id="map" class="col-12" style="height: 400px;"> 
+                </div>
+    </div>
+  
+    <ng-template #content let-c="close" let-d="dismiss">
+            <div *ngIf="!authService.loggedIn()">                
+              <div class="modal-header">
+               <h4 class="modal-title">Inicia sesión</h4>
+               <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <form (submit)="onSubmit()"> 
+                 <div class="modal-body">            
+                   <div class="form-group row">
+                       <label for="username" class="col-sm-2 col-form-label">Email</label>
+                       <div class="col-sm-10">
+                         <input id="username" [(ngModel)]="username" name="username" type="text" class="form-control">
+                       </div>
+                   </div>
+                   <div class="form-group row">
+                       <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
+                       <div class="col-sm-10">
+                         <input id="password" [(ngModel)]="password" name="password" type="password" class="form-control">
+                       </div>
+                   </div>
+                   <div class="form-group row">
+                     <div class="checkbox col-sm-3 offset-2">
+                         <label>
+                           <input type="checkbox" [(ngModel)]="recuerdame" name="recuerdame" value="recuerdame"> Recordarme
+                         </label>
+                       </div>
+                   </div>
+                   <div class="form-group row ml-3">
+                       <p>No tienes cuenta aún? Registrate</p>
+                   </div>
+                   <flash-messages></flash-messages>
+               
+             </div>
+                 <div class="modal-footer">
+                 <input type="submit" class="btn btn-outline-success" value="Iniciar sesion">
+                 <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Cerrar</button>
+                 </div>
+             </form> 
+           
+            </div>
+            <div *ngIf="authService.loggedIn()">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Checkout
+                        
+                    </h4>
+                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                         <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  <div class="row">
+                      <div class="col-sm-4">
+                         <h1>Resumen</h1>
+                         <div class="card" style="width: 15rem;">
+                                 <img class="card-img-top" src="https://i.ytimg.com/vi/UbdJF4PDcXU/maxresdefault.jpg" alt="Card image cap">
+                                 <div class="card-body">
+                                   <h5 class="card-title">{{actividad?.nombre}}</h5>
+                                   <p class="card-text">{{actividad?.descripcion}}</p>
+                                 </div>
+                                 <ul class="list-group list-group-flush">
+                                   <li class="list-group-item">{{actividad?.fechaInicio | date:'fullDate':'':'es-CL'}}</li>
+                                   <li class="list-group-item">{{actividad?.fechaInicio | date:'shortTime'}}</li>
+                                   <li class="list-group-item">{{actividad?.direccion}} Nº {{actividad?.numeroDireccion}}</li>
+                                 </ul>
+                               </div>
+                      </div>
+                      <div class="col-sm-8">
+                             <form (submit)="pagar()" class="mt-2">                                
+                         
+                                 <div class="form-group row mb-0">
+                                     <p>Método de pago</p>
+                                 </div>
+                                 <div class="from-group row">                                                                   
+                                         <div class="custom-control custom-radio custom-control-inline">
+                                             <input type="radio" id="webpay" [(ngModel)]="metodoDePago" value="webpay"  name="metodoDePago" class="custom-control-input">
+                                             <label class="custom-control-label" for="webpay"><img class="checkbox-img" src="http://www.hotelpuclaro.cl/wp-content/uploads/2017/02/foto-webpay.png"></label>
+                                         </div>
+                                           <div class="custom-control custom-radio custom-control-inline">
+                                             <input type="radio" id="oneclick" [(ngModel)]="metodoDePago" value="oneclick"  name="metodoDePago" class="custom-control-input">
+                                             <label class="custom-control-label" for="oneclick"><img class="checkbox-img" src="https://www.brouter.cl/wp-content/uploads/2017/10/logoTransbank-a4c33676e7de7801109b0ffa8ceb7b75.png"></label>
+                                           </div>
+                                           <div class="custom-control custom-radio custom-control-inline">
+                                             <input type="radio" id="balance" [(ngModel)]="metodoDePago" value="balance"  name="metodoDePago" class="custom-control-input">
+                                             <label class="custom-control-label" for="balance">Balance EK</label>
+                                           </div>
+                                     
+                                 </div>
+                                 <div class="form-group row" *ngIf="metodoDePago === 'oneclick'">
+                                     <span *ngIf="usuario.metodosDePago.length > 0"> 
+                                         <label for="tarjeta">Selecciona tarjeta</label>
+                                         <select [(ngModel)]="tarjeta" name="tarjeta" class="form-control">
+                                             <option value=""></option>
+                                             <option *ngFor="let tarjeta of usuario.metodosDePago" value={{tarjeta.numerosTarjeta}}>
+                                              Tarjeta {{tarjeta.marcaTarjeta}} terminada en {{tarjeta.numerosTarjeta}}
+                                             </option>
+                                         </select>
+                                     </span>
+                                     <span class="mt-2" *ngIf="usuario.metodosDePago.length === 0">
+                                             <div class="alert alert-danger" role="alert">
+                                                    No tienes ninguna tarjeta verificada! Por favor anda a tu perfil y agrega una tarjeta para utilizar OneClick
+                                                   </div>
+                                     </span>
+                                 </div>
+                                 <div class="form-group row">
+                                     <label for="cantidad" class="col-form-label col-sm-2">Cantidad</label>
+                                    <div class="col-sm-3">
+                                     <input type="number" [(ngModel)]="cantidad" name="cantidad" min="1" step="1" class="form-control">
+                                    </div>
+                                    <div class="col-sm-5 mt-2">
+                                        <p>Monto a pagar: ${{(actividad?.plista - actividad?.dcto)*cantidad}}</p>
+                                    </div>
+                                 </div>
+                                 <h4>Opcional</h4>
+                                 <div class="form-group row" *ngIf="cantidad === 1 && usuario?.hijos.length > 0">
+                                     <label for="hijo" class="col-form-label col-sm-4">Selecciona hijo</label>
+                                     <div class="col-sm-8">
+                                         <select [(ngModel)]="hijo" name="hijo" id="" class="form-control">
+                                             <option value=""></option>
+                                             <option *ngFor="let hijo of usuario?.hijos">{{hijo?.nombre}}</option>
+                                         </select>
+                                     </div>
+                                 </div>
+                                
+                                 <div class="form-group row">
+                                     <label for="persona" class="col-form-label col-sm-4">Persona para retiro</label>
+                                     <div class="col-sm-8">
+                                         <select [(ngModel)]="persona" name="persona" id="" class="form-control">
+                                             <option value=""></option>
+                                             <option *ngFor="let persona of usuario.personasRetiro">{{persona?.nombre}}</option>
+                                         </select>
+                                     </div>
+                                 </div>
+                                 <div class="col-sm-8">
+                                 <input type="submit" class="btn btn-success" value="Finalizar compra">
+                                 <button (click)="c('Close click')" class="btn btn-outline-dark">Cancelar</button>
+                                 </div>
+                             </form>
+                             <div class="col-sm-12 mt-3">
+                                 <p>Aún no estás segur@? Agrega la actividad a favoritos y visualizala desde tu perfil</p>
+                                 <button class="btn btn-light"><i class="far fa-heart"></i> Agregar!</button>
+                             </div>
+                             <flash-messages></flash-messages>
+                      </div>
+                  </div>
+                  
+                </div>
+            </div>
+       </ng-template>

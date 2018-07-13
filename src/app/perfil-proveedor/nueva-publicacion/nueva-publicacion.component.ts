@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, OnInit, ElementRef, Injectable, ViewChild, SimpleChanges, Input } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, ElementRef, Injectable, ViewChild, SimpleChanges, Input, Renderer2 } from '@angular/core';
 import { ProviderService } from '../../services/provider.service';
 import { AuthProviderService } from '../../services/auth-provider.service';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
@@ -7,7 +7,7 @@ import { FileSelectDirective, FileUploader } from 'ng2-file-upload';
 import { saveAs } from 'file-saver';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/switchMap';
-import {} from '@types/googlemaps';
+
 
 const I18N_VALUES = {
   'cl': {
@@ -97,11 +97,13 @@ uploader:FileUploader = new FileUploader({url: uri});
 attachmentList:any = [];
 
 checked: Array<Boolean>;
+fullday: any;
+descuento: any;
 
 position:any;
 
   constructor( private providerService: ProviderService , private authProvider: AuthProviderService, 
-                private http: Http, private changeDetectorRef: ChangeDetectorRef) {
+                private http: Http, private changeDetectorRef: ChangeDetectorRef, private render: Renderer2) {
     this.uploader.onCompleteItem = (item:any, response: any, status: any, headers:any) => {
       this.attachmentList.push(JSON.parse(response));
       console.log(this.attachmentList);
@@ -109,17 +111,19 @@ position:any;
    }
 
   ngOnInit() {    
+    this.fullday = true;
+    this.descuento = true;
     this.ingresoDireccion = false;
-    var mapProp = {
+/*     var mapProp = {
       zoom: 15,
       center: new google.maps.LatLng(-33.445 , -70.660),
     }
 
     
-  this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
+  this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp); */
   
 
-    this.caracteres = 250;
+    this.caracteres = 600;
     this.checked =  [false,false,false,false,false,false,false];
     this.descripcion = "";
     this.validacionActividad = true; //CAMBIAR A FALSE PARA VALIDACION!
@@ -144,7 +148,7 @@ position:any;
       }
   
     contarCaracteres(event: any){
-      this.caracteres = 250 - this.descripcion.length;
+      this.caracteres = 600 - this.descripcion.length;
     }
 
 
@@ -254,6 +258,36 @@ position:any;
     
    
   } 
+  seleccionDias(i , event){
+
+    if(!event.target.classList.contains('dia-activo')){
+      this.render.addClass(event.target,'dia-activo');
+      this.checked[i]=true;
+    
+    } else {
+      this.render.removeClass(event.target, 'dia-activo');
+      this.checked[i]=false;
+      
+    }
+
+    
+  }
+  fulldayRadio(number){
+    if(number == 1){
+      this.fullday = true;     
+    } else {
+      this.fullday = false;     
+    }
+  }
+  tipoDescuento(tipo){
+    if(tipo == 1){
+      this.descuento = true;
+      this.dcto = undefined;
+    } else {
+      this.descuento = false;
+      this.dcto = undefined;
+    }
+  }
     }
     
 

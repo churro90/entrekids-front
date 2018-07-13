@@ -10,9 +10,13 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
 
   constructor(private authProvider: AuthProviderService, 
-              private router: Router) { }
-
+              private router: Router) {
+                this.proveedor = JSON.parse(localStorage.getItem('proveedor'));
+               
+               }
+proveedor: any;
   ngOnInit() {
+    
   }
  
   onLogoutClick(){

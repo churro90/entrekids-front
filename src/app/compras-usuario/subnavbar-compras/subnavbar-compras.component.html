@@ -1,0 +1,40 @@
+<div class="container"> 
+    <div class="col-md-7 offset-md-5 pestañas" *ngIf="router.url == '/usuarios/mis-compras'">
+      <div class="row text-center">
+        <div routerLink="/usuarios/mis-compras" routerLinkActive="activo" class="col-2">
+          <h2 class="titulo-pestañas"><img src="/../../assets/images/iconos-mis-compras/compras.svg"> Compras</h2>   
+        </div>
+        <div routerLink="/usuarios/mis-compras/creditos" routerLinkActive="activo" class="col-2">
+            <h2 class="titulo-pestañas"><img src="/../../assets/images/iconos-mis-compras/creditos.svg"> Créditos</h2>
+        </div>
+        <div routerLink="/usuarios/mis-compras/favoritos" routerLinkActive="activo" class="col-3">
+            <h2 class="titulo-pestañas"><img src="/../../assets/images/iconos-mis-compras/favoritas.svg"> Favoritas</h2>
+        </div>
+        <div routerLink="/usuarios/mis-compras/resenas" routerLinkActive="activo" class="col-2">
+            <h2 class="titulo-pestañas"><img src="/../../assets/images/iconos-mis-compras/reseñas.svg"> Reseñas</h2>
+        </div>
+        <div routerLink="/usuarios/mis-compras/notificaciones" routerLinkActive="activo" class="col-3">
+            <h2 class="titulo-pestañas"><img src="/../../assets/images/iconos-mis-compras/notificaciones.svg"> Notificaciones</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7 offset-md-5 pestañas" *ngIf="router.url != '/usuarios/mis-compras'">
+      <div class="row text-center">
+        <div routerLink="/usuarios/mis-compras" class="col-2">
+          <h2 class="titulo-pestañas"><img src="/../../assets/images/iconos-mis-compras/compras.svg"> Compras</h2>   
+        </div>
+        <div routerLink="/usuarios/mis-compras/creditos" routerLinkActive="activo" class="col-2">
+            <h2 class="titulo-pestañas"><img src="/../../assets/images/iconos-mis-compras/creditos.svg"> Créditos</h2>
+        </div>
+        <div routerLink="/usuarios/mis-compras/favoritos" routerLinkActive="activo" class="col-3">
+            <h2 class="titulo-pestañas"><img src="/../../assets/images/iconos-mis-compras/favoritas.svg"> Favoritas</h2>
+        </div>
+        <div routerLink="/usuarios/mis-compras/resenas" routerLinkActive="activo" class="col-2">
+            <h2 class="titulo-pestañas"><img src="/../../assets/images/iconos-mis-compras/reseñas.svg"> Reseñas</h2>
+        </div>
+        <div routerLink="/usuarios/mis-compras/notificaciones" routerLinkActive="activo" class="col-3">
+            <h2 class="titulo-pestañas"><img src="/../../assets/images/iconos-mis-compras/notificaciones.svg"> Notificaciones</h2>
+        </div>
+      </div>
+    </div>
+</div>    

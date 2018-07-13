@@ -5,10 +5,14 @@ body{
 
 .cover{
     background: url('/assets/images/ek-cover.jpg') no-repeat;
-    background-size: cover;
-        height:585px;
+    background-size: cover; 
+    background-attachment: fixed;  
+    height:585px;
+    border-top:585px solid rgba(163,163,163,0.4);
+   
 }
-/* .imagen-fondo{
+ 
+ /* .imagen-fondo{
     background: url('/assets/images/ek-cover.jpg') no-repeat;
     background-size: cover;
     position: absolute;
@@ -48,8 +52,8 @@ a {
 	height: 60px;
 	width: 100%;
     background-color: #1EB2E8;
-    position:absolute;
-    left: 0;
+/*     position:absolute;
+    left: 0; */
 }
 
 .proximamente-en-app {
@@ -61,13 +65,89 @@ a {
 	letter-spacing: 1.8px;
 	line-height: 25px;
     text-transform:uppercase;
-    padding: 0.45% 33.19% 0.43% 33.26%;
     z-index: 2;
+    padding-top:16px;
 }
+
+.texto-home{
+    height:295px;
+    background-color: white;
+}
+
+
+.imagen1-franja{
+        width: 450px;       
+        background-image: url('https://previews.123rf.com/images/bondd/bondd1609/bondd160900013/62106233-haciendo-galletas-para-halloween-y-acci%C3%B3n-de-gracias-comida-divertida-para-ni%C3%B1os-un-refrigerio-para-una-fi.jpg');
+        background-size: cover;       
+        height: 295px;
+        border-width:0 0 0 448px;
+        border-style: solid;
+        transform: scaleX(-1);
+        -webkit-border-image: 
+        -webkit-gradient(linear, 100% 0, 0 0, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0.9))) 1 110%;
+      -webkit-border-image: 
+        -webkit-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9)) 1 110%;
+      -moz-border-image:
+        -moz-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9)) 1 110%;  
+      -o-border-image:
+        -o-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9)) 1 110%;
+      border-image:
+        linear-gradient(to left, rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.9)) 1 110%; 
+
+}
+.imagen2-franja{
+        width: 480px;       
+        background-image: url('/../assets/images/foto-franja2.jpg');
+        background-size: cover;       
+        height: 295px;
+        border-width: 0 0 0 477px;
+        border-style: solid;    
+        -webkit-border-image: 
+        -webkit-gradient(linear, 100% 0, 0 0, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0.9))) 1 110%;
+      -webkit-border-image: 
+        -webkit-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9)) 1 110%;
+      -moz-border-image:
+        -moz-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9)) 1 1110;  
+      -o-border-image:
+        -o-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9)) 1 110%;
+      border-image:
+        linear-gradient(to left, rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.9)) 1 110%; 
+}
+
+.texto-franja{
+    width : 588.8px;
+}
+
+.titulo-franja{
+    padding-top: 70px;  
+        height: 36px;
+        color: #0F4163;
+        font-family: 'Lato';
+        font-size: 30px;
+        font-weight: bold;
+        letter-spacing: 3px;
+        line-height: 36px;
+        text-transform: uppercase;
+    
+}
+
+.texto-franja-ek{   
+        height: 88px;
+        color: #181818;
+        font-family: 'Avenir Book';
+        font-size: 18px;
+        font-weight: 300;
+        letter-spacing: 0.41px;
+        line-height: 22px;
+        text-align: justify;
+        padding: 55px 5px 0 15px;
+}
+    
+
 
 .centered {
     position: absolute;
-    top: 200px;
+    top: 240px;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -88,7 +168,7 @@ a {
 
 .bajada{
     position: absolute;
-    top: 243px;
+    top: 316px;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -126,7 +206,7 @@ a {
     min-height:500px;  
     height: auto;
     background-color: #E9F0F2;
-    margin-top: 60px;
+    
     
    /*  height: 295px;
     width:100%;
@@ -252,7 +332,7 @@ a {
 }
 
 .titulo-imagen-puntos-ek{
-	height: 20px;
+    height: 20px;
 	color: #0F4163;
 	font-family: 'Avenir Medium';
 	font-size: 18px;
@@ -262,7 +342,7 @@ a {
     text-transform: uppercase;
 }
 .texto-imagen-puntos-ek{
-        height: 48px;
+        height: 48px;     
         margin-top: 17px;
         display:table;
         color: #373737;
@@ -294,6 +374,7 @@ a {
 .sin-cuenta{
 	height: 20px;
     color: #373737;
+    margin-top:16px;
 	font-family: 'Avenir Light';
 	font-size: 15px;
 	font-weight: 300;
@@ -317,6 +398,16 @@ a {
     line-height: 25px;
     text-transform: uppercase;
 }
+
+.card{
+    width: 300px;
+    box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.19);
+}
+
+.card-img-top{
+    height:294px;
+}
+
 .card-text{
     color: #373737;	
     font-family: 'Avenir Light';	
@@ -346,6 +437,19 @@ a {
     .boton-cover{
         top: 300px;
     }
+}
+
+.pagination{
+    list-style: none;
+}
+
+.pagination li button:before{
+    color: #d7d7d7!important;
+    opacity: .75!important;
+    font-size: 1.4rem!important;
+    content: "\F111";
+    border: none;
+    border-radius: 50%;
 }
 
 // Small devices (landscape phones, 576px and up)
@@ -405,7 +509,7 @@ a {
     
     .bajada{
         position: absolute;
-        top: 243px;
+        top: 316px;
         left: 50%;
         transform: translate(-50%, -50%);
     }

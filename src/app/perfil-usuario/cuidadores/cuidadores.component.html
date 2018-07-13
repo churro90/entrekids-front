@@ -1,0 +1,97 @@
+<div class="cuidadores container-fluid">
+  <app-subnavbar></app-subnavbar>
+
+  <div class="container">
+    <div class="col-12 info-cuidadores">
+      <div class="row text-center" style="margin-top:80px;">
+          <div class="col-md-3">
+              <app-indicador-completitud></app-indicador-completitud>
+          </div>
+          <div class="col-md-9">
+              <h2 class="informacion-cuidadores">Información cuidadores</h2>
+              <hr class="separador">
+              <div class="row" *ngFor="let cuidador of usuario?.cuidadores; let i=index;">
+                  <div class="col-md-1">
+                      <div class="subir-foto">
+                        <div class="texto-subir-foto">
+                            <i class="fas fa-camera"></i> subir
+                        </div>
+                      </div>
+                  </div>
+                  <div class="col-md-10 offset-md-1">
+                    <div class="row">
+                      <div class="col-md-5">
+                        <h2 class="titulo-dato-personal">Nombre(s)</h2>
+                        <p class="dato-personal">{{cuidador?.nombre}}</p>
+                      </div>
+                      <div class="col-md-5">
+                          <h2 class="titulo-dato-personal">Apellido(s)</h2>
+                          <p class="dato-personal">{{cuidador?.apellido}}</p>
+                      </div>
+                      <div class="col-md-2">
+                          <button (click)="eliminarCuidador(i)" class="eliminar-cuidador">
+                              &times;
+                           </button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3">
+                          <h2 class="titulo-dato-personal">Rut</h2>
+                          <p class="dato-personal">{{cuidador?.rut}}</p>
+                      </div>
+                      <div class="col-md-5">
+                          <h2 class="titulo-dato-personal">Email</h2>
+                          <p class="dato-personal">{{cuidador?.email}}</p>
+                      </div>
+                      <div class="col-md-3">
+                          <h2 class="titulo-dato-personal">Teléfono</h2>
+                          <p class="dato-personal">{{cuidador?.telefono}}</p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="row justify-content-center mt-3">
+                  <button (click)="mostrar()" *ngIf="!mostrarFormulario"  class="btn btn-primary agregar-cuidador">Agregar cuidador</button>            
+                  <button (click)="esconder()" *ngIf="mostrarFormulario" class="btn btn-primary agregar-cuidador">Esconder</button>            
+              </div>
+              <form *ngIf="mostrarFormulario" (submit)="agregarCuidador()" class="mt-3">
+                  <div class="form-row">
+                   <div class="col form-group">
+                     <label for="nombre" style="float: left;">Nombre(s)</label>
+                     <input type="text" [(ngModel)]="nombre" name="nombre" id="nombre" class="form-control" placeholder="Nombre">
+                   </div>
+                   <div class="col form-group">
+                     <label for="apellido" style="float: left;">Apellido(s)</label>
+                     <input type="text" [(ngModel)]="apellido" name="apellido" id="apellido" class="form-control" placeholder="Apellido">
+                   </div>
+                 </div>
+                   <div class="form-row">
+                       <div class="col form-group">
+                         <label for="rut" style="float: left;">Rut</label>
+                         <input type="text" [(ngModel)]="rut" name="rut" id="rut" class="form-control" placeholder="Sin puntos ni guión">
+                       </div>
+                       <div class="col form-group">
+                         <label for="email" style="float: left;">Email</label>
+                         <input type="email" [(ngModel)]="email" name="email" id="email" class="form-control">
+                       </div>
+                       <div class="col form-group">
+                         <label for="telefono" style="float: left;">Teléfono</label>
+                         <input type="telefono" [(ngModel)]="telefono" name="telefono" id="telefono" class="form-control" placeholder="912345678">
+                       </div>
+                   </div> 
+                   <div class="row">
+                     <div class="col-md-10">
+                       <flash-messages *ngIf="mostrarFormulario" style="font-size: 12px; font-family: 'Avenir Next';"></flash-messages>
+                     </div>
+                     <div class="col-md-2 form-group">
+                       <input type="submit" class="btn btn-primary editar" value="Agregar">
+                     </div>
+                   </div>              
+              
+                 </form>
+          </div>
+      </div>
+        
+    </div>
+  </div>
+</div>

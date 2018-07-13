@@ -1,68 +1,100 @@
-<div class="container-fluid lista">
+<div class="container-fluid resultados">
  
-    <div class="row no-gutters">
-      <div class="col-xs-12 col-sm-3 justify-content-center">
-        <app-filtros-lista (change)="cambioPrecios($event)" (changeComunas)="cambioComunas($event)" (changeEdad)="cambioEdad($event)"></app-filtros-lista>
-      
-      </div>
-      <div class="col-xs-12 col-sm-9 align-self-end" style="min-height: 100vh;">
-          <div class="row actividades-populares no-gutters">   
-             
-              <div class="offset-md-4 col-sm-12 col-md-4 col-xs-12 titulo">
-                   <h3>Actividades populares</h3>
-              </div> 
-               <div class="col-md-4 col-sm-4 buscador-actividades">
-                  <div class="buscar">
-                       <input type="text" class="form-contro buscar-actividad" [(ngModel)]="filtroActividadProveedor" name="filtroActividadProveedor" placeholder="Buscar por actividad o proveedor">
-                       <span aria-hidden="true" class="fas fa-search"></span>
-                  </div> 
-             
-               </div>
-           </div>  
-         
-           <div class="row resultado-actividad-row no-gutters" *ngFor="let actividad of actividadesPopulares">
-      
-            <div class="col-md-3 col-sm-4 col-xs-4 resultado-actividad-foto"> 
-                 <img class="resultado-actividad-imagen" src='https://deporteysalud-static.hola.com/deporteparaninos/wp-content/uploads/sites/4/2014/03/hockey_para_los_mas_pequenos_descubrelo.jpg' alt="Card image cap">
-             </div>
-             <div class="col-md-5 col-sm-8 col-xs-8">
-              
-                   <div class="col-md-7 col-sm-7 col-xs-7 resultado-actividad-detalles no-gutters">
-                       <h3>{{actividad?._id.nombre}}</h3>
-                       <div class="mb-0 text-muted" style="text-transform: uppercase; font-size: 12px;">{{actividad?.disponibilidad[0]?.direccion}} {{actividad?.disponibilidad[0]?.numeroDireccion}}</div>
-                       <p>Edades: {{actividad?.disponibilidad[0]?.edadMinima}} - {{actividad?.disponibilidad[0]?.edadMaxima}} años</p>                 
-                       <p>Proveedor: {{actividad?.disponibilidad[0]?.proveedor.nombre}}</p>   
-                   </div>      
-                         
-               </div>
-          
-            <div class="col-md-3">
-               
-                <ul>
-                    <li><h6 class="titulo-horarios">HORARIOS PROXIMOS</h6></li>
-                    <li *ngFor="let horario of actividad.disponibilidad | slice:0:5">
-                       <div class="col-sm-12 col-xs-6 pl-0 pr-0">
-                            <a class="dia-horario">{{horario?.fechaInicio | date:'EEEE,dd/L':'':'es-CL'}} </a>
-                            <span class="hora-horario" style="float: right;">
-                                    {{horario.fechaInicio | date:'shortTime':'':'es-CL'}} - {{horario.fechaTermino | date:'shortTime':'':'es-CL'}}
-                            </span>
-                       </div>
-                   
-                      
-                    </li>
-                </ul>
-     <!--            <div class="row no-matches text-center no-gutters"  *ngIf="(actividades | filterAoP: filtroActividadProveedor | filtroGeneral:precios:comuna:edad).length === 0">
-                        <div class="col-md-12">
-                         <img src="../assets/images/busqueda-azul.png" style="width: 50px; height: 30px;">
-                         <h2>Disculpa, No hay resultados disponibles!</h2>
-                         <p>Intenta cambiando los filtros o busca en otra fecha para ver mas resultados</p>
+        <div class="container" style="margin-top: 44px;">     
+                <div class="col-md-3">
+                    <div class="row text-center">
+                        <div routerLink="/resultados/calendario" routerLinkActive="activo" class="col-md-4 tipo-vista">Calendario</div>
+                        <div routerLink="/resultados/lista"  routerLinkActive="activo" class="col-md-4 tipo-vista">Lista</div>
+                        <div routerLink="/resultados/mapa"  routerLinkActive="activo"class="col-md-4 tipo-vista">Mapa</div>
+                    </div>
+                    <div class="row filtros">
+                        <div class="col-md-12 tipo-filtro align-self-center">
+                            <div class="slider" style="position: relative;">
+                                <nouislider #nouislider [config]="sliderConfig" [(ngModel)]="rangoPrecios"></nouislider>
+                            </div>
+                            
                         </div>
-                      </div> -->
-                
-             </div>
-      
-          
-           </div>
+                        <hr class="separador">
+                        <div class="col-md-12 tipo-filtro align-self-center">
+                            Ubicación
+                            <img class="flecha" src="../../../assets/images/iconos-buscador/flecha-azul.svg">
+                        </div>
+                        <hr class="separador">
+                        <div class="col-md-12 tipo-filtro align-self-center">
+                            Edad
+                            <img class="flecha" src="../../../assets/images/iconos-buscador/flecha-azul.svg">
+                        </div>
+                        <hr class="separador">
+                        <div class="col-md-12 tipo-filtro align-self-center">
+                            Categorias
+                            <img class="flecha" src="../../../assets/images/iconos-buscador/flecha-azul.svg">
+                        </div>
+                        <hr class="separador">
+                        <div class="col-md-12 tipo-filtro align-self-center">
+                            Precios
+                            <img class="flecha" src="../../../assets/images/iconos-buscador/flecha-azul.svg">
+                        </div>
+                        <hr class="separador">
+                        <div class="col-md-12 tipo-filtro align-self-center">
+                            Proveedores
+                            <img class="flecha" src="../../../assets/images/iconos-buscador/flecha-azul.svg">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 lista-resultados" style="margin-left:15px;">
+                   <div class="row">
+                       <div class="col-md-4 offset-md-4">
+                            <h2 class="actividades-populares">
+                                    Actividades populares
+                                </h2>
+                       </div>
+                       <div class="col-md-4">
+                            <div class="buscar">
+                                    <input type="text" class="form-control buscar-actividad" [(ngModel)]="filtroActividadProveedor" name="filtroActividadProveedor" placeholder="Buscar por actividad o proveedor">
+                                    <span aria-hidden="true" class="fas fa-search"></span>
+                               </div> 
+                    </div>
+                      <hr class="separador">
+                   </div>
+                    <div class="row detalle-resultados-actividad" *ngFor="let actividad of actividadesPopulares">
+                        <div class="col-md-3" style="margin-left:-15px;">
+                                <img class="resultado-actividad-imagen" src='https://deporteysalud-static.hola.com/deporteparaninos/wp-content/uploads/sites/4/2014/03/hockey_para_los_mas_pequenos_descubrelo.jpg' alt="Card image cap">
+                        </div>
+                        <div class="col-md-3" style="padding-left: 0; margin-top:9px;">
+                            <h2 class="titulo-actividad mb-0">
+                                {{actividad?._id.nombre}}
+                            </h2>
+                            <p class="detalles-actividad mb-0">
+                                {{actividad?.disponibilidad[0]?.proveedor.nombre}}
+                            </p>
+                            <p class="detalles-actividad mb-0">
+                                Edad: {{actividad?.disponibilidad[0]?.edadMinima}} - {{actividad?.disponibilidad[0].edadMaxima}} años
+                            </p>
+                            <p class="direccion-actividad mb-0">
+                                {{actividad?.disponibilidad[0]?.direccion}} {{actividad?.disponibilidad[0].numeroDireccion}}
+                            </p>
+                            <p class="detalles-actividad mb-0">
+                                Precio normal: {{actividad?.disponibilidad[0]?.plista | currency:'':'':'1.0-0':'es-CL'}}
+                            </p>
+                        </div>
+                        <div class="col-md-1" style="margin-top:9px;">
+                            <div class="icono">
+    
+                            </div>
+                        </div>
+                        <div class="col-md-3" style="margin-top:9px;">
+                            <h2 class="proximas-fechas mb-0">Proximas fechas</h2>
+                            <div class="horario" *ngFor="let horario of actividad.disponibilidad | slice:0:5">                            
+                                     <h2 class="fecha-texto mb-0">{{horario?.fechaInicio | date:'EEE d/M':'':'es-CL'}}</h2>
+                                     <p class="fecha-horario mb-0">{{horario?.fechaInicio | date:'shortTime':'':'es-CL'}}</p>                             
+                                        
+                             </div>
+                        </div>                      
+                    </div>
        
-      </div>
-</div>
+        </div>
+    
+    </div>
+       
+           
+    

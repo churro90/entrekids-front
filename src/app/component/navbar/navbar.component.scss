@@ -28,7 +28,7 @@ h2{
     top: 0;
     height: 70px;
     padding:0;
-    z-index: 3;
+    z-index: 50;
     background-color: #FFFFFF; 
     }
 
@@ -181,7 +181,7 @@ button > a {
         height: 43px;
         width: 100%;	
         background-color: #19C6B7;
-        z-index: 2;
+        z-index: 40;
         position: fixed;
         top: 70px;
         left: 0;
@@ -203,9 +203,8 @@ button > a {
         font-weight: 600;
         letter-spacing: 0.11px;
         line-height: 18px;
-        float: right;
-        padding: 6px 12px 6px 30px;
-    }
+        margin: 0;
+      }
 
     .cantidad {
         height: 30px;
@@ -247,10 +246,12 @@ button > a {
         letter-spacing: 0.1px;
         line-height: 16px;
         text-align: center;
+        
     }
     .dropdown-menu{
         border:none;
-        padding: 0 0;        
+        padding: 0 0;    
+    
        
         
     }

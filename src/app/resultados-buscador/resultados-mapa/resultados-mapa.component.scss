@@ -2,9 +2,66 @@
 #map {
     height: 600px;
     z-index: 0;
-    margin: 6.5rem 0.5rem;
-   }
+    }
 
 .mapa{
      background-color: #f4f4f4;
+}
+
+.resultados{
+    margin: 70px 0 0 0;
+    padding-top: 45px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+.tipo-vista{
+        color: #A3A3A3;    
+        background-color: #FFFFFF;
+        font-family: "Avenir Next";
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 16px;
+        text-align: center;
+        color: #A3A3A3;
+        text-transform: uppercase;
+        border-radius: 4px 0 0 0;
+        height: 38px;
+        border: 1px solid #C8C8C8;
+        padding: 12px 0; 
+    }
+.filtros{
+    height: 305px;
+    border: 1px solid #C8C8C8;
+    background-color: #FFFFFF;
+    border-radius: 4px 0 0 0;
+}
+
+.activo{
+    color: #FFFFFF;
+    background-color: #1EB2E8;
+}
+
+
+.separador{   
+    box-sizing: border-box;
+    height: 1px;
+    width: 87%;
+    color: #979797;
+    margin: 0 auto;
+}
+
+.tipo-filtro{
+    height: 38px;
+	color: #777777;
+	font-family: "Avenir Next";
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.6px;
+    line-height: 16px;
+    text-transform: uppercase;
+    padding-top: 10px;
+}
+.flecha{
+    float: right;
 }

@@ -5,6 +5,7 @@ import { Directive, OnInit, ElementRef, EventEmitter, Output } from '@angular/co
 })
 export class AutocompleteDirective implements OnInit {
   @Output() onSelect: EventEmitter<any> = new EventEmitter();
+
   private element: HTMLInputElement;
   defaultBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(-33.523079, -70.802209),
@@ -24,6 +25,7 @@ export class AutocompleteDirective implements OnInit {
     google.maps.event.addListener(autocomplete, 'place_changed', () => {
       const place = autocomplete.getPlace();
       this.onSelect.emit(place);
+      
     });
   }
   geolocate(){

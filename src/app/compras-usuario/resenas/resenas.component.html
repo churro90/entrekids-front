@@ -1,0 +1,68 @@
+
+<div class="container-fluid resenas">
+    <app-subnavbar-compras></app-subnavbar-compras>
+
+    <div class="container">
+        <div class="col-12 informacion-favoritos">
+            <div class="row detalle-resenas text-center align-items-center" *ngFor="let transaccion of transacciones; let i=index">
+                    <div class="col-md-1" style="margin-left:31px;">
+                            <img src="https://d31s580dpd2ikg.cloudfront.net/craft-studio-camps-m.jpg" class="imagen-actividad">
+                        </div>
+                        <div class="col-md-5">
+                            <h2 class="titulo-actividad">{{transaccion.nombreActividad}}</h2>
+                            <p class="informacion">{{transaccion.direccion}}</p>
+                            <p class="informacion">Actividad realizada el {{transaccion.fechaInicio | date:'dd/MM':'':'es-CL'}}<!-- {{actividad.createdAt | date:'dd/MM':'':'es-CL' }} --></p>
+                        </div>
+                        <div class="col-md-2 offset-md-3">
+                            <button (click)="open(content, transaccion.actividad, transaccion.nombreActividad)" *ngIf="fechasMs[i] < fechaActual" class="btn btn-primary btn-resena">Escribir reseña</button>
+                           <p *ngIf="fechasMs[i] > fechaActual">Actividad no realizada</p>
+                        </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-c="close"  let-d="dismiss">
+        <div class="row">
+          <div class="col-sm-12">
+           <button type="button" style="border: 1px solid gray; border-radius: 50%; margin: 10px 10px; padding: 0 4px 4px 4px;" class="close" aria-label="Close">
+             <span aria-hidden="true"  (click)="d('Cross click')">&times;</span>
+           </button>
+          </div>
+        </div>            
+         <div class="row mt-4 text-center">
+          <div class="col-sm-12 col-md-12">
+           <h2 class="escribe-resena">Escribe tu reseña</h2>
+          </div>     
+        </div>
+        <div class="row text-center" style="margin-top:20px;">
+            <div class="col-12">
+                    <star-rating (ratingChange)="onRatingChange($event)" speed="slow" [hoverEnabled]="true" [showHalfStars]="true" [step]="0.5" staticColor="ok"    [starType]="'svg'"></star-rating>  
+                    <p class="califica">Califica esta actividad</p>
+                    {{rating}}
+            </div>
+         
+        </div>
+        <div class="row text-center">
+            <div class="col-12">
+                <h2 class="nombre-actividad">{{nombreAux}}</h2>              
+            </div>
+        </div>
+        <div class="row justify-content-center" style="margin-top:24px;">
+            <div class="col-10">
+                    <textarea [(ngModel)]="comentario" rows="3" name="comentario" placeholder="Escribe tu reseña aca" class="form-control"></textarea>
+            </div>
+           
+        </div>
+        <div class="row text-center" style="margin-bottom: 40px; margin-top:14px;">
+            <div class="col-12">
+                    <button (click)="agregarResena(this.idAux)" class="btn btn-primary btn-resena">Enviar reseña</button>          
+            </div>
+        </div>
+        <div class="row text-center justify-content-center">
+            <div class="col-8">
+                    <flash-messages style="font-size: 12px; font-family: 'Avenir Next';"></flash-messages>
+            </div>              
+        </div>           
+       
+       </ng-template>

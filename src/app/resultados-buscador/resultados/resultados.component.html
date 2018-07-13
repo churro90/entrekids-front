@@ -1,86 +1,133 @@
 <div class="container-fluid resultados">
  
-    <div class="row no-gutters">
-      <div class="col-xs-12 col-sm-3 justify-content-center">
-        <app-filtros (change)="cambioPrecios($event)" (changeComunas)="cambioComunas($event)" (changeEdad)="cambioEdad($event)" (changeFecha)="cambioFecha($event)"></app-filtros>
-      
-      </div>
-    
-      <div class="col-xs-12 col-sm-9 align-self-end" style="min-height: 100vh;">
-        <div class="row no-gutters justify-content-center calendario">
-            <div class="col-sm-1 mt-1">
-                    <button class="btn btn-outline-dark pt-2 pl-3" (click)="hoy()">Hoy</button>
-            </div>
-            <div class="col-sm-1 flecha-izq" (click)="anteriorSemana()" style="float: right;">
-                <i class="fas fa-angle-left fa-3x flecha"></i>
-            </div>
-          <div class="col-sm-1 dia" *ngFor="let dia of semana; trackBy: trackByDate let i = index"
-              [class.active]="selectedIndex === i"           
-              (click)="seleccionFecha(i)"
-               >
-            <input type [(ngModel)]="semana[i]" type="hidden" value={{dia}}>   
-            <p class="text-center" style="font-size: 12px;">
-              {{dia | date:'EEEEEE':'':'es-CL' | uppercase}}<br>
-              {{dia | date:'dd-MM':'':'es-CL' | uppercase}}
-            </p>
-          </div>
-          <div class="col-sm-2 flecha-der" (click)="proximaSemana()">
-              <i class="fas fa-angle-right fa-3x flecha"></i>
-          </div>
-       
+    <div class="container" style="margin-top: 44px;">     
+            <div class="col-md-3">
+                <div class="row text-center">
+                    <div routerLink="/resultados/calendario" routerLinkActive="activo" class="col-md-4 tipo-vista">Calendario</div>
+                    <div  routerLink="/resultados/lista" routerLinkActive="activo" class="col-md-4 tipo-vista">Lista</div>
+                    <div routerLink="/resultados/mapa"  routerLinkActive="activo"class="col-md-4 tipo-vista">Mapa</div>
+                </div>
              
-   
-        </div>
-        <div class="row bajada-calendario no-gutters">   
+                
              
-           <div class="offset-md-4 col-sm-12 col-md-4 col-xs-12 titulo-dia">
-                <h3>{{semana[0] |date:'fullDate':'':'es-CL'}}</h3>
-           </div> 
-            <div class="col-md-4 col-sm-4 buscador-actividades">
-               <div class="buscar">
-                    <input type="text" class="form-control buscar-actividad" [(ngModel)]="filtroActividadProveedor" name="filtroActividadProveedor" placeholder="Buscar por actividad o proveedor">
-                    <span aria-hidden="true" class="fas fa-search"></span>
-               </div> 
-          
-            </div>
-        </div>  
-          <div #resultados routerLink="/resultados/detalles/{{actividad.nombre}}/{{actividad._id}}" class="row resultado-actividad-row no-gutters" *ngFor="let actividad of actividades | dateFilter: semana[0] | filterAoP: filtroActividadProveedor | filtroGeneral:precios:comuna:edad">
-           <div class="col-md-3 col-sm-4 col-xs-4 resultado-actividad-foto"> 
-                <img class="resultado-actividad-imagen" src='https://deporteysalud-static.hola.com/deporteparaninos/wp-content/uploads/sites/4/2014/03/hockey_para_los_mas_pequenos_descubrelo.jpg' alt="Card image cap">
-            </div>
-            <div class="col-md-5 col-sm-8 col-xs-8">
-             
-                  <div class="col-md-7 col-sm-7 col-xs-7 resultado-actividad-detalles no-gutters">
-                      <h3>{{actividad.nombre}}</h3>
-                      <div class="mb-0 text-muted" style="text-transform: uppercase; font-size: 12px;">{{actividad.direccion}} {{actividad.numeroDireccion}}</div>
-                      <p>Edades: {{actividad.edadMinima}} - {{actividad.edadMaxima}} años</p>                 
-                      <p>Proveedor: {{actividad.proveedor.nombre}}</p>   
-                  </div>      
+                <div class="row filtros">               
+                            <div class="col-md-4"><p class="horario-filtro mb-0" style="margin-top:20px;">{{h1[0]}}</p></div>
+                            <div class="col-md-4 offset-md-4"><p class="horario-filtro mb-0" style="margin-top:20px;">{{h1[1]}}</p></div>
+                 
+                    <div class="col-md-11 tipo-filtro align-self-center pt-0">
+                        <div class="slider" style="position: relative;">
+                            <nouislider #nouislider [config]="sliderConfig" [(ngModel)]="rangoHorario"></nouislider>
+                        </div>
                         
-              </div>
-            <div class="col-md-1">
-                <img class="categoria" src='https://cdn-amaze.kidpass.com/assets/_D931Z8.png' alt="Card image cap">
+                    </div>
+                    <hr class="separador">
+                    <div class="col-md-12 tipo-filtro align-self-center">
+                        Ubicación
+                        <img class="flecha" (click)="ubicacionAux = !ubicacionAux" *ngIf="!ubicacionAux" src="../../../assets/images/iconos-buscador/flecha-azul.svg">
+                        <img class="flecha" (click)="ubicacionAux = !ubicacionAux"*ngIf="ubicacionAux" src="../../../assets/images/iconos-buscador/flecha-azul-arriba.svg">
+                   
+                    </div>
+                    <div *ngIf="ubicacionAux" class="caja-filtro" style="position: relative; overflow-y: scroll; overflow-x: hidden; max-height: 10rem;">
+                            <div style="display:block; position: relative;" *ngFor="let comuna of comunasAux; let i=index;">
+                                <span class="checkbox-filtro" (click)="seleccionComuna(i,$event);"   style="cursor: pointer;">                                    
+                                </span>
+                                <div class="comuna" style="display: inline-block;">
+                                    {{comuna}}
+                                </div>
+                            </div>                         
+                        </div>
+                    <hr class="separador">
+                    <div class="col-md-12 tipo-filtro align-self-center">
+                        Edad
+                        <img class="flecha" src="../../../assets/images/iconos-buscador/flecha-azul.svg">
+                    </div>
+                    <hr class="separador">
+                    <div class="col-md-12 tipo-filtro align-self-center">
+                        Categorias
+                        <img class="flecha" src="../../../assets/images/iconos-buscador/flecha-azul.svg">
+                    </div>
+                    <hr class="separador">
+                    <div class="col-md-12 tipo-filtro align-self-center">
+                        Precios
+                        <img class="flecha" src="../../../assets/images/iconos-buscador/flecha-azul.svg">
+                    </div>
+                    <hr class="separador">
+                    <div class="col-md-12 tipo-filtro align-self-center">
+                        Proveedores
+                        <img class="flecha" src="../../../assets/images/iconos-buscador/flecha-azul.svg">
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3 ">
-                <div class="mb-0 horario"><i class="fas fa-clock"></i>{{actividad.fechaInicio | date:'shortTime'}} - {{actividad.fechaTermino | date:'shortTime'}} </div>
-                <div class="mb-0 precio"><i class="far fa-money-bill-alt"></i>{{actividad?.plista - actividad?.dcto | currency:'':'':'1.0-0':'es-CL'}}</div>
-                <p style="text-transform: uppercase;">{{actividad.stock}} cupos disponibles</p>
-                <p class="d-none d-md-block"><a routerLink="/resultados/detalles/{{actividad.nombre}}/{{actividad._id}}">Ver detalles</a></p>
-                <button routerLink="/resultados/detalles/{{actividad.nombre}}/{{actividad._id}}" class="btn btn-primary btn-block">RESERVAR</button>
-            </div>
-             
-          </div>    
-          <div class="row no-matches text-center no-gutters"  *ngIf="(actividades | dateFilter: semana[0] | filterAoP: filtroActividadProveedor | filtroGeneral:precios:comuna:edad).length === 0">
-            <div class="col-md-12">
-             <img src="../assets/images/busqueda-azul.png" style="width: 50px; height: 30px;">
-             <h2>Disculpa, No hay resultados disponibles!</h2>
-             <p>Intenta cambiando los filtros o busca en otra fecha para ver mas resultados</p>
-            </div>
-          </div>
-              
-              
-      </div>
-    
+            <div class="col-md-9 lista-resultados" style="margin-left:15px;">
+                <div class="fleje-dias">
+                    <div (click)="anteriorSemana()">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>                              
+                    <ul class="resultado-fleje-dias mb-0">
+                        <li *ngFor="let dia of semana; let i=index;" [class.active]="selectedIndex === i" (click)="seleccionFecha(i)" class="dayTabWrapper">
+                            <span class="dayTab" style="padding: 1rem; margin: auto; text-align: center; display: block;">
+                                    {{dia | date:'EEE':'':'es-CL' | uppercase}}<br>
+                                    {{dia | date:'dd/MM':'':'es-CL' | uppercase}}
+                            </span>
+                        </li>
+                    </ul>
+                    <div (click)="proximaSemana()">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>  
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-5 offset-md-3">
+                        <h2 class="titulo-dia">
+                                {{semana[0] |date:'fullDate':'':'es-CL'}}
+                        </h2>
+                    </div>
+                    <div class="col-md-4">
+                            <div class="buscar">
+                                    <input type="text" class="form-control buscar-actividad" [(ngModel)]="filtroActividadProveedor" name="filtroActividadProveedor" placeholder="Buscar por actividad o proveedor">
+                                    <span aria-hidden="true" class="fas fa-search"></span>
+                               </div> 
+                    </div>
+                </div>
+                <hr class="separador">
+                <div class="row detalle-resultados-actividad" routerLink="/resultados/detalles/{{actividad._id}}" *ngFor="let actividad of actividades | dateFilter: semana[0] | horariosFilter: rangoHorario | filtroComuna: comunas">
+                    <div class="col-md-3" style="margin-left:-15px;">
+                            <img class="resultado-actividad-imagen" src='https://deporteysalud-static.hola.com/deporteparaninos/wp-content/uploads/sites/4/2014/03/hockey_para_los_mas_pequenos_descubrelo.jpg' alt="Card image cap">
+                    </div>
+                    <div class="col-md-4" style="padding-left: 10px; margin-top:9px;">
+                        <h2 class="titulo-actividad mb-0">
+                            {{actividad?.nombre}}
+                        </h2>
+                        <p class="detalles-actividad mb-0">
+                            {{actividad?.proveedor.nombre}}
+                        </p>
+                        <p class="detalles-actividad mb-0">
+                            Edad: {{actividad?.edadMinima}} - {{actividad?.edadMaxima}} años
+                        </p>
+                        <p class="direccion-actividad mb-0">
+                            {{actividad?.direccion}} {{actividad?.numeroDireccion}}
+                        </p>
+                    </div>
+                    <div class="col-md-1" style="margin-top:9px; padding-left:20px;">
+                        <div class="icono">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3" style="margin-top:9px; padding-left:0px; padding-right: 0px;">
+                        <h2 class="horario mb-0">{{actividad?.fechaInicio | date:'shortTime'}}</h2>
+                        <p class="duracion mb-0">30 min</p>
+                        <p class="precio-ek mb-0">Precio Entrekids: {{actividad?.plista - actividad?.dcto | currency:'':'':'1.0-0':'es-CL'}}</p>
+                        <p class="precio-normal mb-0">Precio normal: {{actividad?.plista | currency:'':'':'1.0-0':'es-CL'}}</p>
+                    </div>
+                    <div class="col-md-1" style="margin-top:9px; padding-left:0px;">
+                        <button class="btn btn-primary ver">
+                            Ver
+                        </button>
+                        <p class="stock">
+                            {{actividad?.stock}} cupos
+                        </p>
+                    </div>
+                </div>
+   
     </div>
 
 </div>

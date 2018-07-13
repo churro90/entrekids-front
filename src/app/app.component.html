@@ -1,7 +1,7 @@
 
 <div>
     <app-navbar *ngIf="!authProvider.loggedIn() && router.url !='/proveedores/login'"></app-navbar>
-    <app-dashboard *ngIf="authProvider.loggedIn()"></app-dashboard>       
+    
     <router-outlet></router-outlet>
    
 </div>

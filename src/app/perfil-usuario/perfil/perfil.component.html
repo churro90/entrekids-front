@@ -1,52 +1,38 @@
 <div *ngIf="usuario && usuario.verificado" class="perfil container-fluid">
-  <div class="container">
+
       
-          <div class="col-md-7 pestañas offset-md-5">
-            <div class="row">
-              <div class="col-3">
-                <h2 class="titulo-pestañas"><img src="/../../assets/images/iconos-perfil/perfil.svg"> Perfil</h2>
-                <div class="activo"></div>
-              </div>
-              <div class="col-3">
-                  <h2 class="titulo-pestañas"><img src="/../../assets/images/iconos-perfil/niños.svg"> Niños</h2>
-              </div>
-              <div class="col-3">
-                  <h2 class="titulo-pestañas"><img src="/../../assets/images/iconos-perfil/cuidadores.svg"> Cuidadores</h2>
-              </div>
-              <div class="col-3">
-                  <h2 class="titulo-pestañas"><img src="/../../assets/images/iconos-perfil/pago.svg"> Pago</h2>
-              </div>
-            </div>
-          </div>                     
+       <app-subnavbar></app-subnavbar>                 
         
-  </div>
+ 
   <div class="container">
     
       <div class="col-12 informacion">
         <div class="row text-center">
             <div class="col-md-3" style="padding: 25px 0 0 24px;">
-                <div class="imagen">
-                
+                <div class="imagen" *ngIf="!subirImagen">
+                  <img *ngIf="usuario.avatar" style="width: 100%; height: 100%;"src={{avatar}}>
                 </div>
-                <div class="subir-imagen">                 
-                      
-                      <h2 class="subir pt-2"><i class="fas fa-camera"></i> Subir</h2>               
+                <div class="imagen"*ngIf="subirImagen">
+                    <img-cropper style="   border-radius: 3px;	
+                    background-color: #FFFFFF;	
+                    border: none;
+                    color: #4A4A4A;	
+                    font-family: 'Avenir Next';	
+                    font-size: 14px;	
+                    font-weight: 500;	
+                    line-height: 19px;"  [image]="data" [settings]="cropperSettings"></img-cropper>
+                </div>
+               
+        
+                <div (click)="subirImagen = !subirImagen"  *ngIf="!subirImagen"style="cursor: pointer;" class="subir-imagen">                 
+                   
+                       <h2 class="subir pt-2"><i class="fas fa-camera"></i> Subir</h2>         
                  
                 </div>
-          
-                <svg viewbox="0 0 80 80" class="circular-chart">
-                    <path class="circle"
-                      stroke-dasharray="188.5, 188.5"
-                      d="M40 10
-                        a 30 30 0 0 1 0 60
-                        a 30 30 0 0 1 0 -60"
-                    />
-                    <text x="20" y="45" class="percentage">100%</text>
-                  </svg>
-                 
-                <p class="completa">Completa tu perfil y obtén muchos beneficios.</p>
+                <app-indicador-completitud *ngIf="!subirImagen"></app-indicador-completitud>
+           
               </div>
-              <div class="col-md-8 offset-md-1 col-sm-12" style="padding-top: 25px;">
+              <div *ngIf="!subirImagen" class="col-md-8 offset-md-1 col-sm-12" style="padding-top: 25px;">
                 <button class="btn btn-primary editar" (click)="editar=!editar" style="float:right;">Editar</button>
                 <br>
                 <h2 class="info-personal">Información personal</h2>
@@ -55,7 +41,7 @@
                   <div class="col-md-4 col-sm-6">
                     <h2 class="titulo-dato-personal">Nombre</h2>
                     <p class="dato-personal"  *ngIf="!editar">{{usuario?.nombre}}</p>
-                    <input type="text" *ngIf="editar" class="form-control" value={{usuario?.nombre}}>
+                    <input type="text" [(ngModel)]="nombre" name="nombre" *ngIf="editar" class="form-control" value={{usuario.nombre}}>
                     <h2 class="email" style="margin-top:30px;">Email</h2>
                     <p class="dato-personal" *ngIf="!editar">{{usuario?.username}}</p>
                     <input type="email" readonly *ngIf="editar" class="form-control" value={{usuario?.username}}>
@@ -63,34 +49,48 @@
                   <div class="col-md-6 col-sm-6 offset-md-2">
                     <h2 class="titulo-dato-personal">Apellido</h2>
                     <p class="dato-personal" *ngIf="!editar">{{usuario?.apellido}}</p>
-                    <input type="text" *ngIf="editar" class="form-control" value={{usuario?.apellido}}>
+                    <input type="text" [(ngModel)]="apellido" name="apellido" *ngIf="editar" class="form-control" value={{usuario?.apellido}}>
                     <h2 class="telefono" style="margin-top:30px;">Telefono</h2>
-                    <p class="dato-personal" *ngIf="!editar">{{usuario?.telefono}}</p>
-                    <input type="text" *ngIf="editar" class="form-control" value="{{usuario?.telefono}}" placeholder="912345678">
+                    <p class="dato-personal"  *ngIf="!editar">{{usuario?.telefono}}</p>
+                    <input type="text" [(ngModel)]="telefono" name="telefono" *ngIf="editar" class="form-control" value="{{usuario?.telefono}}" placeholder="912345678">
                   </div>
                 </div>
                 <h2 class="info-personal" style="margin-top: 39px;">Dirección personal</h2>
                 <hr class="separador">
                 <div class="row">
-                  <div class="col-md-3">
+                  <div class="col-md-4">
                     <h2 class="titulo-dato-personal">Dirección</h2>
-                    <p class="dato-personal" *ngIf="!editar"></p>
-                    <input type="text" *ngIf="editar" class="form-control" appAutocomplete>
-                    <h2 class="titulo-dato-personal">Región</h2>
+                    <p class="dato-personal" *ngIf="!editar">{{usuario?.direccion}}</p>
+                    <input type="text" [(ngModel)]="direccion" (onSelect)="direccion = $event.name"  name="direccion" *ngIf="editar" class="form-control" appAutocomplete>
+                  
                   </div>
-                  <div class="col-md-1">
+                  <div class="col-md-2">
+                    <h2 class="titulo-dato-personal">Número</h2>
+                    <input type="text" [(ngModel)]="numeroDireccion" name="numeroDireccion" *ngIf="editar" class="form-control">
+                    <p class="dato-personal" *ngIf="!editar">{{usuario?.numeroDireccion}}</p>
+                  </div>
+                  <div class="col-md-6">
                     <h2 class="titulo-dato-personal">Ciudad</h2>
-                    <p class="dato-personal" *ngIf="!editar"></p>
-                  </div>
-                  <div class="col-md-3 offset-md-1">
-                    <h2 class="titulo-dato-personal">Código postal</h2>
-                    <p class="dato-personal"></p>
-                    <h2 class="titulo-dato-personal">País</h2>
-                    <p class="dato-personal"></p>
+                    <select *ngIf="editar" [(ngModel)]="ciudad" name="ciudad" class="form-control">
+                      <option value="Santiago">Santiago</option>
+                    </select>
+                    <p class="dato-personal" *ngIf="!editar">{{usuario?.ciudad}}</p>                    
+                    
                   </div>
                 </div>
+                <div class="row mt-2">
+                    <div class="col-md-10">
+                        <flash-messages *ngIf="editar" style="font-size: 12px; font-family: 'Avenir Next';"></flash-messages>
+                      </div>
+                    <div class="col-md-2">
+                        <button (click)="editarPerfil()" *ngIf="editar" class="btn btn-primary editar" style="float:right;">Guardar</button>
+                    </div>
+                  
+                </div>
+               
+                
           <!--       <app-editar-perfil *ngIf="editar"></app-editar-perfil> -->
-                <div class="row justify-content-center">
+                <div class="row justify-content-center mt-3">
                   <button *ngIf="!mostrarFormulario" (click)="mostrarFormulario=!mostrarFormulario" class="btn btn-primary cambiar-contraseña">Cambiar contraseña</button>
                   <button *ngIf="mostrarFormulario" (click)="mostrarFormulario=!mostrarFormulario" class="btn btn-primary cambiar-contraseña">Esconder formulario</button>
                 </div>
@@ -114,7 +114,7 @@
                     </div> 
                     <div class="row">
                       <div class="col-md-10">
-                        <flash-messages style="font-size: 12px; font-family: 'Avenir Next';"></flash-messages>
+                        <flash-messages *ngIf="mostrarFormulario" style="font-size: 12px; font-family: 'Avenir Next';"></flash-messages>
                       </div>
                       <div class="col-md-2 form-group">
                         <input type="submit" class="btn btn-primary editar" value="Cambiar">

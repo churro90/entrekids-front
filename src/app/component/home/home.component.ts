@@ -3,10 +3,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { NavbarVisibleService } from '../../services/navbar-visible.service';
 import { Router } from '@angular/router';
-import * as googlemaps from '@google/maps';
-/* import {} from '@types/googlemaps'; */
+/* import * as googlemaps from '@google/maps'; */
+/* import {} from '@types/googlemaps';  */
 import { MapTypeStyle } from '@google/maps';
-import { mapStyle } from '../../../assets/mapstyle';
+/* import { mapStyle } from '../../../assets/mapstyle'; */
 
 
 
@@ -23,7 +23,8 @@ export class HomeComponent implements OnInit {
   map: google.maps.Map;
   lat: any;
   lng: any; 
-  estilo: MapTypeStyle =  mapStyle;
+  public mapTypeStyle: google.maps.MapTypeStyle[] = [{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#c0e8e8"}]},{"featureType":"poi","elementType":"labels", "stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7dcdcd"}]}]
+
 
   constructor(public nav: NavbarVisibleService,
               private authService: AuthService,
@@ -50,7 +51,7 @@ export class HomeComponent implements OnInit {
     var mapProp = {
       zoom: 14,
       center: myLatLng,
-      styles: this.estilo    
+      styles: this.mapTypeStyle    
     }
   
      this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp); 

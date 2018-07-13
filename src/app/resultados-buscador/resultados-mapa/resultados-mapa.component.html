@@ -1,8 +1,55 @@
-<div class="row mapa">
-    <div class="col-sm-9">
-            <div #gmap id="map">
-                </div>    
+<div class="container-fluid resultados">
+ 
+        <div class="container" style="margin-top: 44px;">     
+                <div class="col-md-3">
+                    <div class="row text-center">
+                        <div routerLink="/resultados/calendario" routerLinkActive="activo" class="col-md-4 tipo-vista">Calendario</div>
+                        <div routerLink="/resultados/lista"  routerLinkActive="activo" class="col-md-4 tipo-vista">Lista</div>
+                        <div routerLink="/resultados/mapa"  routerLinkActive="activo"class="col-md-4 tipo-vista">Mapa</div>
+                    </div>
+                    <div class="row filtros">
+                        <div class="col-md-12 tipo-filtro align-self-center">
+                            <div class="slider" style="position: relative;">
+                                <nouislider #nouislider [config]="sliderConfig" [(ngModel)]="rangoPrecios"></nouislider>
+                            </div>
+                            
+                        </div>
+                        <hr class="separador">
+                        <div class="col-md-12 tipo-filtro align-self-center">
+                            Ubicación
+                            <img class="flecha" src="../../../assets/images/iconos-buscador/flecha-azul.svg">
+                        </div>
+                        <hr class="separador">
+                        <div class="col-md-12 tipo-filtro align-self-center">
+                            Edad
+                            <img class="flecha" src="../../../assets/images/iconos-buscador/flecha-azul.svg">
+                        </div>
+                        <hr class="separador">
+                        <div class="col-md-12 tipo-filtro align-self-center">
+                            Categorias
+                            <img class="flecha" src="../../../assets/images/iconos-buscador/flecha-azul.svg">
+                        </div>
+                        <hr class="separador">
+                        <div class="col-md-12 tipo-filtro align-self-center">
+                            Precios
+                            <img class="flecha" src="../../../assets/images/iconos-buscador/flecha-azul.svg">
+                        </div>
+                        <hr class="separador">
+                        <div class="col-md-12 tipo-filtro align-self-center">
+                            Proveedores
+                            <img class="flecha" src="../../../assets/images/iconos-buscador/flecha-azul.svg">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 lista-resultados" style="margin-left:15px;">
+                        <div #gmap id="map">
+                            </div>  
+       
+        </div>
+    
     </div>
-    <app-filtros></app-filtros>
-</div>
+       
+           
+    
+
   

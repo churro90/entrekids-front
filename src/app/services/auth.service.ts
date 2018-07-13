@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Subject } from 'rxjs';
 import { tokenNotExpired } from 'angular2-jwt';
+import { CookieService } from 'angular2-cookie/core';
 
 
 
@@ -13,12 +14,17 @@ import { tokenNotExpired } from 'angular2-jwt';
 export class AuthService {
   authToken: any;
   usuario: any;
+  nombre: any;
+  balance: any;
  private _url:string = environment.serverUrl + '/usuarios';
  public popup: Subject<any> = new Subject<any>();
  public popupLogin: Subject<any> = new Subject<any>();
 
-  constructor(private http:Http
-              ) { }
+  constructor(private http:Http,
+              private cookieService: CookieService
+              ) { 
+        
+              }
 
   registrarUsuario(usuario){
     let headers = new Headers();
@@ -70,31 +76,42 @@ export class AuthService {
     return this.http.put(this._url +'/perfil/agregar-hijo', hijo, {headers: headers})
      .map(res => res.json());
   }
+  eliminarHijo(info) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this._url +'/eliminar-hijo', info, {headers: headers})
+     .map(res => res.json());
+  }
+  agregarCuidador(cuidador){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put(this._url +'/agregar-cuidador', cuidador, {headers: headers})
+     .map(res => res.json());
+  }
+  eliminarCuidador(info){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this._url +'/eliminar-cuidador', info, {headers: headers})
+     .map(res => res.json());
+  }
 
   almacenarDataUsuario(token, usuario){
     localStorage.setItem('id_token', token);
     localStorage.setItem('usuario', JSON.stringify(usuario));
     this.authToken = token;
-    this.usuario = usuario;
+    this.nombre = usuario.nombre;
+    this.balance = usuario.balance;
   }
-/* 
-  autenticarUsuarioFB(){
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.http.get(this._url +'/autenticarse/fb', {headers: headers})
-     .map(res => res.json());
-  }
-  almacenarDataUsuarioFB(token, usuario){    
+  almacenarDataUsuarioFB(token, nombre, balance) {
     localStorage.setItem('id_token', token);
-    localStorage.setItem('usuario', JSON.stringify(usuario));
     this.authToken = token;
-    this.usuario = usuario;
-  } */
-
-  eliminarTarjeta(tarjeta){
+    this.nombre = nombre;
+    this.balance = balance;
+  }
+  eliminarTarjeta(info){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post(this._url +'/eliminar-tarjeta', tarjeta, {headers: headers})
+    return this.http.post(this._url +'/eliminar-tarjeta', info, {headers: headers})
      .map(res => res.json());
   }
   cambiarContrasena(contrasena){
@@ -103,7 +120,12 @@ export class AuthService {
     return this.http.post(this._url +'/cambiar-contrasena', contrasena, {headers: headers})
      .map(res => res.json());
   }
-
+  
+   loginFB(){
+  
+   window.open('http://localhost:3000/usuarios/auth/facebook');
+  }
+ 
   loadToken(){
     const token = localStorage.getItem('id_token');
     this.authToken = token;
@@ -117,5 +139,7 @@ export class AuthService {
     this.authToken = null;
     this.usuario = null;
     localStorage.clear();
+    this.cookieService.remove('auth');
+    
   }
 }

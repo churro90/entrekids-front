@@ -5,7 +5,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NgbModal, NgbModalRef, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../services/auth.service';
 import 'rxjs/add/operator/switchMap';
-import {} from '@types/googlemaps';
+/* import {} from '@types/googlemaps'; */
 import { LatLngLiteral } from '@agm/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { NavbarVisibleService } from '../../services/navbar-visible.service';
@@ -53,6 +53,9 @@ usuario: any;
 actividadAux;
 usernameAux;
 
+//ESTILO MAPA
+public mapTypeStyle: google.maps.MapTypeStyle[] = [{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#c0e8e8"}]},{"featureType":"poi","elementType":"labels", "stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7dcdcd"}]}]
+
   constructor(private actividadesService: ActividadesService,
               private authService: AuthService,
               public ref: ChangeDetectorRef,
@@ -88,8 +91,9 @@ usernameAux;
     
    
       var mapProp = {
-        zoom: 15,
-        center: myLatLng
+        zoom: 16,
+        center: myLatLng,
+        styles: this.mapTypeStyle
       }
 
       this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
@@ -97,6 +101,7 @@ usernameAux;
       var marker = new google.maps.Marker({
         position: myLatLng,
         map: this.map
+      
       });
     
  }, 
@@ -104,7 +109,7 @@ usernameAux;
     console.log(err);
     return false;
   });
-    this.actividadesService.obtenerDisponibilidadActividades(this.nombre).subscribe(data =>{
+    this.actividadesService.obtenerDisponibilidadActividades(this.id).subscribe(data =>{
       this.disponibilidad = data.disponibilidades;
       
     },
@@ -130,13 +135,18 @@ usernameAux;
   }
   
 
- open(content){ 
-  this.modalReference = this.modalService.open(content, {size: 'lg'});
-  this.modalReference.result.then((result) => {
-  this.closeResult = `Closed with: ${result}`;
-  }, (reason) => {
-  this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-});  console.log(this.modalReference);
+ inscribirse(content){ 
+  if(!this.authService.loggedIn()){    
+    this.authService.popupLogin.next('open');
+   } else{
+    this.modalReference = this.modalService.open(content, {size: 'lg'});
+    this.modalReference.result.then((result) => {
+    this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  });  console.log(this.modalReference);
+   }
+ 
  }
  private getDismissReason(reason: any): string {
   if (reason === ModalDismissReasons.ESC) {
@@ -203,19 +213,44 @@ usernameAux;
     }
    
   }
-  agregarFavoritos(content){
+  agregarFavoritos(){
     if(!this.authService.loggedIn()){    
-      this.modalReference = this.modalService.open(content, {size: 'lg'});
+      this.authService.popupLogin.next('open');
      } else {
        const info = {
          id: this.actividad._id,
          username: this.usuario.username
        }
-       this.actividadesService.agregarFavoritos(info).subscribe(data => {
-        console.log(data);
+       this.actividadesService.agregarFavoritos(info).subscribe(data => {       
         this.esFavorito = !this.esFavorito
        });
        
     }
+  }
+  eliminarFavoritos(){
+    const info = {
+      id: this.actividad._id,
+      username: this.usuario.username
+    }
+    this.actividadesService.eliminarFavoritos(info).subscribe(data => {
+      this.esFavorito = !this.esFavorito;
+    });
+  }
+
+  irHorario(id){
+        setTimeout(()=> {
+      this.router.routeReuseStrategy.shouldReuseRoute = function(){return false;};
+
+      let currentUrl = this.router.url + '?';
+    
+      this.router.navigateByUrl(currentUrl)
+        .then(() => {
+          this.router.navigated = false;        
+          this.router.navigate(['/resultados/detalles/' + id]);
+        });
+
+   
+    }, 10)
+ 
   }
 }

@@ -221,11 +221,20 @@ auth: any;
    
     }, 10)
   }
-  perfil(){
+  ajustes(){
     setTimeout(()=> {
       this.router.navigate(['/usuarios/perfil']);
     },150)
   
   }
+  compras(){
+    setTimeout(()=> {
+      this.router.navigate(['/usuarios/mis-compras']);
+    },150)
+  }
+  loginFB(){
+    this.authService.loginFB();
   
+  }
+
 }

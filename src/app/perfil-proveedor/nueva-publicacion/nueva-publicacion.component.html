@@ -1,235 +1,278 @@
-<div class="row">
-    <div class="col-sm-10 offset-2">
+<div class="row no-gutters crear-actividad">
+    <div class="col-sm-2">
+      <app-dashboard></app-dashboard>
+    </div>
+    <div class="col-sm-10">
         <div class="progress">
             <div class="progress-bar bg-success" [style.width]="tab*20+'%'">
              Paso {{tab}}
             </div>
           </div> 
-        </div>
- </div>
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
- 
-    <h1>Agregar actividad</h1>
-    
+          <div class="row">
+              <main role="main" class="col-md-11 col-lg-11 pt-3 px-4 agregar-nueva-actividad">
+                <div class="row text-center">
+                  <div class="col-md-12">
+                    <h2 class="agregar-actividad">Agregar una nueva actividad</h2>
+                  </div>
+                </div>
+                 <div class=" flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 col-md-12">
+                   
+                     
+                    <div class="tab-1" *ngIf="tab === 1">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <h3 class="labels">Titulo</h3>
+                          <p class="bajada-labels">
+                              Curabitur lobortis id lorem id bibendum. Ut id consectetur magna. Quisque volutpat augue enim,.
+                          </p>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" style="margin-top:25px;" class="form-control" [(ngModel)]="nombre" name="nombre" id="nombre" 
+                            placeholder="Ejemplo: “Sábados de montaña con nuestra empresa”">
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-md-4">
+                            <h3 class="labels">De qué se trata</h3>
+                            <p class="bajada-labels">
+                              Kogi Cosby sweater ethical squid irony disrupt, organic tote bag gluten-free
+                               XOXO wolf typewriter mixtape small batch. DIY pickled four lo
+                             </p>
+                        </div>
+                        <div class="col-md-8">
+                            <textarea [(ngModel)]="descripcion" name="descripcion" 
+                            rows="4" cols="50" maxlength="250" class="form-control" 
+                            id="descripcion" (keyup)="contarCaracteres($event)"
+                            placeholder="Descripción de la actividad (máximo 600 carácteres)">
+                          </textarea>
+                          <p class="caracteres">{{caracteres}} caracteres restantes</p>  
+                        </div>
+                      </div>
+                   
+                  <!--  
+                        <div class="form-group">
+                          <label for="fotos">Fotos actividad</label>
+                          <input type="file" name="fotos" id="fotos" class="form-control" multiple ng2FileSelect [uploader]="uploader">
+                        </div>
+                          <div class="row mt-2" *ngFor="let item of uploader.queue">
+                            <div class="col-sm-5">{{item.file.name}}</div>
+                            <div class="col-sm-4">
+                              <div class="progress">
+                                <div class="progress-bar bg-success" [ngStyle]="{'width': item.progress+'%'}"></div>
+                            </div>
+                            </div>
+                            <div class="col-sm-3">
+                              <button type="button" class="btn btn-dark" (click)="item.upload()">Subir</button>
+                              <button type="button" class="btn btn-danger" (click)="item.remove()">Cancelar</button>
+                            </div>
+                          </div>
+                          <div class="row ml-2" *ngIf="uploader?.queue?.length > 0">
+                            <button type="button" class="btn btn-primary" (click)="uploader.uploadAll()">Subir todas</button>
+                          </div> -->
               
-  </div>
-  <div class=" flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 col-md-8">
-    <form (submit)="onSubmit()">
-     
-    <div class="tab-1" *ngIf="tab === 1">
-        <div class="form-row">
-          <div class="form-group col-md-12">
-            <label for="nombre">Nombre actividad</label>
-            <input type="text" class="form-control" [(ngModel)]="nombre" name="nombre" id="nombre" 
-            placeholder="Nombre">
+                  <!--     cambiar para validacion  <button class="btn btn-primary" [disabled]="!validacionB1" (click)="siguiente()">Siguiente</button> -->
+                        <button class="btn btn-primary" (click)="siguiente()">Siguiente</button>
+                    </div>
+                    <div *ngIf="tab == 2">
+                      <div class="row">
+                        <div class="col-md-4">
+                            <h3 class="labels">Calendario</h3>
+                            <p class="bajada-labels">
+                                I have hinted that I would often jerk poor Queequeg from between the whale and the ship—where he would 
+                             </p>
+                        </div>
+                        <div class="col-md-4">
+                          <h3 class="labels">Fecha de inicio</h3>
+                            <input class="form-control" placeholder="Cualquier fecha"
+                            name="dp1" [(ngModel)]="fechaInicio" placeholder="Fecha de inicio" ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()">
+                        </div>
+                        <div class="col-md-4">
+                          <h3 class="labels">Fecha de termino</h3>
+                            <input class="form-control" placeholder="Cualquier fecha"
+                            name="dp2" [(ngModel)]="fechaTermino" placeholder="Fecha de termino" ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()">
+                        </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-4">
+                            <h3 class="labels">Que días quieres que se repita tu actividad?</h3>
+                            <p class="bajada-labels">
+                              Por ejemplo, si solo quieres tus actividades en dias hábiles, marcar: lunes, martes, miércoles, jueves y viernes
+                            </p>
+                          </div>
+                          <div class="col-md-1" *ngFor="let dia of dias; let i=index">
+                             <h3 class="labels">{{dia}}</h3>
+                             <span class="checkbox-filtro" (click)="seleccionDias(i,$event);"   style="cursor: pointer;">                                    
+                              </span>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-4">
+                            <h3 class="labels">
+                              Tu actividad es full-day?
+                            </h3>
+                            <p class="bajada-labels">
+                              Full day significa que la actividad no tiene horario definido y que esta disponible todo el día
+                            </p>
+                          </div>
+                          <div class="col-md-1">
+                              <h3 class="labels">Si</h3>
+                              <input type="radio"  (click)="fulldayRadio(1)" class="fullday" id="si" name="fullday">                           
+                            </div>
+                            <div class="col-md-1">
+                              <h3 class="labels">No</h3>
+                              <input type="radio"  (click)="fulldayRadio(2)" class="fullday" id="no" name="fullday">
+                            </div>
+                        </div>                     
+                      
+                   
+                      
+                      <button class="btn btn-warning" (click)="atras()">Atras</button>
+                 <!--      <button class="btn btn-primary" [disabled]="!validacionB2" (click)="siguiente()">Siguiente</button> -->
+                      <button class="btn btn-primary" (click)="siguiente()">Siguiente</button>
+                    </div>
+                    <div *ngIf="tab == 3">
+                        <div class="row" *ngIf="!fullday">
+                            <div class="col-md-12">
+                              <h3 class="labels">
+                                Selecciona los horarios 
+                              </h3>
+                              <p class="bajada-labels">
+                                Puedes seleccionar los distintos horarios, stock y descuentos de acuerdo a como estimes conveniente
+                              </p>
+                              <div class="row">
+                                <div class="col-md-2">
+                                    <h3 class="labels" style="margin-top: 20px;">
+                                        Formato Descuento
+                                      </h3>
+                                </div>
+                                <div class="col-md-1">
+                                  <p class="bajada-labels mb-0">
+                                    $
+                                  </p>
+                                    <input type="radio" (click)="tipoDescuento(1)" checked name="dcto">
+                                </div>
+                                <div class="col-md-1">
+                                  <p class="bajada-labels mb-0">
+                                    %
+                                  </p>
+                                    <input type="radio" (click)="tipoDescuento(2)" name="dcto">
+                                </div>
+                                <div class="col-md-2 offset-md-5">
+                                  <button class="btn btn-light btn-block agregar-horario">+ Agregar horario</button>
+                                </div>
+                              </div>
+                           
+                             
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="row">                         
+                                          <div class="col-md-2">
+                                              <p class="bajada-labels mb-0">
+                                                Hora inicio
+                                              </p>
+                                              <input type="time" class="form-control" placeholder="Hora inicio">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <p class="bajada-labels mb-0">
+                                                Hora termino
+                                                </p>
+                                              <input type="time" class="form-control" placeholder="Hora termino">
+                                            </div>
+                                          <div class="col-md-1">
+                                              <p class="bajada-labels mb-0">
+                                              Cupos
+                                              </p>
+                                            <input type="number" class="form-control">
+                                          </div>
+                                          <div class="col-md-2">
+                                            <p class="bajada-labels mb-0">
+                                              Precio lista($)
+                                            </p>
+                                            <input type="number" [(ngModel)]="plista"  class="form-control">
+                                          </div>
+                                          <div class="col-md-2">
+                                            <p class="bajada-labels mb-0" *ngIf="descuento">
+                                              Descuento($)
+                                            </p>
+                                            <p class="bajada-labels mb-0" *ngIf="!descuento">
+                                              Descuento(%)
+                                            </p>
+                                            <input type="number" [(ngModel)]="dcto" *ngIf="descuento" class="form-control" placeholder="$" min="0">
+                                            <input type="number" [(ngModel)]="dcto" *ngIf="!descuento" class="form-control" placeholder="%" min="0" max="100" step="1">
+                                          </div>
+                                        <div class="col-md-2">
+                                          <p class="bajada-labels mb-0">
+                                            Precio publicacion
+                                          </p>
+                                          <input type="number" *ngIf="descuento" readonly value="{{plista - dcto}}" class="form-control">
+                                          <input type="number" *ngIf="!descuento" readonly value="{{plista - (plista * dcto)/100}}" class="form-control">
+                                        </div> 
+                                        
+                                      </div>
+                                    </div>
+                              </div>
+                            </div>
+                        
+                     
+                         
+                          </div>
+                    </div>
+                        
+                      
+                     <!--  <div class="campos" *ngIf="!validacionActividad"><p>*Porfavor rellena todos los campos</p></div> -->
+                    
+                    <flash-messages></flash-messages>
+                  </div>
+                </main>  
+                  <!-- <div class="hint">
+                     <div class="card" *ngIf="tab === 1" style="width: 18rem">
+                       <div class="card-body">
+                         <h5 class="card-title"><i class="far fa-lightbulb" style="color:blueviolet;"></i></h5>
+                                  
+                            <p class="card-text">Utiliza un título único y llamativo para atraer más clientes.</p>
+                
+                            <p class="card-text">Usar imágenes de buena calidad y que representen tu servicio te ayudará
+                              a resaltar por sobre otras publicaciones. Recomendamos imágenes en formato JPG de tamaño 
+                              700x800px
+                            </p>            
+                       </div>
+                     </div>     
+                     <div class="card" *ngIf="tab === 2" style="width: 18rem">
+                       <div class="card-body">
+                         <h5 class="card-title"><i class="far fa-lightbulb" style="color:blueviolet;"></i></h5>
+                                  
+                            <p class="card-text">Puedes hacer drag and drop con el marker</p>
+                
+                            <p class="card-text">Sitúa el marcador en el lugar exacto de tu actividad. Por ejemplo,
+                              si tu actividad es en una plaza, desplaza el pin hasta el lugar exacto de la realización.
+                            </p>            
+                       </div>
+                     </div>     
+                     <div class="card" *ngIf="tab === 3" style="width: 18rem">
+                       <div class="card-body">
+                         <h5 class="card-title"><i class="far fa-lightbulb" style="color:blueviolet;"></i></h5>
+                                  
+                            <p class="card-text">Elige bien la modalidad de tu actividad</p>
+                
+                            <p class="card-text">Recuerda que dropoff implica una actividad sin supervisión parental
+                            </p>            
+                       </div>
+                     </div>     
+                     <div class="card" *ngIf="tab === 5" style="width: 18rem">
+                       <div class="card-body">
+                         <h5 class="card-title"><i class="far fa-lightbulb" style="color:blueviolet;"></i></h5>
+                                  
+                            <p class="card-text">Fecha inicio y fecha termino son el rango de fechas para cuales quieres
+                              agregar una actividad
+                            </p>
+                
+                            <p class="card-text">Selecciona los días que quieras que tu actividad se repita dentro del rango
+                              de fechas que elegiste con la opcion de recurrencia
+                            </p>            
+                       </div>
+                     </div>     
+                  </div>     -->
           </div>
-        </div>
-        <div class="form-group">
-          <label for="fotos">Fotos actividad</label>
-          <input type="file" name="fotos" id="fotos" class="form-control" multiple ng2FileSelect [uploader]="uploader">
-        </div>
-          <div class="row mt-2" *ngFor="let item of uploader.queue">
-            <div class="col-sm-5">{{item.file.name}}</div>
-            <div class="col-sm-4">
-              <div class="progress">
-                <div class="progress-bar bg-success" [ngStyle]="{'width': item.progress+'%'}"></div>
-            </div>
-            </div>
-            <div class="col-sm-3">
-              <button type="button" class="btn btn-dark" (click)="item.upload()">Subir</button>
-              <button type="button" class="btn btn-danger" (click)="item.remove()">Cancelar</button>
-            </div>
-          </div>
-          <div class="row ml-2" *ngIf="uploader?.queue?.length > 0">
-            <button type="button" class="btn btn-primary" (click)="uploader.uploadAll()">Subir todas</button>
-          </div>
-          
-        <div class="form-group mt-2">
-          <label for="descripcion">Descripción</label>
-          <textarea [(ngModel)]="descripcion" name="descripcion" 
-          rows="4" cols="50" maxlength="250" class="form-control" 
-          id="descripcion" (keyup)="contarCaracteres($event)"
-          placeholder="Descripción de la actividad (máximo 250 carácteres)">
-        </textarea>
-        <p class="caracteres">{{caracteres}} caracteres restantes</p>     
-        </div>
-       
-        <button class="btn btn-primary" [disabled]="!validacionB1" (click)="siguiente()">Siguiente</button>
     </div>
-    <div class="tab-2" *ngIf="tab === 2">
-      <div class="form-row">
-        <div class="form-group col-md-9">
-          <label for="direccion">Direccion</label>
-          <input #box type="text"  (keyup.enter)="update(box.value)" [(ngModel)]="direccion" class="form-control" name="direccion" id="direccion" appAutocomplete>
-        </div>
-         <div class="form-group col-md-3">
-          <label for="numeroDireccion">Número</label>
-          <input #box2 type="text" (focus)="update(box.value)" (blur)="mostrarMapa()" [(ngModel)]="numeroDireccion" class="form-control"  name="numeroDireccion" id="numeroDireccion">
-        </div>
-      </div>
-      
-      
-      <button class="btn btn-warning" (click)="atras()">Atras</button>
-      <button class="btn btn-primary" [disabled]="!validacionB2" (click)="siguiente()">Siguiente</button>
-     
-    </div>
-    <div class="row" [hidden]="!ingresoDireccion || tab != 2">
-        <div #gmap id="map" class="col-sm-12">
-        </div>
-      </div>
-    <div class="tab-3" *ngIf="tab === 3">
-      <div class="form-group">
-        <label for="categorias">Categoría</label>
-        <select class="form-control" [(ngModel)]="categoria" name="categoria" id="categorias">
-          <option value=""></option>
-          <option *ngFor="let categoria of categorias" value={{categoria}}>{{categoria}}</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="tipo">Tipo de actividad</label>
-          <select class="form-control" [(ngModel)]="tipo" name="tipo" id="tipo">
-            <option value=""></option>
-            <option  *ngFor="let tipo of tipos" value={{tipo}}>{{tipo}}</option>
-          </select>
-        </div>
-        <div class="form-group col-md-6">
-          <label for="modalidad">Modalidad</label>
-          <select class="form-control" [(ngModel)]="modalidad" name="modalidad" id="modalidad">
-            <option value=""></option>
-            <option *ngFor="let modalidad of modalidades" value={{modalidad}}>{{modalidad}}</option>
-          </select>
-        </div>
-      </div>
-      <button class="btn btn-warning" (click)="atras()">Atras</button>
-      <button class="btn btn-primary" [disabled]="!validacionB3" (click)="siguiente()">Siguiente</button>
-    </div>
-    <div class="tab-4" *ngIf="tab === 4">
-        <div class="form-row">
-          <div class="form-group col-md-3">
-            <label for="edadMinima">Edad mínima</label>
-            <input type="text" [(ngModel)]="edadMinima" name="edadMinima" class="form-control" id="edadMinima" placeholder="0">
-          </div> 
-          <div class="form-group col-md-3">
-            <label for="edadMaxima">Edad máxima</label>
-            <input type="text" [(ngModel)]="edadMaxima" name="edadMaxima" class="form-control" id="edadMaxima" placeholder="2">
-          </div> 
-          <div class="form-group col-md-6">
-            <label for="sexo">Sexo</label>
-            <select class="form-control" [(ngModel)]="sexo" name="sexo" id="sexo">
-              <option value=""></option>
-              <option *ngFor="let sexo of sexos" value={{sexo}}>{{sexo}}</option>
-            </select>
-          </div>
-        </div>
-        <button class="btn btn-warning" (click)="atras()">Atras</button>
-        <button class="btn btn-primary" [disabled]="!validacionB4" (click)="siguiente()">Siguiente</button>
-      </div>
-      <div class="tab-5"  *ngIf="tab === 5">
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="fechaInicio">Fecha inicio</label>
-            <input class="form-control" placeholder="Cualquier fecha"
-            name="dp1" [(ngModel)]="fechaInicio" ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="fechaTermino">Fecha termino</label>
-            <input class="form-control" placeholder="Cualquier fecha"
-            name="dp2" [(ngModel)]="fechaTermino" ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()">
-          </div>          
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-12">
-            <label for="checkbox">Selecciona recurrencia</label>
-            <button placement="top" class="nostyle" ngbTooltip="Este campo es opcional, representa que días necesitas que tu actividad se repita"><i class="fas fa-info-circle naranjo"></i></button>
-            <div class="form-check form-check-inline" id="checkbox" *ngFor="let dia of dias; let i = index">
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" name={{dia}} id={{dia}} [(ngModel)]="checked[i]" class="custom-control-input">
-                <label class="custom-control-label" for={{dia}}>{{dia}}</label>                                      
-              </div>             
-            </div>              
-          </div>          
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-2">
-                <label for="horaInicio">Hora inicio</label>
-                <input type="time" [(ngModel)]="horaInicio" name="horaInicio" class="form-control" id="horaInicio">
-              </div>
-              <div class="form-group col-md-2">
-                <label for="horaTermino">Hora Termino</label>
-                <input type="time" [(ngModel)]="horaTermino" name="horaTermino" class="form-control" id="horaTermino">
-              </div>
-              <div class="form-group col-md-2">
-                <label for ="stock">Stock</label>
-                <input type="number" [(ngModel)]="stock" name="stock" class="form-control" id="stock">
-              </div>
-              <div class="form-group col-md-2">
-                <label for ="plista">Precio lista</label>
-                <input type="text" [(ngModel)]="plista" name="plista" class="form-control" id="plista" placeholder="10000">
-              </div>
-              <div class="form-group col-md-2">
-                <label for ="dcto">Descuento</label>
-                <input type="text" [(ngModel)]="dcto" name="dcto" class="form-control" id="dcto" placeholder="1000">
-              </div>
-        </div>
-        <button class="btn btn-warning" (click)="atras()">Atras</button>
-        <button type="submit" *ngIf="tab === 5" [disabled]="!validacionActividad" class="btn btn-primary">Agregar actividad</button>
-      </div>
-        <input type="hidden" [(ngModel)]="idProveedor" name="idProveedor" value={{proveedor?._id}}>
-        <input type="hidden" [(ngModel)]="fotos" name="fotos" value={{attachmentList}}>
-        
-      
-      <div class="campos" *ngIf="!validacionActividad"><p>*Porfavor rellena todos los campos</p></div>
-    </form>
-    <flash-messages></flash-messages>
-  </div>
-</main>  
-  <div class="hint">
-     <div class="card" *ngIf="tab === 1" style="width: 18rem">
-       <div class="card-body">
-         <h5 class="card-title"><i class="far fa-lightbulb" style="color:blueviolet;"></i></h5>
-                  
-            <p class="card-text">Utiliza un título único y llamativo para atraer más clientes.</p>
-
-            <p class="card-text">Usar imágenes de buena calidad y que representen tu servicio te ayudará
-              a resaltar por sobre otras publicaciones. Recomendamos imágenes en formato JPG de tamaño 
-              700x800px
-            </p>            
-       </div>
-     </div>     
-     <div class="card" *ngIf="tab === 2" style="width: 18rem">
-       <div class="card-body">
-         <h5 class="card-title"><i class="far fa-lightbulb" style="color:blueviolet;"></i></h5>
-                  
-            <p class="card-text">Puedes hacer drag and drop con el marker</p>
-
-            <p class="card-text">Sitúa el marcador en el lugar exacto de tu actividad. Por ejemplo,
-              si tu actividad es en una plaza, desplaza el pin hasta el lugar exacto de la realización.
-            </p>            
-       </div>
-     </div>     
-     <div class="card" *ngIf="tab === 3" style="width: 18rem">
-       <div class="card-body">
-         <h5 class="card-title"><i class="far fa-lightbulb" style="color:blueviolet;"></i></h5>
-                  
-            <p class="card-text">Elige bien la modalidad de tu actividad</p>
-
-            <p class="card-text">Recuerda que dropoff implica una actividad sin supervisión parental
-            </p>            
-       </div>
-     </div>     
-     <div class="card" *ngIf="tab === 5" style="width: 18rem">
-       <div class="card-body">
-         <h5 class="card-title"><i class="far fa-lightbulb" style="color:blueviolet;"></i></h5>
-                  
-            <p class="card-text">Fecha inicio y fecha termino son el rango de fechas para cuales quieres
-              agregar una actividad
-            </p>
-
-            <p class="card-text">Selecciona los días que quieras que tu actividad se repita dentro del rango
-              de fechas que elegiste con la opcion de recurrencia
-            </p>            
-       </div>
-     </div>     
-  </div>    
+ </div>

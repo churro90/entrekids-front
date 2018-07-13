@@ -32,7 +32,7 @@ recuerdame = false;
         
         this.authProvider.almacenarDataProveedor(data.token, data.proveedor);
         this.flashMessage.show('Login con exito', {cssClass: 'alert-success', timeout: 5000});
-        this.router.navigate(['proveedores/perfil']);
+        this.router.navigate(['proveedores/perfil/panel']);
       } else {
         this.flashMessage.show(data.msg, {cssClass: 'alerta-login', timeout: 5000});
       }

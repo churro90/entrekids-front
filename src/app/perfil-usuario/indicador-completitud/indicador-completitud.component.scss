@@ -1,0 +1,32 @@
+.completa {
+	height: 40px;
+	width: 200px;
+	opacity: 0.99;
+	color: #A3A3A3;
+	font-family: 'Avenir Next';
+	font-size: 12px;
+	font-weight: 300;
+	letter-spacing: 0.1px;
+    line-height: 16px;
+    padding-left: 24.5px;
+}
+.circular-chart {
+    display: block;
+    margin: 10px 25%;
+    width: 80px;
+    height: 80px;
+  }
+  
+  .circle {
+    stroke: #4CC790;
+    fill: none;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    animation: progress 2s ease-out forwards;
+  }
+  
+  @keyframes progress {
+    0% {
+      stroke-dasharray: 0 100;
+    }
+  }

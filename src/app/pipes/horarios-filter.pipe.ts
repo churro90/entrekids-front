@@ -5,13 +5,22 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class HorariosFilterPipe implements PipeTransform {
 
-  transform(horarios: any[], fecha: Date): any[] {
-    if(!horarios) return [];
-    let isoFecha = new Date(fecha);
-    let dateMs = isoFecha.getTime();
-    return horarios.filter(it => {
-      return (new Date(it.fechaInicio).getTime()) > dateMs;
+  transform(actividades: any[], rangoHorario: any[]): any[] {
+    if(!actividades) return [];
+    console.log(rangoHorario);
+    let rhAux = [
+      this.transformarHora(rangoHorario[0]),
+      this.transformarHora(rangoHorario[1]),
+    ];
+    return actividades.filter(it => {
+      return (rhAux[0] <= this.transformarFechaInicio(it.fechaInicio) && this.transformarFechaInicio(it.fechaInicio) <= rhAux[1]);
     });
   }
-
+  transformarHora(i){
+    return (i/2 + 6)*60;
+  }
+  transformarFechaInicio(fecha){
+    let fechaAux = new Date(fecha);
+    return fechaAux.getHours()*60 + fechaAux.getMinutes();
+  }
 }

@@ -1,0 +1,111 @@
+
+<div class="container-fluid compras">
+    <app-subnavbar-compras></app-subnavbar-compras>
+  
+    <div class="container">
+            <div (click)="estatus()"  [ngClass]="status ? 'todos-activo':'todos'" class="col-md-1" style="margin:0 7px 0 0;">
+                Todos
+            <div [ngClass]="status ? 'activo':'no-activo'"></div>
+            </div>
+            <div (click)="estatus2()" [ngClass]="status2 ? 'futuras-activo':'futuras'" class="col-md-1">
+                Futuras
+            <div [ngClass]="status2 ? 'activo':'no-activo'"></div>
+            </div>
+            <div (click)="estatus3()" [ngClass]="status3 ? 'pasadas-activo':'pasadas'" class="col-md-1">
+                    Pasadas
+            <div [ngClass]="status3 ? 'activo':'no-activo'"></div>
+                </div>
+    </div>
+    <div class="container">
+         
+              
+               
+            <div class="col-12 informacion-compras" *ngIf="status">
+                <div class="row detalle-compra text-center align-items-center" *ngFor="let compra of compras">
+                    <div class="col-md-2">
+                        <h2 class="dia-fecha mb-0">{{compra.fechaInicio | date:'EEE':'':'es-CL' }}</h2>
+                        <p class="numero-fecha mb-0">{{compra.fechaInicio | date:'dd/MM':'':'es-CL' }}</p>
+
+                    <!-- Ponerlo asi
+                         {{dia | date:'EEEEEE':'':'es-CL' | uppercase}}<br>
+                         {{dia | date:'dd-MM':'':'es-CL' | uppercase}}
+                    -->
+                    </div>
+                    <div class="col-md-1">
+                        <img src="https://d31s580dpd2ikg.cloudfront.net/craft-studio-camps-m.jpg" class="imagen-actividad">
+                        <!-- poner src={{compra.foto[0]}} -->
+                    </div>
+                    <div class="col-md-5">
+                        <h2 class="titulo-actividad">{{compra.nombreActividad}}</h2>
+                        <p class="informacion">{{compra.hijo}}</p>
+                        <p class="informacion">{{compra.fechaInicio | date:'shortTime'}} - {{compra.fechaTermino | date:'shortTime'}} </p>
+                        <p class="informacion">{{compra.direccion}}</p>
+                    </div>
+                    <div class="col-md-2 offset-md-2">
+                        <button *ngIf="compra.timeStamp > fechaActual" class="btn btn-primary cancelar">Cancelar</button>
+                    </div>
+                
+                </div>
+                
+            </div>
+            <div class="col-12 informacion-compras" *ngIf="status2">
+                <div class="row detalle-compra text-center align-items-center" *ngFor="let compra of comprasFuturas">
+                    <div class="col-md-2">
+                        <h2 class="dia-fecha mb-0">{{compra.fechaInicio | date:'EEE':'':'es-CL' }}</h2>
+                        <p class="numero-fecha mb-0">{{compra.fechaInicio | date:'dd/MM':'':'es-CL' }}</p>
+                              
+                    <!-- Ponerlo asi
+                         {{dia | date:'EEEEEE':'':'es-CL' | uppercase}}<br>
+                         {{dia | date:'dd-MM':'':'es-CL' | uppercase}}
+                    -->
+                    </div>
+                    <div class="col-md-1">
+                        <img src="https://d31s580dpd2ikg.cloudfront.net/craft-studio-camps-m.jpg" class="imagen-actividad">
+                        <!-- poner src={{compra.foto[0]}} -->
+                    </div>
+                    <div class="col-md-5">
+                        <h2 class="titulo-actividad">{{compra.nombreActividad}}</h2>
+                        <p class="informacion">{{compra.hijo}}</p>
+                        <p class="informacion">{{compra.fechaInicio | date:'shortTime'}} - {{compra.fechaTermino | date:'shortTime'}} </p>
+                        <p class="informacion">{{compra.direccion}}</p>
+                    </div>
+                    <div class="col-md-2 offset-md-2">
+                        <button *ngIf="compra.timeStamp > fechaActual" class="btn btn-primary cancelar">Cancelar</button>
+                    </div>
+                
+                </div>
+                
+            </div>
+            <div class="col-12 informacion-compras" *ngIf="status3">
+                <div class="row detalle-compra text-center align-items-center" *ngFor="let compra of comprasPasadas">
+                    <div class="col-md-2">
+                        <h2 class="dia-fecha mb-0">{{compra.fechaInicio | date:'EEE':'':'es-CL' }}</h2>
+                        <p class="numero-fecha mb-0">{{compra.fechaInicio | date:'dd/MM':'':'es-CL' }}</p>
+
+                    <!-- Ponerlo asi
+                         {{dia | date:'EEEEEE':'':'es-CL' | uppercase}}<br>
+                         {{dia | date:'dd-MM':'':'es-CL' | uppercase}}
+                    -->
+                    </div>
+                    <div class="col-md-1">
+                        <img src="https://d31s580dpd2ikg.cloudfront.net/craft-studio-camps-m.jpg" class="imagen-actividad">
+                        <!-- poner src={{compra.foto[0]}} -->
+                    </div>
+                    <div class="col-md-5">
+                        <h2 class="titulo-actividad">{{compra.nombreActividad}}</h2>
+                        <p class="informacion">{{compra.hijo}}</p>
+                        <p class="informacion">{{compra.fechaInicio | date:'shortTime'}} - {{compra.fechaTermino | date:'shortTime'}} </p>
+                        <p class="informacion">{{compra.direccion}}</p>
+                    </div>
+                    <div class="col-md-2 offset-md-2">
+                        <button *ngIf="compra.timeStamp > fechaActual" class="btn btn-primary cancelar">Cancelar</button>
+                    
+                    </div>
+                
+                </div>
+                
+            </div>
+    </div>
+
+</div>
+ 

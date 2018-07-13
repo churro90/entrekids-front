@@ -1,0 +1,80 @@
+
+<div class="hijos container-fluid">
+  <app-subnavbar></app-subnavbar>
+
+  <div class="container">
+    <div class="col-12 info-hijos">
+      <div class="row text-center" style="margin-top:80px;">
+        <div class="col-md-3">
+          <app-indicador-completitud></app-indicador-completitud>
+        </div>
+        <div class="col-md-9">
+          <h2 class="info-niños">Información niños(as)</h2>
+          <hr class="separador">
+          <div class="row" *ngFor="let hijo of usuario?.hijos; let i=index">
+            <div class="col-md-1">
+              <div class="subir-foto">
+                <div class="texto-subir-foto">
+                    <i class="fas fa-camera"></i> subir
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2 informacion-personal">
+              <h2 class="titulo-dato-personal">Nombre</h2>
+              <p class="dato-personal">{{hijo?.nombre}}</p>
+            </div>
+            <div class="col-md-2 informacion-personal">
+                <h2 class="titulo-dato-personal">Apellido</h2>
+                <p class="dato-personal">{{hijo?.apellido}}</p>
+            </div>
+            <div class="col-md-5 informacion-personal">
+                <h2 class="titulo-dato-personal">Fecha de nacimiento</h2>
+                <p class="dato-personal">{{hijo?.fdenacimiento | date:'d/M/yyyy':'':'es-CL'}}</p>
+            </div>
+            <div class="col-md-1">
+                <button (click)="eliminarHijo(i)" class="eliminar-hijo">
+                   &times;
+                </button>
+            </div>
+          </div>
+          <div class="row justify-content-center mt-3">
+              <button (click)="mostrar()" *ngIf="!mostrarFormulario"  class="btn btn-primary agregar-hijo">Agregar niña(o)</button>            
+              <button (click)="esconder()" *ngIf="mostrarFormulario" class="btn btn-primary agregar-hijo">Esconder</button>            
+          </div>
+          <form *ngIf="mostrarFormulario" (submit)="agregarHijo()" class="mt-3">
+              <div class="form-row">
+               <div class="col form-group">
+                 <label for="nombre" style="float: left;">Nombre(s)</label>
+                 <input type="text" [(ngModel)]="nombre" name="nombre" id="nombre" class="form-control" placeholder="Nombre">
+               </div>
+               <div class="col form-group">
+                 <label for="apellido" style="float: left;">Apellido(s)</label>
+                 <input type="text" [(ngModel)]="apellido" name="apellido" id="apellido" class="form-control" placeholder="Apellido">
+               </div>
+             </div>
+               <div class="form-row">
+                   <div class="col form-group">
+                     <label for="fdenacimiento" style="float: left;">Fecha de nacimiento</label>
+                     <input class="form-control" placeholder="Elige una fecha"
+                     name="dp1" [(ngModel)]="fdenacimiento" [placement]="'top-left'" ngbDatepicker [minDate]=minDate #d1="ngbDatepicker" (click)="d1.toggle();">
+                   </div>
+                   <div class="col form-group">
+                     <label for="foto" style="float: left;">Elige una foto</label>
+                     <input type="file" [(ngModel)]="foto" name="foto" id="foto" class="form-control">
+                   </div>
+               </div> 
+               <div class="row">
+                 <div class="col-md-10">
+                   <flash-messages *ngIf="mostrarFormulario" style="font-size: 12px; font-family: 'Avenir Next';"></flash-messages>
+                 </div>
+                 <div class="col-md-2 form-group">
+                   <input type="submit" class="btn btn-primary editar" value="Agregar">
+                 </div>
+               </div>              
+          
+             </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

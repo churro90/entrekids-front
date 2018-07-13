@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "dist",
+      "outDir": "../public",
       "assets": [
         "assets",
         "favicon.ico"
@@ -21,7 +21,7 @@
       "styles": [
         "styles.scss",
         "../node_modules/bootstrap/dist/css/bootstrap.css",
-        "../node_modules/nouislider/distribute/nouislider.css"
+        "../node_modules/nouislider/distribute/nouislider.css"     
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",

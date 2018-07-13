@@ -79,15 +79,6 @@ h2{
     min-height: 80vh;
 }
 
-.pestañas {
-	box-sizing: border-box;
-	height: 53px;
-	width: 666px;
-	border: 1px solid rgba(200,200,200,0.37);
-	border-radius: 3px;
-    background-color: #FFFFFF;
-    margin-top: 19px;
-}
 
 .informacion{
    
@@ -161,41 +152,11 @@ h2{
     line-height: 25px;
     padding: 31.5px 23.5px 30.5px 24.5px;
 } */
-.completa {
-	height: 40px;
-	width: 200px;
-	opacity: 0.99;
-	color: #A3A3A3;
-	font-family: 'Avenir Next';
-	font-size: 12px;
-	font-weight: 300;
-	letter-spacing: 0.1px;
-    line-height: 16px;
-    padding-left: 24.5px;
-}
+
 
 
   
-.circular-chart {
-    display: block;
-    margin: 10px 25%;
-    width: 80px;
-    height: 80px;
-  }
-  
-  .circle {
-    stroke: #4CC790;
-    fill: none;
-    stroke-width: 2.8;
-    stroke-linecap: round;
-    animation: progress 2s ease-out forwards;
-  }
-  
-  @keyframes progress {
-    0% {
-      stroke-dasharray: 0 100;
-    }
-  }
+
   .editar {
 	height: 30px;
 	width: 80px;
@@ -251,18 +212,7 @@ h2{
     line-height: 16px;
     text-transform: uppercase;
 }
-.titulo-pestañas{
-   
-        opacity: 0.99;
-        color: #A3A3A3;
-        font-family: 'Avenir Light';
-        font-size: 10px;
-        font-weight: 900;
-        line-height: 14px;
-        text-transform: uppercase;
-        padding: 19px 15px;
-    
-}
+
 
 .cambiar-contraseña{
     border-radius: 3px;	
@@ -275,6 +225,8 @@ h2{
     font-weight: 500;	
     line-height: 19px;
 }
+
+
 
 label {
 	opacity: 0.99;

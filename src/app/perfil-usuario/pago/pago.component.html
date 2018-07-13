@@ -1,0 +1,42 @@
+<div class="pago container-fluid">
+  <app-subnavbar></app-subnavbar>
+
+  <div class="container">
+    <div class="col-12 info-tarjetas">
+      <div class="row text-center" style="margin-top:80px;">
+        <div class="col-md-3">
+          <app-indicador-completitud></app-indicador-completitud>
+        </div>
+        <div class="col-md-9">
+          <h2 class="tarjetas-agregadas">Tarjetas agregadas</h2>
+          <hr class="separador">
+          <div class="row" *ngFor="let tarjeta of usuario.metodosDePago; let i=index;">
+            <div class="col-md-2 informacion-personal">
+                <h2 class="titulo-dato-personal">Marca tarjeta</h2>
+                <p class="dato-personal">{{tarjeta.marcaTarjeta}}</p>
+            </div>
+            <div class="col-md-3 offset-md-1">
+                <h2 class="titulo-dato-personal">Nº</h2>
+                <p class="dato-personal">XXXXXXXX {{tarjeta.numerosTarjeta}}</p>
+            </div>
+            <div class="col-md-1 offset-md-5">
+                <button (click)="eliminarTarjeta(i)" class="eliminar-tarjeta">
+                    &times;
+                 </button>
+            </div>
+          </div>
+          <div class="row justify-content-center mt-3">
+            <div class="col-md-12">
+                <flash-messages style="font-size: 12px; font-family: 'Avenir Next';"></flash-messages>
+            </div>  
+           
+          </div>
+          <div class="row justify-content-center mt-3">
+              <button (click)="agregarTarjeta()" *ngIf="!mostrarFormulario"  class="btn btn-primary agregar-tarjeta">Agregar tarjeta</button>            
+                  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

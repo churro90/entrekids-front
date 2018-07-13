@@ -1,73 +1,121 @@
-<div class="wrapper">
-  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Entrekids</a>
-      <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap" (click)="onLogoutClick()">
-          <a class="nav-link"><i class="fas fa-power-off"></i> Cerrar sesión</a>
-        </li>
-      </ul>
-  </nav>
-</div>
 
-  <div class="container-fluid">
-      <div class="row">
-          <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+  <!-- <div class="container-fluid">
+      <div class="row"> -->
+          <nav class="bg-light sidebar" style="max-width: 80% !important; min-height:100%;">
               <div class="sidebar-sticky">
+                 <a class="navbar-brand">
+                     {{proveedor.nombre}}
+                     <br>
+                     {{proveedor.username}}
+                 </a>               
+                    <hr class="seccion">  
+                
                   <ul class="nav flex-column">
                       <li class="nav-item">
-                          <a class="nav-link" routerLink="/proveedores/perfil">
-                            <i class="icono fas fa-tachometer-alt"></i> Resumen
+                          <a class="nav-link" routerLink="/proveedores/perfil/panel" routerLinkActive="proveedor-activo">
+                            <img class="mb-1" *ngIf="router.url == '/proveedores/perfil/panel'" src="/../assets/images/iconos-proveedor/panel-rojo.svg"> 
+                            <img class="mb-1" *ngIf="router.url != '/proveedores/perfil/panel'" src="/../assets/images/iconos-proveedor/panel.svg"> 
+                            <p class="mb-0">Panel</p>
                           </a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link"  [routerLinkActive]="['active']" routerLink="/proveedores/perfil/nueva-publicacion">
-                            <i class="icono fas fa-plus-circle"></i> Nueva publicación
+                          <a class="nav-link" routerLink="/proveedores/perfil/calendario"  routerLinkActive="proveedor-activo">
+                            <img class="mb-1" *ngIf="router.url == '/proveedores/perfil/calendario'" src="/../assets/images/iconos-proveedor/calendario-rojo.svg">
+                            <img class="mb-1" *ngIf="router.url != '/proveedores/perfil/calendario'" src="/../assets/images/iconos-proveedor/calendario.svg">
+                            <p class="mb-0">Calendario</p>
                           </a>
                       </li>
-                      <li class="nav-item">
-                          <a class="nav-link"  [routerLinkActive]="['active']" routerLink="/proveedores/perfil/mis-publicaciones">
-                            <i class="icono far fa-calendar-check"></i>  Mis Publicaciones
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link"  [routerLinkActive]="['active']" href="#">
-                            <i class="icono far fa-credit-card"></i> Transacciones
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link">
-                            <i class="icono fas fa-chart-line"></i> Mercado
-                          </a>
-                      </li>
-                  </ul>
-                  <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                      <span>Perfil</span>
-                  </h6>
-                  <ul class="nav flex-column mb-2">
-                      <li class="nav-item">
-                          <a class="nav-link"  [routerLinkActive]="['active']" href="#">
-                            <i class="icono far fa-user"></i> Información
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" [routerLinkActive]="['active']"  href="#">
-                            <i class="icono fas fa-users"></i> Perfiles
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" [routerLinkActive]="['active']" href="#">
-                            <i class="icono far fa-handshake"></i> Staff
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" [routerLinkActive]="['active']" href="#">
-                            <i class="icono fab fa-whmcs"></i> Configuración
-                          </a>
-                      </li>
+                      <div class="strike" style="width: 80%;">
+                            <span>Actividades</span>
+                         </div>
+                         <li class="nav-item">
+                                <a class="nav-link" routerLink="/proveedores/perfil/crear-actividad"  routerLinkActive="proveedor-activo">
+                                  <img class="mb-1" *ngIf="router.url == '/proveedores/perfil/crear-actividad'" src="/../assets/images/iconos-proveedor/crear-actividad-rojo.svg">
+                                  <img class="mb-1" *ngIf="router.url != '/proveedores/perfil/crear-actividad'" src="/../assets/images/iconos-proveedor/crear-actividad.svg">
+                                  <p class="mb-0">Crear actividad</p>
+                                </a>
+                           
+                                <ul style="list-style: none" class="creacion-de-actividad" *ngIf="router.url == '/proveedores/perfil/crear-actividad'" >
+                                    <li>Titulo</li>
+                                    <li>Descripción</li>
+                                    <li>Calendario</li>
+                                    <li>Cupos</li>
+                                    <li>Participantes</li>
+                                    <li>Precios</li>
+                                    <li>Ubicación</li>
+                                    <li>Instructores</li>
+                                    <li>Fotos</li>
+                                    <li>Tags</li>
+                                    <li>Links</li>
+                                    <li>Instrucciones</li>
+                                </ul>
+                          
+                         </li>
+                         <li class="nav-item">
+                                <a class="nav-link" routerLink="/proveedores/perfil/resenas"  routerLinkActive="proveedor-activo">
+                                  <img class="mb-1" *ngIf="router.url == '/proveedores/perfil/resenas'" src="/../assets/images/iconos-proveedor/resenas-rojo.svg">
+                                  <img class="mb-1" *ngIf="router.url != '/proveedores/perfil/resenas'" src="/../assets/images/iconos-proveedor/resenas.svg">
+                                  <p class="mb-0">Reseñas</p>
+                                </a>
+                         </li>
+                         <div class="strike" style="width: 80%;">
+                                <span>Finanzas</span>
+                        </div>
+                             <li class="nav-item">
+                                    <a class="nav-link" routerLink="/proveedores/perfil/balance"  routerLinkActive="proveedor-activo">
+                                      <img class="mb-1" *ngIf="router.url == '/proveedores/perfil/balance'" src="/../assets/images/iconos-proveedor/balance-rojo.svg">
+                                      <img class="mb-1" *ngIf="router.url != '/proveedores/perfil/balance'" src="/../assets/images/iconos-proveedor/balance.svg">
+                                      <p class="mb-0">Balance</p>
+                                    </a>
+                             </li>   
+                             <li class="nav-item">
+                                    <a class="nav-link" routerLink="/proveedores/perfil/transacciones"  routerLinkActive="proveedor-activo">
+                                      <img class="mb-1" *ngIf="router.url == '/proveedores/perfil/transacciones'" src="/../assets/images/iconos-proveedor/transacciones-rojo.svg">
+                                      <img class="mb-1" *ngIf="router.url != '/proveedores/perfil/transacciones'" src="/../assets/images/iconos-proveedor/transacciones.svg">
+                                      <p class="mb-0">Transacciones</p>
+                                    </a>
+                             </li>
+                             <div class="strike" style="width: 80%;">
+                                    <span>Proveedor</span>
+                            </div>
+                            <li class="nav-item">
+                                    <a class="nav-link" routerLink="/proveedores/perfil/informacion"  routerLinkActive="proveedor-activo">
+                                      <img class="mb-1" *ngIf="router.url == '/proveedores/perfil/informacion'" src="/../assets/images/iconos-proveedor/informacion-rojo.svg">
+                                      <img class="mb-1" *ngIf="router.url != '/proveedores/perfil/informacion'" src="/../assets/images/iconos-proveedor/informacion.svg">
+                                      <p class="mb-0">Informacion</p>
+                                    </a>
+                             </li>
+                             <div class="strike" style="width: 80%;">
+                                    <span>General</span>
+                            </div>
+                            <li class="nav-item">
+                                    <a class="nav-link" routerLink="/proveedores/perfil/promociones"  routerLinkActive="proveedor-activo">
+                                      <img class="mb-1" *ngIf="router.url == '/proveedores/perfil/promociones'" src="/../assets/images/iconos-proveedor/promociones-rojo.svg">
+                                      <img class="mb-1" *ngIf="router.url != '/proveedores/perfil/promociones'" src="/../assets/images/iconos-proveedor/promociones.svg">
+                                      <p class="mb-0">Promociones</p>
+                                    </a>
+                             </li>   
+                             <li class="nav-item">
+                                    <a class="nav-link" routerLink="/proveedores/perfil/tags"  routerLinkActive="proveedor-activo">
+                                      <img class="mb-1" *ngIf="router.url == '/proveedores/perfil/tags'" src="/../assets/images/iconos-proveedor/tags-rojo.svg">
+                                      <img class="mb-1" *ngIf="router.url != '/proveedores/perfil/tags'" src="/../assets/images/iconos-proveedor/tags.svg">
+                                      <p class="mb-0">Tags</p>
+                                    </a>
+                             </li>
+                             <hr class="seccion">  
+                             <li class="nav-item text-nowrap" (click)="onLogoutClick()">
+                                    <a class="nav-link"><i class="fas fa-power-off"></i>
+                                       <p class="mb-0">Cerrar sesion</p>
+                                    </a>
+                            </li>
+                 
+              
+                       
                   </ul>
               </div>
          <!--      <i class="fas fa-angle-double-left cerrar-nav"></i> -->
           </nav>
-      </div>
+<!--       </div>
 
   </div>
+ -->

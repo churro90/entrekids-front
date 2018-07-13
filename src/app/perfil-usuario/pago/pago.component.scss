@@ -1,0 +1,80 @@
+.pago{
+    margin: 70px 0 0 0;
+    padding-top: 45px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+.info-tarjetas{
+    box-sizing: border-box;
+    min-height: 341px;
+    width: 100%;
+    border: 1px solid rgba(200,200,200,0.37);
+    border-radius: 4px 4px 0 0;
+    background-color: #FFFFFF;
+    margin-top: 20px;   
+}
+
+.tarjetas-agregadas{
+    height: 16px;
+	display:table;
+	opacity: 0.99;
+	color: #A3A3A3;
+	font-family: 'Avenir Next';
+	font-size: 12px;
+	font-weight: 500;
+    line-height: 16px;
+    text-transform: uppercase;
+}
+
+
+.separador{
+
+    /* box-sizing: border-box; */
+    height: 1px;
+    width: 100%;
+  /*   border: 1px solid #D6D6D6; */
+
+}
+
+.titulo-dato-personal {
+	height: 16px;
+	display: table;
+	opacity: 0.99;
+	color: #A3A3A3;
+	font-family: 'Avenir Book';
+	font-size: 12px;
+	font-weight: 500;
+    line-height: 16px;
+    text-transform: uppercase;
+}
+
+.dato-personal {
+	height: 19px;
+	display: table;
+	color: #A3A3A3;
+	font-family: "Avenir Next";
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 19px;
+}
+
+.eliminar-tarjeta{
+    border: 1px solid gray; 
+    border-radius: 50%;  
+    padding: 0 7px 6px 7px;
+    margin: 20px 0;
+    background-color: transparent;
+}
+
+.agregar-tarjeta{
+    border-radius: 3px;	
+    background-color: #FFFFFF;	
+    box-shadow: 0.4px 1.4px 3px rgba(0,0,0,0.39);
+    border: none;
+    color: #4A4A4A;	
+    font-family: "Avenir Next";	
+    font-size: 14px;	
+    font-weight: 500;	
+    line-height: 19px;
+}

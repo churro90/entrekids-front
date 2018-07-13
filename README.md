@@ -2,26 +2,32 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.4.
 
-## Development server
+Arquitectura:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+|
+-admin	
+|
+-component
+|
+-compras-usuario	
+|
+directives	
+|
+guards	
+|
+perfil-proveedor
+|
+perfil-usuario
+|
+pipes	
+|
+resultados-buscador	
+|
+services
 
-## Code scaffolding
+En general los titulos son descriptivos por si mismos, excepto component, el cual incluye vistas como el home, landing de proveedores, footer, etc. Hay algunos que quedaron obsoletos al 13/07/2018 como login y login proveedor, no me he dado el tiempo de hacer un refactor de los archivos.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Por su parte 'directives' contiene un directive de autocomplete de google maps para las direcciones de las actividades
+'Pipes' contiene los filtros para las actividades (filtro-horario, filtro de comunas, etc)
+'Services' genera la conexión entre el front y el back. La obtención del perfil del usuario, sus actividades, etc, quedo todo dentro de auth.service (probablemente haya que separar lo que sea autenticación de datos del usuario en el futuro)
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

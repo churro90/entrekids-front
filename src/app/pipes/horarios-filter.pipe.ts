@@ -7,7 +7,7 @@ export class HorariosFilterPipe implements PipeTransform {
 
   transform(actividades: any[], rangoHorario: any[]): any[] {
     if(!actividades) return [];
-    console.log(rangoHorario);
+    
     let rhAux = [
       this.transformarHora(rangoHorario[0]),
       this.transformarHora(rangoHorario[1]),

@@ -8,7 +8,7 @@ import { ActividadesComponent } from '../perfil-usuario/actividades/actividades.
 export class FiltroComunaPipe implements PipeTransform {
 
   transform(actividades: any[], comunas: any[]): any {
-    console.log(comunas.every(this.checkNull));
+    
     let actividadesAux = [];
     if(!actividades) return [];
     if(comunas.length == 0){

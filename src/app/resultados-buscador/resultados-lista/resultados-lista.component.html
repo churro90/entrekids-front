@@ -1,11 +1,12 @@
 <div class="container-fluid resultados">
  
-        <div class="container" style="margin-top: 44px;">     
-                <div class="col-md-3">
+        <div class="container-fluid" style="margin-top: 44px;">     
+		   <div class="row">
+                <div class="col-12 col-md-3" style="margin-top:5px;margin-right:10px;">
                     <div class="row text-center">
-                        <div routerLink="/resultados/calendario" routerLinkActive="activo" class="col-md-4 tipo-vista">Calendario</div>
-                        <div routerLink="/resultados/lista"  routerLinkActive="activo" class="col-md-4 tipo-vista">Lista</div>
-                        <div routerLink="/resultados/mapa"  routerLinkActive="activo"class="col-md-4 tipo-vista">Mapa</div>
+                        <div routerLink="/resultados/calendario" routerLinkActive="activo" style="border-radius: 4px 0px 0px 0px;" class="col-md-5 tipo-vista">Calendario</div>
+                        <div routerLink="/resultados/lista"  routerLinkActive="activo" style="border-radius: 0px 0px 0px 0px;" class="col-md-4 tipo-vista">Lista</div>
+                        <div routerLink="/resultados/mapa"  routerLinkActive="activo" style="border-radius: 0px 4px 0px 0px;" class="col-md-3 tipo-vista">Mapa</div>
                     </div>
                     <div class="row filtros">
                         <div class="col-md-12 tipo-filtro align-self-center">
@@ -41,16 +42,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9 lista-resultados" style="margin-left:15px;">
+                <div class="col-12 col-md-8 lista-resultados" style="margin-top:5px;margin-right:10px;">
                    <div class="row">
-                       <div class="col-md-4 offset-md-4">
+                       <div class="col-12 col-md-8" align="center">
                             <h2 class="actividades-populares">
                                     Actividades populares
                                 </h2>
                        </div>
-                       <div class="col-md-4">
-                            <div class="buscar">
-                                    <input type="text" class="form-control buscar-actividad" [(ngModel)]="filtroActividadProveedor" name="filtroActividadProveedor" placeholder="Buscar por actividad o proveedor">
+                       <div class=" col 12 col-md-4" >
+                               <div class="buscar">
+                                    <input type="text" class=" buscar-actividad" [(ngModel)]="filtroActividadProveedor" name="filtroActividadProveedor" placeholder="Buscar por actividad o proveedor" style="padding-right: 30px;">
                                     <span aria-hidden="true" class="fas fa-search"></span>
                                </div> 
                     </div>
@@ -93,8 +94,8 @@
                     </div>
        
         </div>
-    
+    </div>
     </div>
        
            
-    
+ </div>   

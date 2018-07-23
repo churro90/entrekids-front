@@ -11,17 +11,44 @@ body{
     border-top:585px solid rgba(163,163,163,0.4);
    
 }
+
+.ulfooter{
+list-style:none;
+padding:0px;
+color: #FFFFFF;	
+font-family: Avenir Light;	
+font-size: 12px;	
+font-weight: 500;	
+line-height: 26px;
+}
+
+.footer{
+	background-color: #5A5A5A;
+}
+.footerTitle{
+margin-bottom:20px;
+height: 25px;
+width: 101px;
+color: #FFFFFF;	
+font-family: "Avenir Next";	
+font-size: 13px;	
+font-weight: bold;	
+letter-spacing: 0.9px;	
+line-height: 25px;
+
+}
+.footerRights{
+margin-top:20px;		
+color: #FFFFFF;	
+font-family: Lato;	
+font-size: 13px;	
+letter-spacing: 1.3px;	
+line-height: 16px;	
+text-align: center;
+
+}
  
- /* .imagen-fondo{
-    background: url('/assets/images/ek-cover.jpg') no-repeat;
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height:700px;
-    width: auto;
-    z-index: 1000;
-} */
+
 
 
 .slider {
@@ -68,32 +95,32 @@ a {
     z-index: 2;
     padding-top:16px;
 }
+.como-funciona-imagen{
+    width: 93px;
+    height: 93px;
 
-.texto-home{
-    height:295px;
-    background-color: white;
 }
 
-
+.texto-home{
+    height:100%;
+    background-color: white;
+}
 .imagen1-franja{
-        width: 450px;       
+        width: 250px;       
         background-image: url('https://previews.123rf.com/images/bondd/bondd1609/bondd160900013/62106233-haciendo-galletas-para-halloween-y-acci%C3%B3n-de-gracias-comida-divertida-para-ni%C3%B1os-un-refrigerio-para-una-fi.jpg');
-        background-size: cover;       
-        height: 295px;
-        border-width:0 0 0 448px;
-        border-style: solid;
-        transform: scaleX(-1);
-        -webkit-border-image: 
-        -webkit-gradient(linear, 100% 0, 0 0, from(rgba(255, 255, 255, 0)), to(rgba(255, 255, 255, 0.9))) 1 110%;
-      -webkit-border-image: 
-        -webkit-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9)) 1 110%;
-      -moz-border-image:
-        -moz-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9)) 1 110%;  
-      -o-border-image:
-        -o-linear-gradient(left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9)) 1 110%;
-      border-image:
-        linear-gradient(to left, rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.9)) 1 110%; 
-
+        background-size: cover;    
+        background-repeat: no-repeat;   
+        height: 195px;
+}
+.imagen-1-2{
+        width: 100%;       
+        height: 100%;
+        background-size: cover;    
+        background-repeat: no-repeat;
+}
+.margin-img-1-2{
+        margin: 0px;
+        padding: 0px;
 }
 .imagen2-franja{
         width: 480px;       
@@ -115,32 +142,33 @@ a {
 }
 
 .texto-franja{
-    width : 588.8px;
-}
-
-.titulo-franja{
-    padding-top: 70px;  
-        height: 36px;
-        color: #0F4163;
-        font-family: 'Lato';
-        font-size: 30px;
-        font-weight: bold;
-        letter-spacing: 3px;
-        line-height: 36px;
-        text-transform: uppercase;
     
 }
 
-.texto-franja-ek{   
-        height: 88px;
+.titulo-franja{
+    padding-top: 10%;  
+    color: #0F4163;
+	font-family: Lato;
+	font-size: 27px;
+	font-weight: bold;
+	letter-spacing: 3px;
+	line-height: 36px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+
+	
+	
+
+.texto-franja-ek{  
+        padding-top: 3%;   
         color: #181818;
-        font-family: 'Avenir Book';
-        font-size: 18px;
+        font-family: 'Avenir Light';
+        font-size: 15px;
         font-weight: 300;
         letter-spacing: 0.41px;
         line-height: 22px;
-        text-align: justify;
-        padding: 55px 5px 0 15px;
 }
     
 
@@ -168,7 +196,7 @@ a {
 
 .bajada{
     position: absolute;
-    top: 316px;
+    //top: 316px;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -184,13 +212,6 @@ a {
         text-align: center;
         text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     
-}
-
-.boton-cover{
-    position: absolute;
-    top: 300px;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .actividades{
@@ -215,11 +236,12 @@ a {
     z-index: 10000; */
 }
 .como-funciona {
+margin-top: 30px;
+    margin-bottom: 50px;
 	height: 36px;
-	width: 330px;
 	color: #0F4163;
 	font-family: Lato;
-	font-size: 30px;
+	font-size: 27px;
 	font-weight: bold;
 	letter-spacing: 3px;
 	line-height: 36px;
@@ -264,14 +286,14 @@ a {
     max-height: 75px;  
 }
 .proveedores {
-	max-height: 756px;
+	//max-height: 756px;
 	width: 100%;
 	background-color: #FFFFFF;
 }
 
 .titulo-proveedores{    
-        height: 36px;
-        width: 761px;
+        height: 100%;
+        width: 100%;
         color: #1EB2E8;
         font-family: 'Lato';
         font-size: 30px;
@@ -280,30 +302,34 @@ a {
         line-height: 36px;
         text-align: center;
         text-transform: uppercase;
+		margin-bottom:40px !important;
     
 }
 .logo-proveedor{
-    height: 112px;
-    width: 112px;
-    margin: 20px 20px;
+    height: 100px;
+    width: 100px;
+    margin: 30px 0px 0px 0px;
+	float:right;
 }
 
 .detalle {
 	height: 19px;
     display: table;
-    padding-left: 60%;
+    float:right;
+	margin: 35px 0px 0px 0px;
 	color: #181818;
 	font-family: 'Avenir Book';
 	font-size: 15px;
-	font-weight: 500;
+	font-weight: 600;
 	letter-spacing: 0.5px;
 	line-height: 20px;
     text-transform: uppercase;
 }
 .texto-detalle{   
-        height: 58px;
-        width: 215px;
+        height: 100%;
+        width: 100%;
         color: #373737;
+		float:right;
         font-family: 'Avenir Light';
         font-size: 15px;
         font-weight: 300;
@@ -318,7 +344,7 @@ a {
 }
 
 .titulo-puntos-ek{
-  
+        width:94%;
         height: 36px;
         color: #0F4163;
         font-family: 'Lato';
@@ -332,6 +358,7 @@ a {
 }
 
 .titulo-imagen-puntos-ek{
+    margin-top:10%;
     height: 20px;
 	color: #0F4163;
 	font-family: 'Avenir Medium';
@@ -363,6 +390,7 @@ a {
 }
 
 .inicia-sesion{
+margin-top: 10%;
     width: 100%;
     border-radius: 4px;	
     background-color: #FFFFFF;	
@@ -393,51 +421,31 @@ a {
 .card-title{
     color: #0F4163;	
     font-family: 'Avenir Medium';	
-    font-size: 18px;	
-    font-weight: 500;	
+    font-size: 13px;	
+    font-weight: 600;	
     line-height: 25px;
     text-transform: uppercase;
 }
 
 .card{
-    width: 300px;
+    //width: 300px;
     box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.19);
 }
 
 .card-img-top{
-    height:294px;
+    height:215px;
 }
 
 .card-text{
     color: #373737;	
     font-family: 'Avenir Light';	
-    font-size: 15px;	
+    font-size: 14px;	
     font-weight: 300;	
     line-height: 22px;
 }
 
 //RESPONSIVENESS
 
-// Extra small devices (portrait phones, less than 576px)
-@media (max-width: 575.98px) { 
-    .miles-de-actividades{   
-        
-        width: 100%;
-       font-size: 10px;
-      
-    
-}
-    .descubre{
-        width:100%;
-        font-size: 18px;
-    }
-    .bajada{
-        top:275px;
-    }
-    .boton-cover{
-        top: 300px;
-    }
-}
 
 .pagination{
     list-style: none;
@@ -452,50 +460,22 @@ a {
     border-radius: 50%;
 }
 
-// Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) { 
-    .miles-de-actividades{   
-        
-        width: 60%;
-       font-size: 18px;
-      
-    
-}
-    .descubre{
-        width:60%;
-        font-size: 26px;
-    }
-    .bajada{
-        top:290px;
-    }
-    .boton-cover {
-        top:345px;
-    } 
- }
 
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
-    .miles-de-actividades{   
-        
-        width: 80%;
-       font-size: 20px;
-      
-    
-}
-    .bajada{
-        top: 275px;
-    }
-    .descubre{
-        width:80%;
-        font-size: 28px;
-    }
- }
 
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
-    .descubre {
+
+
+
+/*
+//
+// Yeferson
+//
+*/
+
+@media (max-width : 768px) {
+.descubre {
+//border:1px solid green;
         height: 36px;
-        width: 830px;
+        width: 80%;
         color: #FFFFFF;
         font-family: 'Lato';
         font-size: 30px;
@@ -509,7 +489,228 @@ a {
     
     .bajada{
         position: absolute;
-        top: 316px;
+        top: 396px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .miles-de-actividades{    
+            height: 54px;
+            width: 80%;
+            color: #FFFFFF;
+            font-family: Lato;
+            font-size: 22px;
+            letter-spacing: 0.8px;
+            line-height: 27px;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        
+    }
+    
+    .boton-cover{
+        position: absolute;
+        top: 584px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 245px;
+        font-family: "Avenir Next";	
+        font-size: 14.7px;	
+        font-weight: 600;	
+        letter-spacing: 2px;	
+        line-height: 20px;	
+        text-align: center;
+        text-transform: uppercase;
+    }
+ 
+    .busca-actividades{
+        position: absolute;
+        top: 534px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 245px;
+        height: 41px;
+        font-family: "Avenir Next";	
+        font-size: 14.7px;	
+        font-weight: 600;	
+        letter-spacing: 2px;	
+        line-height: 20px;	
+        text-align: center;
+        text-transform: uppercase;
+        border-radius: 4.2px;	background-color: #19C6B7;	box-shadow: 1px 2px 5px rgba(0,0,0,0.43);
+        border: none;
+    }
+
+ }
+
+@media (min-width: 368px) and (max-width : 468px) {
+.divhidden{
+ display:none;
+ }
+.descubre {
+//border:1px solid orange;
+        height: 36px;
+        width: 80%;
+        color: #FFFFFF;
+        font-family: 'Lato';
+        font-size: 30px;
+        font-weight: 900;
+        letter-spacing: 3px;
+        line-height: 36px;
+        text-align: center;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
+        text-transform: uppercase;
+    }
+    
+    .bajada{
+        position: absolute;
+        top: 396px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .miles-de-actividades{    
+            height: 54px;
+            width: 80%;
+            color: #FFFFFF;
+            font-family: Lato;
+            font-size: 22px;
+            letter-spacing: 0.8px;
+            line-height: 27px;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        
+    }
+    
+    .boton-cover{
+        position: absolute;
+        top: 484px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 245px;
+        font-family: "Avenir Next";	
+        font-size: 14.7px;	
+        font-weight: 600;	
+        letter-spacing: 2px;	
+        line-height: 20px;	
+        text-align: center;
+        text-transform: uppercase;
+    }
+ 
+    .busca-actividades{
+        position: absolute;
+        top: 534px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 245px;
+        height: 41px;
+        font-family: "Avenir Next";	
+        font-size: 14.7px;	
+        font-weight: 600;	
+        letter-spacing: 2px;	
+        line-height: 20px;	
+        text-align: center;
+        text-transform: uppercase;
+        border-radius: 4.2px;	background-color: #19C6B7;	box-shadow: 1px 2px 5px rgba(0,0,0,0.43);
+        border: none;
+    }
+
+ }
+ @media (min-width: 468px) and (max-width : 790px) {
+ .divhidden{
+ display:none;
+ }
+ 
+.descubre {
+//border:1px solid gray;
+        height: 36px;
+        width: 80%;
+        color: #FFFFFF;
+        font-family: 'Lato';
+        font-size: 30px;
+        font-weight: 900;
+        letter-spacing: 3px;
+        line-height: 36px;
+        text-align: center;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
+        text-transform: uppercase;
+    }
+    
+    .bajada{
+        position: absolute;
+        top: 346px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .miles-de-actividades{    
+            height: 54px;
+            width: 80%;
+            color: #FFFFFF;
+            font-family: Lato;
+            font-size: 22px;
+            letter-spacing: 0.8px;
+            line-height: 27px;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        
+    }
+    
+    .boton-cover{
+        position: absolute;
+        top: 484px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 245px;
+        font-family: "Avenir Next";	
+        font-size: 14.7px;	
+        font-weight: 600;	
+        letter-spacing: 2px;	
+        line-height: 20px;	
+        text-align: center;
+        text-transform: uppercase;
+    }
+ 
+    .busca-actividades{
+        position: absolute;
+        top: 534px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 245px;
+        height: 41px;
+        font-family: "Avenir Next";	
+        font-size: 14.7px;	
+        font-weight: 600;	
+        letter-spacing: 2px;	
+        line-height: 20px;	
+        text-align: center;
+        text-transform: uppercase;
+        border-radius: 4.2px;	background-color: #19C6B7;	box-shadow: 1px 2px 5px rgba(0,0,0,0.43);
+        border: none;
+    }
+
+ }
+ 
+// Large devices (desktops, 992px and up)
+@media screen and (min-width: 790px) {
+
+    .descubre {
+	    //border:1px solid blue;
+        height: 36px;
+        width: 80%;
+        color: #FFFFFF;
+        font-family: 'Lato';
+        font-size: 30px;
+        font-weight: 900;
+        letter-spacing: 3px;
+        line-height: 36px;
+        text-align: center;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
+        text-transform: uppercase;
+    }
+    
+    .bajada{
+        position: absolute;
+        top: 326px;
         left: 50%;
         transform: translate(-50%, -50%);
     }
@@ -530,7 +731,7 @@ a {
     .boton-cover{
         position: absolute;
         top: 404px;
-        left: 42%;
+        left: 38%;
         transform: translate(-50%, -50%);
         width: 245px;
         font-family: "Avenir Next";	
@@ -541,11 +742,11 @@ a {
         text-align: center;
         text-transform: uppercase;
     }
-
+ 
     .busca-actividades{
         position: absolute;
         top: 404px;
-        left: 60%;
+        left: 66%;
         transform: translate(-50%, -50%);
         width: 245px;
         height: 41px;
@@ -565,3 +766,4 @@ a {
 @media (min-width: 1200px) { 
     
  }
+ 

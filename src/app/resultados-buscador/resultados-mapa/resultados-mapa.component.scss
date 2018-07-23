@@ -16,10 +16,11 @@
 }
 
 .tipo-vista{
+       cursor:pointer;
         color: #A3A3A3;    
         background-color: #FFFFFF;
         font-family: "Avenir Next";
-        font-size: 12px;
+        font-size: 10px;
         font-weight: 500;
         line-height: 16px;
         text-align: center;
@@ -52,6 +53,7 @@
 }
 
 .tipo-filtro{
+  cursor:pointer;
     height: 38px;
 	color: #777777;
 	font-family: "Avenir Next";

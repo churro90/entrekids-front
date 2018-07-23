@@ -6,10 +6,11 @@
 }
 
 .tipo-vista{
+cursor:pointer;
         color: #A3A3A3;    
         background-color: #FFFFFF;
         font-family: "Avenir Next";
-        font-size: 12px;
+        font-size: 10px;
         font-weight: 500;
         line-height: 16px;
         text-align: center;
@@ -36,6 +37,7 @@
 }
 
 .tipo-filtro{
+cursor:pointer;
     height: 38px;
 	color: #777777;
 	font-family: "Avenir Next";
@@ -155,6 +157,7 @@
 }
 
 .buscar-actividad{
+padding-right: 30px;
     margin-top: 0.8rem;
     max-height: 2.9rem;
     border-radius: .4rem;
@@ -162,8 +165,8 @@
     padding: 0.5rem;
     background-color: #e4e4e4;
     border: none;
-    width: 80%;
-    position: absolute;
+    width: 100%;
+    //position: absolute;
     right: 1rem;
     
 }

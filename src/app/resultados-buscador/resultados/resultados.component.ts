@@ -40,7 +40,7 @@ export class ResultadosComponent implements OnInit, DoCheck {
 
  precios: any[];
  comunas: any[] = []; 
-
+ 
 
 comunasAux = [
   "Cerrillos","Cerro Navia","Conchalí" ,"El Bosque","Estación Central","Huechuraba","Independencia",
@@ -179,7 +179,7 @@ rangoHorario: any[];
     }
     
     trackByDate(index: number, semana: Array<Date>) { return semana[index]; }
-
+foto:any;
   ngOnInit() {
     this.edad =[0,100];
     this.rangoHorario = [0,34];
@@ -203,35 +203,19 @@ rangoHorario: any[];
 
     this.actividadesService.obtenerActividades().subscribe(data => {
      
-      this.actividades = data.actividades;
-      console.log(data.actividades[0].fechaInicio)
-
-       this.actividades.forEach((actividad) => {
-        if(actividad.promociones != undefined){
-          actividad.promociones.forEach((promocion) => {
-           let t0 = (new Date(promocion.fechaInicio)).getTime();
-           let t1 = (new Date()).getTime();
-           let t2 = (new Date(promocion.fechaExpiracion)).getTime();
-      
-        
-          if(t0 < t1 && t1 < t2 ){
-            if(promocion.regla === 'Edad'){
-              if(promocion.cotaMinima <= actividad.edadMinima && promocion.cotaMaxima <= actividad.edadMaxima){
-                if(promocion.tipo === 'da'){
-                  actividad.dcto = actividad.dcto + (promocion.qty*actividad.plista)/100;
-                } else if(promocion.tipo === 'dsd') {
-                  actividad.dcto = actividad.dcto + (actividad.plista - actividad.dcto)*promocion.qty/100;
-                } else {
-                  actividad.dcto = Math.max(actividad.dcto,(promocion.qty*actividad.plista)/100);
-                }
-              }
-            }
-          }
-          });
+      this.actividades = data.actividades; 
+    
+      this.actividades.forEach(actividad => {
+        let fecha = new Date();         
+        let fechaInicio = new Date(actividad.fechaInicio);    
+        if((fechaInicio.getDate() == fecha.getDate()) && (fechaInicio.getMonth() == fecha.getMonth())){
+          console.log(actividad);
+         if(actividad.fullday){                   
+            let msParaProxHora = 3600000 - fecha.getTime() % 3600000;
+            actividad.fechaInicio = new Date(fecha.getTime() + msParaProxHora);
+          }                
         }
-      }); 
-
-   
+      });
  
   }, 
   err => {

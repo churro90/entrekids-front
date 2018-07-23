@@ -3,6 +3,13 @@ import { Http, Headers } from '@angular/http';
 import { environment } from '../../environments/environment'
 import 'rxjs/add/operator/map';
 
+export interface Horarios {
+  horaInicio: any,
+  horaTermino: any,
+  cupos: Number,
+  precioLista: Number,
+  precioPublicacion: Number
+};
 
 @Injectable()
 export class ProviderService {
@@ -12,11 +19,8 @@ private _url:string = environment.serverUrl + '/proveedores';
   constructor(private http:Http) { }
 
   registrarActividad(actividad){
-    let headers = new Headers();
-    let fd = new FormData();
-    fd.append('file', actividad.fotosFile);
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'multipart/form-data');  
+    let headers = new Headers();  
+    headers.append('Content-Type', 'application/json');  
     return this.http.post(this._url +'/agregar-actividad', actividad, {headers: headers})
     .map(res => res.json());    
   }

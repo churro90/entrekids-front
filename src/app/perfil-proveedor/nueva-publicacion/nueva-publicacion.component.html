@@ -4,7 +4,7 @@
     </div>
     <div class="col-sm-10">
         <div class="progress">
-            <div class="progress-bar bg-success" [style.width]="tab*20+'%'">
+            <div class="progress-bar bg-success" [style.width]="tab*16.6666666667+'%'">
              Paso {{tab}}
             </div>
           </div> 
@@ -15,8 +15,7 @@
                     <h2 class="agregar-actividad">Agregar una nueva actividad</h2>
                   </div>
                 </div>
-                 <div class=" flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 col-md-12">
-                   
+                 <div class=" flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 col-md-12">             
                      
                     <div class="tab-1" *ngIf="tab === 1">
                       <div class="row">
@@ -42,7 +41,7 @@
                         </div>
                         <div class="col-md-8">
                             <textarea [(ngModel)]="descripcion" name="descripcion" 
-                            rows="4" cols="50" maxlength="250" class="form-control" 
+                            rows="4" cols="50" maxlength="600" class="form-control" 
                             id="descripcion" (keyup)="contarCaracteres($event)"
                             placeholder="Descripción de la actividad (máximo 600 carácteres)">
                           </textarea>
@@ -74,7 +73,7 @@
                   <!--     cambiar para validacion  <button class="btn btn-primary" [disabled]="!validacionB1" (click)="siguiente()">Siguiente</button> -->
                         <button class="btn btn-primary" (click)="siguiente()">Siguiente</button>
                     </div>
-                    <div *ngIf="tab == 2">
+                    <div [hidden]="tab != 2">
                       <div class="row">
                         <div class="col-md-4">
                             <h3 class="labels">Calendario</h3>
@@ -93,6 +92,7 @@
                             name="dp2" [(ngModel)]="fechaTermino" placeholder="Fecha de termino" ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()">
                         </div>
                       </div>
+                      <hr>
                       <div class="row">
                           <div class="col-md-4">
                             <h3 class="labels">Que días quieres que se repita tu actividad?</h3>
@@ -106,6 +106,7 @@
                               </span>
                           </div>
                       </div>
+                      <hr>
                       <div class="row">
                           <div class="col-md-4">
                             <h3 class="labels">
@@ -140,6 +141,7 @@
                               <p class="bajada-labels">
                                 Puedes seleccionar los distintos horarios, stock y descuentos de acuerdo a como estimes conveniente
                               </p>
+                              <hr>
                               <div class="row">
                                 <div class="col-md-2">
                                     <h3 class="labels" style="margin-top: 20px;">
@@ -159,71 +161,382 @@
                                     <input type="radio" (click)="tipoDescuento(2)" name="dcto">
                                 </div>
                                 <div class="col-md-2 offset-md-5">
-                                  <button class="btn btn-light btn-block agregar-horario">+ Agregar horario</button>
+                                  <button class="btn btn-light btn-block agregar-horario" (click)="agregarHorario()">+ Agregar horario</button>
                                 </div>
                               </div>
-                           
+                              <hr>
                              
                               <div class="row">
                                   <div class="col-md-12">
-                                      <div class="row">                         
-                                          <div class="col-md-2">
-                                              <p class="bajada-labels mb-0">
-                                                Hora inicio
-                                              </p>
-                                              <input type="time" class="form-control" placeholder="Hora inicio">
-                                            </div>
-                                            <div class="col-md-2">
+                                    <form [formGroup]="horarioForm">
+                                      <div formArrayName="horarios">
+                                          <div class="row" *ngFor="let horario of horarioForm.controls.horarios.controls; let i=index" [formGroupName]="i">   
+                                                                                
+                                              <div class="col-md-2">
+                                                  <p class="bajada-labels mb-0">
+                                                    Hora inicio
+                                                  </p>
+                                                  <input type="time" formControlName="horaInicio" class="form-control" placeholder="Hora inicio">
+                                                  
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <p class="bajada-labels mb-0">
+                                                    Hora termino
+                                                    </p>
+                                                  <input type="time" formControlName="horaTermino" class="form-control" placeholder="Hora termino">
+                                                </div>
+                                           <div class="col-md-1">
+                                                  <p class="bajada-labels mb-0">
+                                                  Cupos
+                                                  </p>
+                                                <input type="number" formControlName="cupos" class="form-control">
+                                              </div>
+                                              <div class="col-md-2">
                                                 <p class="bajada-labels mb-0">
-                                                Hora termino
+                                                  Precio lista($)
                                                 </p>
-                                              <input type="time" class="form-control" placeholder="Hora termino">
-                                            </div>
-                                          <div class="col-md-1">
+                                                <input type="number" formControlName="precioLista"   class="form-control">
+                                               
+                                              </div>
+                                              <div class="col-md-2">
+                                                <p class="bajada-labels mb-0" *ngIf="descuento">
+                                                  Descuento($)
+                                                </p>
+                                                <p class="bajada-labels mb-0" *ngIf="!descuento">
+                                                  Descuento(%)
+                                                </p>
+                                                <input type="number" *ngIf="descuento" formControlName="descuento" class="form-control" placeholder="$" min="0">
+                                                <input type="number" *ngIf="!descuento" formControlName="descuento"  class="form-control" placeholder="%" min="0" max="100" step="1">
+                                              </div>
+                                            <div class="col-md-2">
                                               <p class="bajada-labels mb-0">
-                                              Cupos
+                                                Precio publicacion
                                               </p>
-                                            <input type="number" class="form-control">
-                                          </div>
-                                          <div class="col-md-2">
-                                            <p class="bajada-labels mb-0">
-                                              Precio lista($)
-                                            </p>
-                                            <input type="number" [(ngModel)]="plista"  class="form-control">
-                                          </div>
-                                          <div class="col-md-2">
-                                            <p class="bajada-labels mb-0" *ngIf="descuento">
-                                              Descuento($)
-                                            </p>
-                                            <p class="bajada-labels mb-0" *ngIf="!descuento">
-                                              Descuento(%)
-                                            </p>
-                                            <input type="number" [(ngModel)]="dcto" *ngIf="descuento" class="form-control" placeholder="$" min="0">
-                                            <input type="number" [(ngModel)]="dcto" *ngIf="!descuento" class="form-control" placeholder="%" min="0" max="100" step="1">
-                                          </div>
-                                        <div class="col-md-2">
-                                          <p class="bajada-labels mb-0">
-                                            Precio publicacion
-                                          </p>
-                                          <input type="number" *ngIf="descuento" readonly value="{{plista - dcto}}" class="form-control">
-                                          <input type="number" *ngIf="!descuento" readonly value="{{plista - (plista * dcto)/100}}" class="form-control">
-                                        </div> 
-                                        
-                                      </div>
+                                              <input *ngIf="descuento" formControlName="precioPublicacion" value="precioPublicacion" readonly  class="form-control">
+                                              <input *ngIf="!descuento" formControlName="precioPublicacion" value="precioPublicacion" readonly class="form-control">
+                                            </div> 
+                                            <div class="col-md-1" (click)="removerHorario(i)">
+                                                <span class="fas fa-trash-alt" *ngIf="horarioForm.controls.horarios.controls.length > 1 && i > 0" style="margin-top:25px;" >                                                  
+                                                  </span>
+                                            </div>
+                                          </div>                                                                                             
+                                           
+                                            
+                                          
+                                      </div>  
+                                  
+                                      </form>
                                     </div>
                               </div>
+                           
                             </div>
                         
                      
                          
                           </div>
+                          <div class="row" *ngIf="fullday">
+                            <div class="col-md-12">
+                              
+                                <h3 class="labels">
+                                    Detalles de tu actividad
+                                  </h3>
+                                  <hr>
+                               <div class="row">
+                                    <div class="col-md-2">
+                                        <h3 class="labels" style="margin-top: 20px;">
+                                            Formato Descuento
+                                          </h3>
+                                    </div>
+                                    <div class="col-md-1">
+                                      <p class="bajada-labels mb-0">
+                                        $
+                                      </p>
+                                        <input type="radio" (click)="tipoDescuento(1)" checked name="dcto">
+                                    </div>
+                                    <div class="col-md-1">
+                                      <p class="bajada-labels mb-0">
+                                        %
+                                      </p>
+                                        <input type="radio" (click)="tipoDescuento(2)" name="dcto">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <p class="bajada-labels mb-0">
+                                        Cupos
+                                        </p>
+                                      <input type="number" [(ngModel)]="cuposFD" name="cuposFD" class="form-control">
+                                    </div>
+                                    <div class="col-md-2">
+                                      <p class="bajada-labels mb-0">
+                                        Precio lista($)
+                                      </p>
+                                      <input type="number" [(ngModel)]="precioListaFD" name="precioListaFD"   class="form-control">
+                                     
+                                    </div>
+                                    <div class="col-md-2">
+                                      <p class="bajada-labels mb-0" *ngIf="descuento">
+                                        Descuento($)
+                                      </p>
+                                      <p class="bajada-labels mb-0" *ngIf="!descuento">
+                                        Descuento(%)
+                                      </p>
+                                      <input type="number" [(ngModel)]="dcto" name="dcto"  *ngIf="descuento" class="form-control" placeholder="$" min="0">
+                                      <input type="number" [(ngModel)]="dcto" name="dcto" *ngIf="!descuento" class="form-control" placeholder="%" min="0" max="100" step="1">
+                                    </div>
+                                  <div class="col-md-2">
+                                    <p class="bajada-labels mb-0">
+                                      Precio publicacion
+                                    </p>
+                                    <input *ngIf="descuento"  [(ngModel)]="precioPublicacionFD" name="precioPublicacionFD" value="{{precioListaFD - dcto}}" readonly  class="form-control">
+                                    <input *ngIf="!descuento" [(ngModel)]="precioPublicacionFD" name="precioPublicacionFD" value="{{precioListaFD - dcto*precioListaFD/100}}" readonly class="form-control">
+                                  </div> 
+                                </div>
+                            </div>
+                          </div>
+                              <button class="btn btn-warning mt-2" (click)="atras()">Atras</button>
+                              <button class="btn btn-primary mt-2" *ngIf="!fullday" (click)="save(horarioForm)">Siguiente</button>
+                              <button class="btn btn-primary mt-2" *ngIf="fullday" (click)="siguiente()">Siguiente</button>
+                              
+
                     </div>
+                    <div [hidden]="tab != 4">
+                       
+                      <div class="row">
+                          <div class="col-md-4">
+                              <h3 class="labels">Dirección del evento</h3>
+                              <p class="bajada-labels">
+                                  Being the savage's bowsman, that is, the person who pulled the bow-oar in his boat (the second one from forward), it was my cheerful duty to attend upon him while taking 
+                              </p>
+                            </div>
+                            <div class="col-md-8">
+                              <div class="row">
+                                <div class="col-md-7">
+                                  <input type="text" [(ngModel)]="direccion" name="direccion" (change)="inicializarMarker()" (onSelect)="direccion = $event.name" name="direccion" class="form-control" appAutocomplete>
+                                </div>
+                                <div class="col-md-2">
+                                  <input type="number" [(ngModel)]="numeroDireccion" name="numeroDireccion" (keyup)="inicializarMarker()" name="numeroDireccion" class="form-control" placeholder="Nº">
+                                </div>
+                                <div class="col-md-3">
+                                  <input type="text" [(ngModel)]="local" name="local" placeholder="Dpto/Of/Local" class="form-control">
+                                </div>
+                              </div>
+                                <div #gmap id="map">
+
+                                  </div>
+                            </div>                        
+                                                           
+                          
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <h3 class="labels">¿Es indoor, outdoor o ambas?</h3>
+                          <p class="bajada-labels">Being the savage's bowsman, that is, the person who pulled the bow-oar in his boat (the second one from forward), 
+                            it was my cheerful duty to attend upon him while taking that hard-sc</p>                          
+                        </div>
+                        <div class="col-md-8">
+                          <select class="form-control" [(ngModel)]="tipo" name="tipo">
+                            <option value=""></option>
+                            <option value="indoor">Indoor</option>
+                            <option value="outdoor">Outdoor</option>
+                            <option value="ambas">Ambas</option>
+                          </select>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                          <div class="col-md-4">
+                              <h3 class="labels">Categorías</h3>
+                              <p class="bajada-labels">Curabitur lobortis id lorem id bibendum. Ut id consectetur magna. Quisque volutpat augue enim</p>
+                            </div>
+                            <div class="col-md-8">
+                              <div class="row">
+                                <div class="col-md-6">
+                                    <div style="display:block; position: relative;" *ngFor="let categoria of categorias | slice:0:10 ; let i=index; ">
+                                        <span class="checkbox-filtro" (click)="seleccionCategoria(i,$event);"   style="cursor: pointer;">                                    
+                                        </span>
+                                        <div class="categoria" style="display: inline-block;">
+                                            {{categoria.nombre}}
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div class="col-md-6">
+                                    <div style="display:block; position: relative;" *ngFor="let categoria of categorias | slice:10 ; let i=index; ">
+                                        <span class="checkbox-filtro" (click)="seleccionCategoria(i+10,$event);"   style="cursor: pointer;">                                    
+                                        </span>
+                                        <div class="categoria" style="display: inline-block;">
+                                            {{categoria.nombre}}
+                                        </div>
+                                    </div> 
+                                </div>
+                              </div>
+                            </div>
+                      </div>
+                      <hr>
+                      <div class="row mt-2">
+                        <div class="col-md-4">
+                          <h3 class="labels">Tags</h3>
+                          <p class="bajada-labels">Curabitur lobortis id lorem id bibendum. Ut id consectetur magna. Quisque volutpat augue enim,.</p>
+                        </div>
+                        <div class="col-md-8">
+                          <div class="row tags">
+                            <div class="col-md-12">
+
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                                <mwl-text-input-autocomplete-container>
+                                  <textarea placeholder="Ingresa tus tags con @" class="form-control" rows="1"
+                                    [(ngModel)]="formControlValue" mwlTextInputAutocomplete 
+                                      [findChoices]="findChoices.bind(this)" [getChoiceLabel]="getChoiceLabel.bind(this)" >
+                                    
+                                  </textarea>
+                                </mwl-text-input-autocomplete-container>
+                            </div> 
+                                                     
+                          </div>
+                         
+                            <ul class="list-inline mt-3">
+                              <li class="listItem mt-1" *ngFor="let tag of tagsActividad; let i=index">
+                                  <div (click)="quitarTag(i)" class="chip-container">
+                                      <div class="label label-default chips">
+                                        {{tag}}
+                                        <span class="far fa-times-circle pointer" ></span>
+                                      </div>
+                                    </div>
+                              </li>                              
+                            </ul>        
+                               
+                                  
                         
-                      
-                     <!--  <div class="campos" *ngIf="!validacionActividad"><p>*Porfavor rellena todos los campos</p></div> -->
-                    
-                    <flash-messages></flash-messages>
+                        </div>
+                      </div>
+                      <button class="btn btn-warning" (click)="atras()">Atras</button>
+                  
+                      <button class="btn btn-primary" (click)="siguiente()">Siguiente</button>
+                    </div>
+                    <div [hidden]="tab != 5">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <h3 class="labels">¿Son necesarios cuidadores?</h3>
+                          <p class="bajada-labels">
+                              Being the savage's bowsman, that is, the person who pulled the bow-oar in his boat (the second one from forward), 
+                              it was my cheerful duty to attend upon him while taking 
+                          </p>
+                        </div>
+                        <div class="col-md-8">
+                          <select [(ngModel)]="cuidador" name="cuidador" class="form-control">
+                            <option value=""></option>
+                            <option value="requerido">Acompañante requerido</option>
+                            <option value="opcional">Acompañante opcional</option>
+                            <option value="noPermitido">Acompañante no permitido</option>
+                          </select>
+                        </div>
+
+                       
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <h3 class="labels">Rango de edad de los niños</h3>
+                          <p class="bajada-labels">
+                              Being the savage's bowsman, that is, the person who pulled the bow-oar in his boat (the second one from forward), 
+                              it was my cheerful duty to attend upon him while taking 
+                          </p>
+                        </div>
+                        <div class="col-md-2">
+                          <input type="number" [(ngModel)]="edadMinima" name="edadMinima" class="form-control" placeholder="0 años">
+                        </div>
+                        <div class="col-md-2">
+                          <input type="number" [(ngModel)]="edadMaxima" name="edadMaxima" class="form-control" placeholder="12 años">
+                        </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-4">
+                              <h3 class="labels">¿La actividad específica tiene sitio web?</h3>
+                              <p class="bajada-labels">
+                                  Curabitur lobortis id lorem id bibendum. Ut id consectetur magna. Quisque volutpat augue enim,.
+                              </p>
+                          </div>
+                          <div class="col-md-8">
+                            <input type="text" [(ngModel)]="paginaWeb" name="paginaWeb" class="form-control" placeholder="Pega el link de acceso al sitio web">
+                          </div>
+                      </div>
+                      <button class="btn btn-warning" (click)="atras()">Atras</button>
+                  
+                      <button class="btn btn-primary" (click)="siguiente()">Siguiente</button>
+                    </div>
+                   
                   </div>
+                  <div [hidden]="tab != 6">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <h3 class="labels">Fotos</h3>
+                        <p class="bajada-labels">
+                            Being the savage's bowsman, that is, the person who pulled the bow-oar in his boat (the second one from forward), 
+                            it was my cheerful duty to attend upon him while taking 
+                        </p>
+                        <button (click)="agregarFotos = !agregarFotos" class="btn btn-light agregar-horario">Agregar más fotos</button>
+                      </div>
+                      <div class="col-md-8">
+                        <ul class="lista-fotos">
+                          <li *ngFor="let foto of fotos">
+                            <div class="foto">
+                              <img class="fotos" src={{foto}}>
+                            </div>                      
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <hr>
+                    <div [hidden]="agregarFotos" class="row">
+                        <div class="file-upload col-md-12">                          
+                            <input id="custom-input" type="file" (change)="fileChangeListener($event)">
+                        </div>
+                      <div class="row">
+                          <img-cropper class="col-md-5" #cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+                          <br>
+                          <span class="result rounded col-md-7" *ngIf="data.image" >
+                              <img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+                          </span>
+                      </div>
+                      
+                      <div class="row">
+                        <div class="col-md-12">
+                          <button *ngIf="data.image" (click)="agregarFoto()" class="btn btn-success">Agregar foto</button>                       
+                        </div>
+                      </div>
+                       
+                    </div>
+                    <hr [hidden]="agregarFotos">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h3 class="labels">¿Algunas instrucciones especiales?</h3>
+                            <p class="bajada-labels">
+                                Being the savage's bowsman, that is, the person who pulled the bow-oar in his boat (the second one from forward), 
+                                it was my cheerful duty to attend upon him while taking 
+                            </p>
+                        </div>
+                        <div class="col-md-8">
+                            <textarea [(ngModel)]="instrucciones" name="instrucciones" 
+                            rows="4" cols="50" maxlength="250" class="form-control" 
+                            id="instrucciones" 
+                            placeholder="Ejemplo: 'venir con ropa comoda'">
+                          </textarea>
+                        </div>
+                    </div>
+                    <div class="row mt-5 mb-4">
+                      <div class="col-md-6">
+                          <button class="btn btn-warning" (click)="atras()">Atras</button>
+                      </div>
+                      <div class="col-md-6">
+                        <button (click)="crearNuevaActividad()" class="btn btn-primary btn-block btn-crear-actividad">Crear actividad</button>
+                      </div>
+                    </div>
+                  </div>
+                
                 </main>  
                   <!-- <div class="hint">
                      <div class="card" *ngIf="tab === 1" style="width: 18rem">
@@ -276,3 +589,8 @@
           </div>
     </div>
  </div>
+  
+ 
+
+
+ 

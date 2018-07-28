@@ -93,7 +93,7 @@
                 <hr class="separador">
                 <div class="row detalle-resultados-actividad" routerLink="/resultados/detalles/{{actividad._id}}" *ngFor="let actividad of actividades | dateFilter: semana[0] | horariosFilter: rangoHorario | filtroComuna: comunas">
                     <div class="col-md-3" style="margin-left:-15px;">
-                            <img class="resultado-actividad-imagen" src='https://deporteysalud-static.hola.com/deporteparaninos/wp-content/uploads/sites/4/2014/03/hockey_para_los_mas_pequenos_descubrelo.jpg' alt="Card image cap">
+                            <img class="resultado-actividad-imagen" src={{actividad?.fotos[0]}} alt="Card image cap">
                     </div>
                     <div class="col-md-4" style="padding-left: 10px; margin-top:9px;">
                         <h2 class="titulo-actividad mb-0">
@@ -136,8 +136,11 @@
    
        
 </div>
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 699606d9089819af51a02bf284ee40eaf6b7c496
 
 
 

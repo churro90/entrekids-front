@@ -4,9 +4,10 @@ import { HttpModule } from '@angular/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CurrencyPipe } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {RouterModule, Routes} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -17,7 +18,8 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { FullCalendarModule } from 'ng-fullcalendar';
 import { NouisliderModule } from 'ng2-nouislider';
 import { StarRatingModule } from 'angular-star-rating';
-
+import { TextInputAutocompleteModule } from 'angular-text-input-autocomplete';
+import { ImageCropperComponent } from "ngx-img-cropper";
 //
 
 import { CookieService } from 'angular2-cookie/services/cookies.service';
@@ -103,7 +105,8 @@ import { FavoritosComponent } from './compras-usuario/favoritos/favoritos.compon
 
 import { NotificacionesComprasComponent } from './compras-usuario/notificaciones-compras/notificaciones-compras.component';
 import { ResenasComponent } from './compras-usuario/resenas/resenas.component';
-import { ImageCropperComponent } from 'ngx-img-cropper';
+
+
 
 
 
@@ -223,13 +226,16 @@ const appRoutes: Routes = [
     FullCalendarModule,
     NouisliderModule,
     StarRatingModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    TextInputAutocompleteModule
+    
 
   ],
   providers: [ValidateService, AuthService, AuthGuard, NavbarVisibleService,
               ActividadesService, ValidateProviderService, AuthProviderService,
               ProviderService, WebpayService, TransaccionesService, ReviewsService,
-              CookieService],
+              CookieService, CurrencyPipe],
   bootstrap: [AppComponent]
 })
 

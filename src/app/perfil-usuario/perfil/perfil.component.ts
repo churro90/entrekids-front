@@ -7,7 +7,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import {NgbModal, NgbModalRef, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { ValidateService} from '../../services/validate.service';
 import { CookieService } from 'angular2-cookie/core';
-import { CropperSettings } from 'ngx-img-cropper';
+
 
 @Component({
   selector: 'app-perfil',
@@ -19,7 +19,7 @@ import { CropperSettings } from 'ngx-img-cropper';
 
 export class PerfilComponent implements OnInit {
   data: any;
-  cropperSettings: CropperSettings;
+ 
 
 usuario: Object;
 agregarhijo = false;
@@ -59,14 +59,7 @@ subirImagen: boolean;
               private ref: ChangeDetectorRef,
               private cookieService: CookieService
               ) {
-                 this.cropperSettings = new CropperSettings();
-                this.cropperSettings.croppedWidth = 100;
-                this.cropperSettings.croppedHeight = 100;
-                this.cropperSettings.canvasWidth = 800;
-                this.cropperSettings.canvasHeight = 400;
-               
-
-                this.data = {};
+           
                }
 
   ngOnInit() {

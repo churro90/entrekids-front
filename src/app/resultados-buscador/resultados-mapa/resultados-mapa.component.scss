@@ -20,7 +20,7 @@
         color: #A3A3A3;    
         background-color: #FFFFFF;
         font-family: "Avenir Next";
-        font-size: 10px;
+        font-size: 9px;
         font-weight: 500;
         line-height: 16px;
         text-align: center;
@@ -57,7 +57,7 @@
     height: 38px;
 	color: #777777;
 	font-family: "Avenir Next";
-	font-size: 12px;
+	font-size: 9px;
 	font-weight: 600;
 	letter-spacing: 0.6px;
     line-height: 16px;
@@ -67,3 +67,16 @@
 .flecha{
     float: right;
 }
+
+@media (min-width: 768px) {
+.paddingActividades{
+padding-right: 46px;
+ }
+ .marginActividades{
+ margin-left: -33px;
+ }
+ #map{
+ width: 107%;
+ }
+ 
+ }

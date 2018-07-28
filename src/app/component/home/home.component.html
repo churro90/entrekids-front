@@ -19,8 +19,23 @@
         
                 <h2 class="centered descubre">Descubre y reserva experiencias a un click</h2>
                <p class="bajada miles-de-actividades">Miles de actividades y los mejores proveedores, en un solo lugar</p>
-               <button (click)="registrate()"  class="btn btn-danger actividades boton-cover" >Registrate gratis</button> 
-               <button (click)="actividades()" class="btn btn-success busca-actividades">Busca actividades</button> 
+			   
+			   
+			   <div class="container-fluid segmentoButtons">
+			       <div class="row">
+				       <div class="col-12 col-md-6 buttonRegistrate" style="text-align: center;margin-top:10px;">
+					       <button (click)="registrate()"  class="btn btn-danger actividades boton-cover" >Registrate gratis</button> 
+					   </div>
+					   <div class="col-12 col-md-6 buttonActividades" style="text-align: center;margin-top:10px;">
+					        <button (click)="actividades()" class="btn btn-success busca-actividades">Busca actividades</button> 
+					   </div>
+				   </div>
+			   </div>
+			   
+			   
+			   
+			   
+               
             
         </div>
 

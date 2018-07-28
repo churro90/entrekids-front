@@ -10,7 +10,7 @@ cursor:pointer;
         color: #A3A3A3;    
         background-color: #FFFFFF;
         font-family: "Avenir Next";
-        font-size: 10px;
+        font-size: 9px;
         font-weight: 500;
         line-height: 16px;
         text-align: center;
@@ -41,7 +41,7 @@ cursor:pointer;
     height: 38px;
 	color: #777777;
 	font-family: "Avenir Next";
-	font-size: 12px;
+	font-size: 10px;
 	font-weight: 600;
 	letter-spacing: 0.6px;
     line-height: 16px;
@@ -97,7 +97,7 @@ cursor:pointer;
     margin: auto;
     
     font-family: "Avenir Next";	
-    font-size: 13px;	
+    font-size: 11px;	
     font-weight: 600;	
     letter-spacing: 0.1px;	
     line-height: 18px;	
@@ -111,8 +111,8 @@ cursor:pointer;
 .resultado-fleje-dias>li>span{
     padding-left: 1rem!important;
     padding-right: 1rem!important;
-    padding-top: 13px !important;
-    padding-bottom: 13px !important;
+    padding-top: 7px !important;
+    padding-bottom: 11px !important;
 }
 .lista-resultados {
 	box-sizing: border-box;
@@ -302,3 +302,13 @@ padding-right: 30px;
 .horario{
     max-height: 15px;
 }
+
+@media (min-width: 768px) {
+.paddingActividades{
+padding-right: 46px;
+ }
+ .marginActividades{
+ margin-left: -28px;
+ }
+ 
+ }

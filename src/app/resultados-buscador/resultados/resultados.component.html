@@ -2,11 +2,12 @@
  
     <div class="container-fluid" style="margin-top: 44px;">
 	    <div class="row">
-            <div class=" col-12 col-md-3 " style="margin-top:5px;margin-right:10px;">
+		   
+            <div class=" col-12 col-md-3 offset-md-1 paddingActividades" style="margin-top:5px;margin-right:10px;">
                 <div class="row text-center">
-                    <div routerLink="/resultados/calendario" routerLinkActive="activo" class="col-md-5 tipo-vista" style="border-radius: 4px 0px 0px 0px;">Calendario</div>
-                    <div  routerLink="/resultados/lista" routerLinkActive="activo" class="col-md-4 tipo-vista" style="border-radius: 0px 0px 0px 0px;">Lista</div>
-                    <div routerLink="/resultados/mapa"  routerLinkActive="activo"class="col-md-3 tipo-vista" style="border-radius: 0px 4px 0px 0px;">Mapa</div>
+                    <div routerLink="/resultados/calendario" routerLinkActive="activo" class="col-4 col-md-4 tipo-vista" style="border-radius: 4px 0px 0px 0px;height: 37px;">Calendario</div>
+                    <div  routerLink="/resultados/lista" routerLinkActive="activo" class="col-4 col-md-4 tipo-vista" style="border-radius: 0px 0px 0px 0px;height: 37px;">Lista</div>
+                    <div routerLink="/resultados/mapa"  routerLinkActive="activo"class="col-4 col-md-4 tipo-vista" style="border-radius: 0px 4px 0px 0px;height: 37px;">Mapa</div>
                 </div>
              
                 
@@ -59,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-8 lista-resultados" style="margin-top:5px;">
+            <div class="col-12 col-md-7 lista-resultados marginActividades" style="margin-top:5px;">
                 <div class="fleje-dias">
                     <div (click)="anteriorSemana()">
                         <i class="fas fa-chevron-left"></i>
@@ -77,7 +78,7 @@
                         </div>  
                 </div>
                 <div class="row text-center">
-                    <div class="col-md-5 offset-md-3">
+                    <div class="col-md-6 offset-md-2">
                         <h2 class="titulo-dia">
                                 {{semana[0] |date:'fullDate':'':'es-CL'}}
                         </h2>

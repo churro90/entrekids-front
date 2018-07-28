@@ -433,7 +433,7 @@ margin-top: 10%;
 }
 
 .card-img-top{
-    height:215px;
+    //height:215px;
 }
 
 .card-text{
@@ -508,10 +508,10 @@ margin-top: 10%;
     }
     
     .boton-cover{
-        position: absolute;
-        top: 584px;
+        //position: absolute;
+        //top: 584px;
         left: 50%;
-        transform: translate(-50%, -50%);
+        //transform: translate(-50%, -50%);
         width: 245px;
         font-family: "Avenir Next";	
         font-size: 14.7px;	
@@ -523,10 +523,10 @@ margin-top: 10%;
     }
  
     .busca-actividades{
-        position: absolute;
+        //position: absolute;
         top: 534px;
         left: 50%;
-        transform: translate(-50%, -50%);
+        //transform: translate(-50%, -50%);
         width: 245px;
         height: 41px;
         font-family: "Avenir Next";	
@@ -539,6 +539,9 @@ margin-top: 10%;
         border-radius: 4.2px;	background-color: #19C6B7;	box-shadow: 1px 2px 5px rgba(0,0,0,0.43);
         border: none;
     }
+	.segmentoButtons{
+	 margin-top:384px;
+	 }
 
  }
 
@@ -582,10 +585,10 @@ margin-top: 10%;
     }
     
     .boton-cover{
-        position: absolute;
-        top: 484px;
+        //position: absolute;
+        //top: 484px;
         left: 50%;
-        transform: translate(-50%, -50%);
+        //transform: translate(-50%, -50%);
         width: 245px;
         font-family: "Avenir Next";	
         font-size: 14.7px;	
@@ -597,10 +600,10 @@ margin-top: 10%;
     }
  
     .busca-actividades{
-        position: absolute;
+        //position: absolute;
         top: 534px;
         left: 50%;
-        transform: translate(-50%, -50%);
+        //transform: translate(-50%, -50%);
         width: 245px;
         height: 41px;
         font-family: "Avenir Next";	
@@ -656,10 +659,10 @@ margin-top: 10%;
     }
     
     .boton-cover{
-        position: absolute;
-        top: 484px;
+        //position: absolute;
+        //top: 484px;
         left: 50%;
-        transform: translate(-50%, -50%);
+        //transform: translate(-50%, -50%);
         width: 245px;
         font-family: "Avenir Next";	
         font-size: 14.7px;	
@@ -671,10 +674,10 @@ margin-top: 10%;
     }
  
     .busca-actividades{
-        position: absolute;
+        //position: absolute;
         top: 534px;
         left: 50%;
-        transform: translate(-50%, -50%);
+        //transform: translate(-50%, -50%);
         width: 245px;
         height: 41px;
         font-family: "Avenir Next";	
@@ -687,6 +690,9 @@ margin-top: 10%;
         border-radius: 4.2px;	background-color: #19C6B7;	box-shadow: 1px 2px 5px rgba(0,0,0,0.43);
         border: none;
     }
+	.segmentoButtons{
+	 margin-top:304px;
+	 }
 
  }
  
@@ -729,10 +735,10 @@ margin-top: 10%;
     }
     
     .boton-cover{
-        position: absolute;
-        top: 404px;
+       // position: absolute;
+        //top: 404px;
         left: 38%;
-        transform: translate(-50%, -50%);
+        //transform: translate(-50%, -50%);
         width: 245px;
         font-family: "Avenir Next";	
         font-size: 14.7px;	
@@ -744,10 +750,10 @@ margin-top: 10%;
     }
  
     .busca-actividades{
-        position: absolute;
+        //position: absolute;
         top: 404px;
         left: 66%;
-        transform: translate(-50%, -50%);
+        //transform: translate(-50%, -50%);
         width: 245px;
         height: 41px;
         font-family: "Avenir Next";	
@@ -760,10 +766,18 @@ margin-top: 10%;
         border-radius: 4.2px;	background-color: #19C6B7;	box-shadow: 1px 2px 5px rgba(0,0,0,0.43);
         border: none;
     }
+	.segmentoButtons{
+	 margin-top:271px;
+	 }
   }
 
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) { 
-    
+@media (min-width: 768px) {
+.buttonRegistrate{
+text-align: right !important;
+ }
+ .buttonActividades{
+ text-align: left !important;
+ }
+ 
  }
  

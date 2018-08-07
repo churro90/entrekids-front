@@ -78,12 +78,12 @@
                         </div>  
                 </div>
                 <div class="row text-center">
-                    <div class="col-md-6 offset-md-2">
+                    <div class="col-12 col-md-6 offset-md-2">
                         <h2 class="titulo-dia">
                                 {{semana[0] |date:'fullDate':'':'es-CL'}}
                         </h2>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-12 col-md-4">
                             <div class="buscar">
                                     <input type="text" class="form-control buscar-actividad" [(ngModel)]="filtroActividadProveedor" name="filtroActividadProveedor" placeholder="Buscar por actividad o proveedor" style="padding-right:35px;height:30px;">
                                     <span aria-hidden="true" class="fas fa-search"></span>
@@ -91,11 +91,11 @@
                     </div>
                 </div>
                 <hr class="separador">
-                <div class="row detalle-resultados-actividad" routerLink="/resultados/detalles/{{actividad._id}}" *ngFor="let actividad of actividades | dateFilter: semana[0] | horariosFilter: rangoHorario | filtroComuna: comunas">
-                    <div class="col-md-3" style="margin-left:-15px;">
-                            <img class="resultado-actividad-imagen" src={{actividad?.fotos[0]}} alt="Card image cap">
+                <div class="row detalle-resultados-actividad"  routerLink="/resultados/detalles/{{actividad._id}}" *ngFor="let actividad of actividades | dateFilter: semana[0] | horariosFilter: rangoHorario | filtroComuna: comunas">
+                    <div class="col-4 col-md-3" style="padding:0px;">
+                            <img class="resultado-actividad-imagen" src='https://deporteysalud-static.hola.com/deporteparaninos/wp-content/uploads/sites/4/2014/03/hockey_para_los_mas_pequenos_descubrelo.jpg' alt="Card image cap">
                     </div>
-                    <div class="col-md-4" style="padding-left: 10px; margin-top:9px;">
+                    <div class=" col-8 col-md-4" style="padding-left: 10px; margin-top:9px;">
                         <h2 class="titulo-actividad mb-0">
                             {{actividad?.nombre}}
                         </h2>
@@ -109,18 +109,18 @@
                             {{actividad?.direccion}} {{actividad?.numeroDireccion}}
                         </p>
                     </div>
-                    <div class="col-md-1" style="margin-top:9px; padding-left:20px;">
+                    <div class="col-1 col-md-1 adaptacion" style="margin-top:9px; padding:0px;">
                         <div class="icono">
 
                         </div>
                     </div>
-                    <div class="col-md-3" style="margin-top:9px; padding-left:0px; padding-right: 0px;">
+                    <div class=" col-8 col-md-3" style="margin-top:9px; padding-left:0px; padding-right: 0px;">
                         <h2 class="horario mb-0">{{actividad?.fechaInicio | date:'shortTime'}}</h2>
                         <p class="duracion mb-0">30 min</p>
                         <p class="precio-ek mb-0">Precio Entrekids: {{actividad?.plista - actividad?.dcto | currency:'':'':'1.0-0':'es-CL'}}</p>
                         <p class="precio-normal mb-0">Precio normal: {{actividad?.plista | currency:'':'':'1.0-0':'es-CL'}}</p>
                     </div>
-                    <div class="col-md-1" style="margin-top:9px; padding-left:0px;">
+                    <div class="col-3 col-md-1 adaptacion2" style="margin-top:9px; padding-left:0px;padding:0px;">
                         <button class="btn btn-primary ver">
                             Ver
                         </button>

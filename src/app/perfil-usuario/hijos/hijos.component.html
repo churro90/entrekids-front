@@ -2,15 +2,18 @@
 <div class="hijos container-fluid">
   <app-subnavbar></app-subnavbar>
 
-  <div class="container">
-    <div class="col-12 info-hijos">
+  <div class="container-fluid">
+    <div class="col-12 col-md-10 offset-md-1 info-hijos">
       <div class="row text-center" style="margin-top:80px;">
         <div class="col-md-3">
           <app-indicador-completitud></app-indicador-completitud>
         </div>
-        <div class="col-md-9">
-          <h2 class="info-niños">Información niños(as)</h2>
-          <hr class="separador">
+        <div class="col-md-9" >
+		  <div class="col-12 col-md-10 offset-md-2" style="padding-left:0;">
+			<h2 class="info-niños">Información niños(as)</h2>
+		 
+          <hr class="separador" style="margin-top:0rem;">
+		   </div>
           <div class="row" *ngFor="let hijo of usuario?.hijos; let i=index">
             <div class="col-md-1">
               <div class="subir-foto">
@@ -27,11 +30,13 @@
                 <h2 class="titulo-dato-personal">Apellido</h2>
                 <p class="dato-personal">{{hijo?.apellido}}</p>
             </div>
-            <div class="col-md-5 informacion-personal">
-                <h2 class="titulo-dato-personal">Fecha de nacimiento</h2>
-                <p class="dato-personal">{{hijo?.fdenacimiento | date:'d/M/yyyy':'':'es-CL'}}</p>
+            <div class="col-md-5 informacion-personal" style="padding:20px 0px 0px 0px;text-align:center;">
+                <div style="margin:auto;width:60%;">
+				<p class="titulo-dato-personal" style="text-align:left;">Fecha de nacimiento</p>
+                <p class="dato-personal" style="text-align:left;">{{hijo?.fdenacimiento | date:'d/M/yyyy':'':'es-CL'}}</p>
+				</div>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-1" >
                 <button (click)="eliminarHijo(i)" class="eliminar-hijo">
                    &times;
                 </button>
